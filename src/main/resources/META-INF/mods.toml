@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[42,)"
+license="All rights reserved"
+[[mods]]
+modId="cuisine_delight"
+version="${file.jarVersion}" #mandatory
+displayName="Cuisine Delight" #mandatory
+logoFile="cuisine_delight.png" #optional
+credits="Thanks for this example mod goes to Java" #optional
+authors="Love, Cheese and small house plants" #optional
+description='''
+'''
+[[dependencies.cuisine_delight]]
+    modId="forge"
+    mandatory=true
+    versionRange="[42.0.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.cuisine_delight]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.1,1.20)"
+    ordering="NONE"
+    side="BOTH"
