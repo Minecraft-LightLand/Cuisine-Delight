@@ -22,3 +22,9 @@ description='''
     versionRange="[1.19.1,1.20)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.cuisine_delight]]
+    modId="l2library"
+    mandatory=true
+    versionRange="[1.8.0,)"
+    ordering="AFTER"
+    side="BOTH"

@@ -1,0 +1,166 @@
+{
+  "_class": "dev.xkmc.cuisine_delight.content.logic.IngredientConfig",
+  "entries": [
+    {
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "minecraft:chicken"
+        },
+        {
+          "item": "minecraft:porkchop"
+        },
+        {
+          "item": "minecraft:rabbit"
+        }
+      ],
+      "max_time": 12,
+      "min_time": 9,
+      "nutrition": 10,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 1.0,
+      "size": 2,
+      "stir_time": 3
+    },
+    {
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "minecraft:mutton"
+        },
+        {
+          "item": "minecraft:beef"
+        }
+      ],
+      "max_time": 9,
+      "min_time": 6,
+      "nutrition": 10,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 2,
+      "stir_time": 3
+    },
+    {
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "minecraft:cod"
+        },
+        {
+          "item": "minecraft:salmon"
+        }
+      ],
+      "max_time": 6,
+      "min_time": 3,
+      "nutrition": 15,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 3
+    },
+    {
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "minecraft:potato"
+        },
+        {
+          "item": "minecraft:beetroot"
+        },
+        {
+          "item": "minecraft:carrot"
+        }
+      ],
+      "max_time": 18,
+      "min_time": 12,
+      "nutrition": 5,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 2
+    },
+    {
+      "effects": [],
+      "ingredient": {
+        "item": "minecraft:golden_carrot"
+      },
+      "max_time": 18,
+      "min_time": 12,
+      "nutrition": 25,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 2
+    },
+    {
+      "effects": [
+        {
+          "effect": "minecraft:saturation",
+          "time": 7
+        }
+      ],
+      "ingredient": {
+        "item": "minecraft:dandelion"
+      },
+      "max_time": 4,
+      "min_time": 3,
+      "nutrition": 0,
+      "overcook_penalty": 0.0,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 1
+    },
+    {
+      "effects": [
+        {
+          "effect": "minecraft:regeneration",
+          "time": 200
+        },
+        {
+          "effect": "minecraft:saturation",
+          "time": 8
+        }
+      ],
+      "ingredient": {
+        "item": "minecraft:golden_apple"
+      },
+      "max_time": 7,
+      "min_time": 6,
+      "nutrition": 5,
+      "overcook_penalty": 0.0,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 1
+    },
+    {
+      "effects": [
+        {
+          "effect": "minecraft:regeneration",
+          "time": 800
+        },
+        {
+          "effect": "minecraft:resistance",
+          "time": 6000
+        },
+        {
+          "effect": "minecraft:fire_resistance",
+          "time": 6000
+        },
+        {
+          "effect": "minecraft:saturation",
+          "time": 32
+        }
+      ],
+      "ingredient": {
+        "item": "minecraft:enchanted_golden_apple"
+      },
+      "max_time": 7,
+      "min_time": 6,
+      "nutrition": 5,
+      "overcook_penalty": 0.0,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 1
+    }
+  ]
+}

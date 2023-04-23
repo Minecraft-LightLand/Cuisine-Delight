@@ -1,10 +1,10 @@
-package dev.xkmc.cuisine_delight.init;
+package dev.xkmc.cuisine_delight.init.data;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class LWConfig {
+public class CDConfig {
 
 	public static class Client {
 
@@ -41,8 +41,8 @@ public class LWConfig {
 	 * Registers any relevant listeners for config
 	 */
 	public static void init() {
-		ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.CLIENT, LWConfig.CLIENT_SPEC);
-		ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, LWConfig.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.CLIENT, CDConfig.CLIENT_SPEC);
+		ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, CDConfig.COMMON_SPEC);
 	}
 
 
