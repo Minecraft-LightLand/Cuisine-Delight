@@ -1,8 +1,13 @@
 package dev.xkmc.cuisine_delight.content;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
+import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
+import dev.xkmc.l2library.base.overlay.OverlayUtils;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -26,6 +31,7 @@ public class CookingOverlay implements IGuiOverlay {
 		else return;
 		CookingData data = CuisineSkilletItem.getData(stack);
 		if (data == null || data.contents.size() == 0) return;
+		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;
 		int x = 8;
 		Font font = Minecraft.getInstance().font;
@@ -35,6 +41,64 @@ public class CookingOverlay implements IGuiOverlay {
 			renderer.renderAndDecorateItem(food, x, y + 2);
 			renderer.renderGuiItemDecorations(font, food, x, y + 2);
 			y += 20;
+		}
+		x += 20;
+		y = screenHeight / 2 - data.contents.size() * 10;
+		RenderSystem.disableDepthTest();
+		RenderSystem.disableTexture();
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		Tesselator tex = Tesselator.getInstance();
+		BufferBuilder builder = tex.getBuilder();
+		for (var entry : data.contents) {
+			ItemStack food = entry.item;
+			var config = IngredientConfig.get().getEntry(food);
+			if (config != null) {
+				int ix = x;
+				int iy = y + 4;
+				int val = (int) (data.lastActionTime - entry.startTime);
+				int max = config.min_time;
+
+				fillBar(builder, ix, iy, max, 2, val, 255, 192, 192);
+
+				ix += max;
+				val -= max;
+				max = config.max_time - max;
+				fillBar(builder, ix, iy, max, 2, val, 255, 255, 192);
+
+				ix += max;
+				val -= max;
+				max = Math.max(val, 0);
+				fillBar(builder, ix, iy, max, 2, val, 0, 0, 0);
+
+				ix = x;
+				iy += 4;
+				val = (int) (data.lastActionTime - entry.lastStirTime);
+				max = config.stir_time;
+				fillBar(builder, ix, iy, max, 2, val, 192, 255, 192);
+
+				ix += max;
+				val -= max;
+				max = Math.max(val, entry.maxStirTime - max);
+				fillBar(builder, ix, iy, max, 2, val, 255, 128, 128);
+			}
+			y += 20;
+		}
+		RenderSystem.enableTexture();
+		RenderSystem.enableDepthTest();
+	}
+
+	private static void fillBar(BufferBuilder builder, int x, int y, int w, int h, int w0, int r, int g, int b) {
+		if (w <= 0) {
+			return;
+		}
+		if (w0 >= w) {
+			OverlayUtils.fillRect(builder, x, y, w, h, r, g, b, 255);
+		} else if (w0 <= 0) {
+			OverlayUtils.fillRect(builder, x, y, w, h, r / 2, g / 2, b / 2, 255);
+		} else {
+			OverlayUtils.fillRect(builder, x, y, w0, h, r, g, b, 255);
+			OverlayUtils.fillRect(builder, x + w0, y, w - w0, h, r / 2, g / 2, b / 2, 255);
 		}
 	}
 

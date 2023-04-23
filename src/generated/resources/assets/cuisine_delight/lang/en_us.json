@@ -1,6 +1,11 @@
 {
   "cuisine_delight.tooltip.bad": "Inedible",
+  "cuisine_delight.tooltip.burnt": "Ingredient %s is burnt",
+  "cuisine_delight.tooltip.good": "Ingredient %s is cooked well",
+  "cuisine_delight.tooltip.overcooked": "Ingredient %s is overcooked",
+  "cuisine_delight.tooltip.raw": "Ingredient %s is a bit raw",
   "cuisine_delight.tooltip.score": "Quality: %s%%",
+  "cuisine_delight.tooltip.shift": "Press Shift for details",
   "cuisine_delight.tooltip.size": "Serve size: %s/%s",
   "item.cuisine_delight.cuisine_skillet": "Cuisine Skillet",
   "item.cuisine_delight.food": "Food",

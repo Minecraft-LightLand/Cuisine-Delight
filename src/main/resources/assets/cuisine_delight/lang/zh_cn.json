@@ -1,0 +1,15 @@
+{
+  "cuisine_delight.tooltip.bad": "不可食用",
+  "cuisine_delight.tooltip.burnt": "食材 %s 炒糊了",
+  "cuisine_delight.tooltip.good": "食材 %s 炒得正好",
+  "cuisine_delight.tooltip.overcooked": "食材 %s 炒过头了",
+  "cuisine_delight.tooltip.raw": "食材 %s 有点生",
+  "cuisine_delight.tooltip.score": "品质: %s%%",
+  "cuisine_delight.tooltip.shift": "按Shift查看详细信息",
+  "cuisine_delight.tooltip.size": "分量: %s/%s",
+  "item.cuisine_delight.cuisine_skillet": "炒锅",
+  "item.cuisine_delight.food": "食物",
+  "item.cuisine_delight.plate": "盘子",
+  "item.cuisine_delight.spatula": "锅铲",
+  "itemGroup.cuisine_delight.general": "料理乐事"
+}

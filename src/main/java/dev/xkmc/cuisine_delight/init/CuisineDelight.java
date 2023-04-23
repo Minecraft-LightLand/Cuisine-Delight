@@ -25,6 +25,7 @@ public class CuisineDelight {
 	public CuisineDelight() {
 		CDItems.register();
 		CDConfig.init();
+		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 	}
 

@@ -41,7 +41,7 @@ public class CookedFoodData {
 			penalty += config.size * badness;
 			size += config.size;
 			nutrition += config.nutrition * config.size;
-			entries.add(new Entry(e.item, config.size, badness));
+			entries.add(new Entry(e.item, config.size, burnt, raw, overcooked));
 		}
 		float goodness = size == 0 ? 0 : Mth.clamp(1 - penalty / size, 0, 1);
 		this.score = Math.round(goodness * 100);
@@ -64,11 +64,12 @@ public class CookedFoodData {
 		return ans.build();
 	}
 
-	public record Entry(ItemStack stack, int size, float penalty) {
+	public record Entry(ItemStack stack, int size, boolean burnt, boolean raw, boolean overcooked) {
 
 		public void addMobEffects(Map<MobEffect, Float> map, int divisor) {
 			var config = IngredientConfig.get().getEntry(stack);
 			if (config == null) return;
+			if (burnt || raw || overcooked) return;
 			for (var e : config.effects) {
 				map.compute(e.effect(), (k, v) -> (v == null ? 0 : v) + e.time() * size / divisor);
 			}

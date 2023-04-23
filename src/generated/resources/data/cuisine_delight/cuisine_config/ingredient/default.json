@@ -14,13 +14,13 @@
           "item": "minecraft:rabbit"
         }
       ],
-      "max_time": 12,
-      "min_time": 9,
+      "max_time": 240,
+      "min_time": 180,
       "nutrition": 10,
       "overcook_penalty": 0.5,
       "raw_penalty": 1.0,
       "size": 2,
-      "stir_time": 3
+      "stir_time": 80
     },
     {
       "effects": [],
@@ -32,13 +32,13 @@
           "item": "minecraft:beef"
         }
       ],
-      "max_time": 9,
-      "min_time": 6,
+      "max_time": 180,
+      "min_time": 120,
       "nutrition": 10,
       "overcook_penalty": 0.5,
       "raw_penalty": 0.5,
       "size": 2,
-      "stir_time": 3
+      "stir_time": 80
     },
     {
       "effects": [],
@@ -50,13 +50,13 @@
           "item": "minecraft:salmon"
         }
       ],
-      "max_time": 6,
-      "min_time": 3,
+      "max_time": 120,
+      "min_time": 60,
       "nutrition": 15,
       "overcook_penalty": 0.5,
       "raw_penalty": 0.5,
       "size": 1,
-      "stir_time": 3
+      "stir_time": 80
     },
     {
       "effects": [],
@@ -71,26 +71,26 @@
           "item": "minecraft:carrot"
         }
       ],
-      "max_time": 18,
-      "min_time": 12,
+      "max_time": 360,
+      "min_time": 240,
       "nutrition": 5,
       "overcook_penalty": 0.2,
       "raw_penalty": 0.5,
       "size": 1,
-      "stir_time": 2
+      "stir_time": 60
     },
     {
       "effects": [],
       "ingredient": {
         "item": "minecraft:golden_carrot"
       },
-      "max_time": 18,
-      "min_time": 12,
+      "max_time": 360,
+      "min_time": 240,
       "nutrition": 25,
       "overcook_penalty": 0.2,
       "raw_penalty": 0.5,
       "size": 1,
-      "stir_time": 2
+      "stir_time": 60
     },
     {
       "effects": [
@@ -102,13 +102,13 @@
       "ingredient": {
         "item": "minecraft:dandelion"
       },
-      "max_time": 4,
-      "min_time": 3,
+      "max_time": 80,
+      "min_time": 60,
       "nutrition": 0,
       "overcook_penalty": 0.0,
       "raw_penalty": 0.0,
       "size": 1,
-      "stir_time": 1
+      "stir_time": 40
     },
     {
       "effects": [
@@ -124,13 +124,13 @@
       "ingredient": {
         "item": "minecraft:golden_apple"
       },
-      "max_time": 7,
-      "min_time": 6,
+      "max_time": 140,
+      "min_time": 120,
       "nutrition": 5,
       "overcook_penalty": 0.0,
       "raw_penalty": 0.0,
       "size": 1,
-      "stir_time": 1
+      "stir_time": 40
     },
     {
       "effects": [
@@ -154,13 +154,13 @@
       "ingredient": {
         "item": "minecraft:enchanted_golden_apple"
       },
-      "max_time": 7,
-      "min_time": 6,
+      "max_time": 140,
+      "min_time": 120,
       "nutrition": 5,
       "overcook_penalty": 0.0,
       "raw_penalty": 0.0,
       "size": 1,
-      "stir_time": 1
+      "stir_time": 40
     }
   ]
 }

@@ -4,6 +4,7 @@ import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
 import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.cuisine_delight.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
@@ -36,7 +37,7 @@ public class FoodItem extends Item {
 		stack.grow(1);
 		stack.hurtAndBreak(1, entity, e -> {
 		});
-		if (stack.isEmpty()){
+		if (stack.isEmpty()) {
 			return CDItems.PLATE.asStack();
 		}
 		return stack;
@@ -85,6 +86,28 @@ public class FoodItem extends Item {
 		}
 		list.add(LangData.SERVE_SIZE.get(data.size - getDamage(stack), data.size));
 		list.add(LangData.SCORE.get(data.score));
+
+		if (Screen.hasShiftDown()) {
+			for (var e : data.entries) {
+				ItemStack ingredient = e.stack();
+				if (e.burnt()) {
+					list.add(LangData.BAD_BURNT.get(ingredient.getHoverName()));
+				}
+				if (e.raw()) {
+					list.add(LangData.BAD_RAW.get(ingredient.getHoverName()));
+				}
+				if (e.overcooked()) {
+					list.add(LangData.BAD_OVERCOOKED.get(ingredient.getHoverName()));
+				}
+				if (!e.burnt() && !e.raw() && !e.overcooked()) {
+					list.add(LangData.GOOD.get(ingredient.getHoverName()));
+				}
+			}
+		} else {
+			list.add(LangData.SHIFT.get());
+		}
+
+
 		for (var e : prop.getEffects()) {
 			MobEffectInstance mobeffectinstance = e.getFirst();
 			MutableComponent mutablecomponent = Component.translatable(mobeffectinstance.getDescriptionId());

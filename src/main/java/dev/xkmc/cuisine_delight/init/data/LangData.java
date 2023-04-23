@@ -14,6 +14,12 @@ public enum LangData {
 	SERVE_SIZE("tooltip.size", "Serve size: %s/%s", 2, ChatFormatting.GRAY),
 	SCORE("tooltip.score", "Quality: %s%%", 1, ChatFormatting.AQUA),
 	BAD_FOOD("tooltip.bad", "Inedible", 0, ChatFormatting.RED),
+	SHIFT("tooltip.shift", "Press Shift for details", 0, ChatFormatting.DARK_GRAY),
+	BAD_BURNT("tooltip.burnt", "Ingredient %s is burnt", 1, ChatFormatting.DARK_RED),
+	BAD_RAW("tooltip.raw", "Ingredient %s is a bit raw", 1, ChatFormatting.DARK_RED),
+	BAD_OVERCOOKED("tooltip.overcooked", "Ingredient %s is overcooked", 1, ChatFormatting.DARK_RED),
+	GOOD("tooltip.good", "Ingredient %s is cooked well", 1, ChatFormatting.DARK_GREEN),
+
 	;
 
 	private final String key, def;
