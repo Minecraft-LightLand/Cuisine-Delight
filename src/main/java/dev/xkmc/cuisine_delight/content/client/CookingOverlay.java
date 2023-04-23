@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
-import dev.xkmc.l2library.base.overlay.OverlayUtils;
+import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -19,6 +19,9 @@ import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class CookingOverlay implements IGuiOverlay {
 
+	private static final double FACTOR = 3;
+	private static final int MAX_EXTRA = 60;
+
 	@Override
 	public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
 		if (Minecraft.getInstance().level == null) return;
@@ -26,8 +29,8 @@ public class CookingOverlay implements IGuiOverlay {
 		ItemStack mainStack = player.getMainHandItem();
 		ItemStack offStack = player.getOffhandItem();
 		ItemStack stack;
-		if (!mainStack.isEmpty() && mainStack.getItem() instanceof CuisineSkilletItem) stack = mainStack;
-		else if (!offStack.isEmpty() && offStack.getItem() instanceof CuisineSkilletItem) stack = offStack;
+		if (!mainStack.isEmpty() && mainStack.is(CDItems.SKILLET.get())) stack = mainStack;
+		else if (!offStack.isEmpty() && offStack.is(CDItems.SKILLET.get())) stack = offStack;
 		else return;
 		CookingData data = CuisineSkilletItem.getData(stack);
 		if (data == null || data.contents.size() == 0) return;
@@ -61,14 +64,14 @@ public class CookingOverlay implements IGuiOverlay {
 
 				fillBar(builder, ix, iy, max, 2, val, 255, 192, 192);
 
-				ix += max;
+				ix += max / FACTOR;
 				val -= max;
 				max = config.max_time - max;
 				fillBar(builder, ix, iy, max, 2, val, 255, 255, 192);
 
-				ix += max;
+				ix += max / FACTOR;
 				val -= max;
-				max = Math.max(val, 0);
+				max = Math.min(MAX_EXTRA, Math.max(val, 0));
 				fillBar(builder, ix, iy, max, 2, val, 0, 0, 0);
 
 				ix = x;
@@ -77,9 +80,9 @@ public class CookingOverlay implements IGuiOverlay {
 				max = config.stir_time;
 				fillBar(builder, ix, iy, max, 2, val, 192, 255, 192);
 
-				ix += max;
+				ix += max / FACTOR;
 				val -= max;
-				max = Math.max(val, entry.maxStirTime - max);
+				max = Math.min(MAX_EXTRA, Math.max(val, entry.maxStirTime - max));
 				fillBar(builder, ix, iy, max, 2, val, 255, 128, 128);
 			}
 			y += 20;
@@ -93,12 +96,12 @@ public class CookingOverlay implements IGuiOverlay {
 			return;
 		}
 		if (w0 >= w) {
-			OverlayUtils.fillRect(builder, x, y, w, h, r, g, b, 255);
+			CommonDecoUtil.fillRect(builder, x, y, w / FACTOR, h, r, g, b, 255);
 		} else if (w0 <= 0) {
-			OverlayUtils.fillRect(builder, x, y, w, h, r / 2, g / 2, b / 2, 255);
+			CommonDecoUtil.fillRect(builder, x, y, w / FACTOR, h, r / 2, g / 2, b / 2, 255);
 		} else {
-			OverlayUtils.fillRect(builder, x, y, w0, h, r, g, b, 255);
-			OverlayUtils.fillRect(builder, x + w0, y, w - w0, h, r / 2, g / 2, b / 2, 255);
+			CommonDecoUtil.fillRect(builder, x, y, w0 / FACTOR, h, r, g, b, 255);
+			CommonDecoUtil.fillRect(builder, x + w0 / FACTOR, y, (w - w0) / FACTOR, h, r / 2, g / 2, b / 2, 255);
 		}
 	}
 

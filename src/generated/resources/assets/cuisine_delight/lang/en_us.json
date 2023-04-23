@@ -15,8 +15,8 @@
   "cuisine_delight.tooltip.shift": "Press Shift for culinary details",
   "cuisine_delight.tooltip.size": "Serve size: %s",
   "item.cuisine_delight.cuisine_skillet": "Cuisine Skillet",
-  "item.cuisine_delight.food": "Food",
   "item.cuisine_delight.plate": "Plate",
+  "item.cuisine_delight.plate_food": "Plate Food",
   "item.cuisine_delight.spatula": "Spatula",
   "itemGroup.cuisine_delight.general": "Cuisine Delight"
 }

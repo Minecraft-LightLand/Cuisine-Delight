@@ -2,6 +2,7 @@
   "_class": "dev.xkmc.cuisine_delight.content.logic.IngredientConfig",
   "entries": [
     {
+      "type": "MEAT",
       "effects": [],
       "ingredient": [
         {
@@ -19,10 +20,11 @@
       "nutrition": 10,
       "overcook_penalty": 0.5,
       "raw_penalty": 1.0,
-      "size": 2,
+      "size": 3,
       "stir_time": 80
     },
     {
+      "type": "MEAT",
       "effects": [],
       "ingredient": [
         {
@@ -37,10 +39,11 @@
       "nutrition": 10,
       "overcook_penalty": 0.5,
       "raw_penalty": 0.5,
-      "size": 2,
+      "size": 3,
       "stir_time": 80
     },
     {
+      "type": "MEAT",
       "effects": [],
       "ingredient": [
         {
@@ -55,15 +58,27 @@
       "nutrition": 15,
       "overcook_penalty": 0.5,
       "raw_penalty": 0.5,
-      "size": 1,
+      "size": 2,
       "stir_time": 80
     },
     {
+      "type": "CARB",
+      "effects": [],
+      "ingredient": {
+        "item": "minecraft:potato"
+      },
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 5,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.5,
+      "size": 2,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
       "effects": [],
       "ingredient": [
-        {
-          "item": "minecraft:potato"
-        },
         {
           "item": "minecraft:beetroot"
         },
@@ -80,6 +95,7 @@
       "stir_time": 60
     },
     {
+      "type": "VEG",
       "effects": [],
       "ingredient": {
         "item": "minecraft:golden_carrot"
@@ -93,6 +109,7 @@
       "stir_time": 60
     },
     {
+      "type": "NONE",
       "effects": [
         {
           "effect": "minecraft:saturation",
@@ -107,10 +124,11 @@
       "nutrition": 0,
       "overcook_penalty": 0.0,
       "raw_penalty": 0.0,
-      "size": 1,
+      "size": 0,
       "stir_time": 40
     },
     {
+      "type": "VEG",
       "effects": [
         {
           "effect": "minecraft:regeneration",
@@ -133,6 +151,7 @@
       "stir_time": 40
     },
     {
+      "type": "VEG",
       "effects": [
         {
           "effect": "minecraft:regeneration",

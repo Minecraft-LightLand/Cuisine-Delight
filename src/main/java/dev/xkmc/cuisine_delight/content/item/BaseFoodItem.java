@@ -1,7 +1,6 @@
 package dev.xkmc.cuisine_delight.content.item;
 
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
-import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.cuisine_delight.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
@@ -20,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FoodItem extends Item {
+public class BaseFoodItem extends Item {
 
 	private static final String KEY_ROOT = "CookedFoodData";
 
@@ -29,18 +28,6 @@ public class FoodItem extends Item {
 		var tag = stack.getTagElement(KEY_ROOT);
 		if (tag == null) return null;
 		return TagCodec.fromTag(tag, CookedFoodData.class);
-	}
-
-	@Override
-	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-		CookedFoodData food = getData(stack);
-		super.finishUsingItem(stack, level, entity);
-		if (food == null) return CDItems.PLATE.asStack();
-		food.size--;
-		if (food.size <= 0) return CDItems.PLATE.asStack();
-		stack.grow(1);
-		setData(stack, food);
-		return stack;
 	}
 
 	public static void setData(ItemStack stack, @Nullable CookedFoodData data) {
@@ -54,15 +41,8 @@ public class FoodItem extends Item {
 		}
 	}
 
-	public FoodItem(Properties properties) {
+	public BaseFoodItem(Properties properties) {
 		super(properties);
-	}
-
-	@Override
-	public int getMaxDamage(ItemStack stack) {
-		CookedFoodData data = getData(stack);
-		if (data == null) return 0;
-		return data.size;
 	}
 
 	@Override

@@ -26,6 +26,16 @@ public class CommonDecoUtil {
 		BufferUploader.drawWithShader(buffer.end());
 	}
 
+	public static void fillRect(BufferBuilder builder, double x, double y, double w, double h, int r, int g, int b, int a) {
+		RenderSystem.setShader(GameRenderer::getPositionColorShader);
+		builder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+		builder.vertex(x, y, 0.0D).color(r, g, b, a).endVertex();
+		builder.vertex(x, y + h, 0.0D).color(r, g, b, a).endVertex();
+		builder.vertex(x + w, y + h, 0.0D).color(r, g, b, a).endVertex();
+		builder.vertex(x + w, y, 0.0D).color(r, g, b, a).endVertex();
+		BufferUploader.drawWithShader(builder.end());
+	}
+
 	public static void drawText(int x, int y, Font font, int col, String s, float blitOffset) {
 		PoseStack pose = new PoseStack();
 		pose.translate(0, 0, blitOffset + 202);

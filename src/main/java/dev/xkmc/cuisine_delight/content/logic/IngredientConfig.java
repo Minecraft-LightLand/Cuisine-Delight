@@ -57,6 +57,8 @@ public class IngredientConfig extends BaseConfig {
 		@SerialClass.SerialField
 		public Ingredient ingredient;
 		@SerialClass.SerialField
+		public FoodType type;
+		@SerialClass.SerialField
 		public int min_time, max_time, stir_time;
 		@SerialClass.SerialField
 		public float raw_penalty, overcook_penalty;
@@ -70,9 +72,10 @@ public class IngredientConfig extends BaseConfig {
 	public record EffectEntry(MobEffect effect, int time) {
 	}
 
-	public static IngredientEntry get(Ingredient ingredient, int min_time, int max_time, int stir_time, float raw_penalty, float overcook_penalty, int size, int nutrition, EffectEntry... effects) {
+	public static IngredientEntry get(Ingredient ingredient, FoodType type, int min_time, int max_time, int stir_time, float raw_penalty, float overcook_penalty, int size, int nutrition, EffectEntry... effects) {
 		var ans = new IngredientEntry();
 		ans.ingredient = ingredient;
+		ans.type = type;
 		ans.min_time = min_time;
 		ans.max_time = max_time;
 		ans.stir_time = stir_time;

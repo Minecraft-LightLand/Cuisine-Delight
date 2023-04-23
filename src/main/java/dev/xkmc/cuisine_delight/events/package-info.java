@@ -1,7 +1,7 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 
-package dev.xkmc.cuisine_delight.content;
+package dev.xkmc.cuisine_delight.events;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

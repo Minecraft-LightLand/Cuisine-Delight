@@ -1,9 +1,8 @@
-// 1.19.2	2023-04-23T00:52:12.232923	Registrate Provider for cuisine_delight [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-8579412873445f5344bfb87571667aaa3576f1c3 assets/cuisine_delight/lang/en_ud.json
-2df4ec60d70aed1f0baacd91e6ee30e353e253ce assets/cuisine_delight/lang/en_us.json
+// 1.19.2	2023-04-23T15:03:26.871266	Registrate Provider for cuisine_delight [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+4bb07701a78b1290d2508878a7417856e18ad359 assets/cuisine_delight/lang/en_ud.json
+b8860f5a2f93c875b1fd1e0da4666098711201e8 assets/cuisine_delight/lang/en_us.json
 e0f7b66a84e6588f01abbbce75b1803ffe5d46e2 assets/cuisine_delight/models/item/cuisine_skillet.json
-9bc308a19db1ce598976cfed9f3e7759c9c45502 assets/cuisine_delight/models/item/cuisine_skillet_base.json
-33cb79c206631ea281ace6ad3fb346843af76791 assets/cuisine_delight/models/item/food.json
 8496e51ec50a5697823d2ac373d25a9f1cb21e85 assets/cuisine_delight/models/item/plate.json
+88982723f67be75894901c041ef7b0600c584264 assets/cuisine_delight/models/item/plate_food.json
 2635594936d5582767b3d845944160daa1a04f0a assets/cuisine_delight/models/item/spatula.json
 8e93bc0b6f00134823cf292366dc5df6c9818c8b data/cuisine_delight/tags/items/utensils.json

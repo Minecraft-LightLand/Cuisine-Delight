@@ -33,8 +33,8 @@ public class PlateItem extends Item {
 			CuisineSkilletItem.setData(skilletStack, null);
 			data.update(level.getGameTime());
 			CookedFoodData food = new CookedFoodData(data);
-			ItemStack foodStack = CDItems.FOOD.asStack();
-			FoodItem.setData(foodStack, food);
+			ItemStack foodStack = CDItems.PLATE_FOOD.asStack();
+			PlateFoodItem.setData(foodStack, food);
 			plateStack.shrink(1);
 			player.getInventory().placeItemBackInInventory(foodStack);
 		}
