@@ -33,13 +33,13 @@ public class FoodItem extends Item {
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+		CookedFoodData food = getData(stack);
 		super.finishUsingItem(stack, level, entity);
+		if (food == null) return CDItems.PLATE.asStack();
+		food.size--;
+		if (food.size <= 0) return CDItems.PLATE.asStack();
 		stack.grow(1);
-		stack.hurtAndBreak(1, entity, e -> {
-		});
-		if (stack.isEmpty()) {
-			return CDItems.PLATE.asStack();
-		}
+		setData(stack, food);
 		return stack;
 	}
 
@@ -66,9 +66,14 @@ public class FoodItem extends Item {
 	}
 
 	@Override
-	public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
+	public boolean isEdible() {
+		return true;
+	}
+
+	@Override
+	public FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
 		CookedFoodData data = getData(stack);
-		if (data == null) return null;
+		if (data == null) return CookedFoodData.BAD;
 		return data.toFoodData();
 	}
 
@@ -80,11 +85,11 @@ public class FoodItem extends Item {
 			return;
 		}
 		FoodProperties prop = data.toFoodData();
-		if (prop == null) {
+		if (prop == CookedFoodData.BAD) {
 			list.add(LangData.BAD_FOOD.get());
 			return;
 		}
-		list.add(LangData.SERVE_SIZE.get(data.size - getDamage(stack), data.size));
+		list.add(LangData.SERVE_SIZE.get(data.size));
 		list.add(LangData.SCORE.get(data.score));
 
 		if (Screen.hasShiftDown()) {
@@ -121,4 +126,5 @@ public class FoodItem extends Item {
 			list.add(mutablecomponent.withStyle(mobeffect.getCategory().getTooltipFormatting()));
 		}
 	}
+
 }

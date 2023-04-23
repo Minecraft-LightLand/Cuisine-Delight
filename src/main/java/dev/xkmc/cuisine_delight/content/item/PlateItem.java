@@ -31,6 +31,7 @@ public class PlateItem extends Item {
 		}
 		if (!level.isClientSide()) {
 			CuisineSkilletItem.setData(skilletStack, null);
+			data.update(level.getGameTime());
 			CookedFoodData food = new CookedFoodData(data);
 			ItemStack foodStack = CDItems.FOOD.asStack();
 			FoodItem.setData(foodStack, food);

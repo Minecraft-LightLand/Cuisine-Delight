@@ -58,7 +58,7 @@ public class CookingData {
 		}
 
 		public void stir(long time) {
-			maxStirTime = (int) (time - lastStirTime);
+			maxStirTime = Math.max(maxStirTime, (int) (time - lastStirTime));
 			lastStirTime = time;
 		}
 

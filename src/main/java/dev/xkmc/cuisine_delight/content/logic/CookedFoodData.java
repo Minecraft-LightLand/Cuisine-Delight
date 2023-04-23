@@ -6,7 +6,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,9 +14,12 @@ import java.util.Map;
 @SerialClass
 public class CookedFoodData {
 
+	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationMod(0).build();
+
 	@SerialClass.SerialField
 	public int size, nutrition, score;
 
+	@SerialClass.SerialField
 	public ArrayList<Entry> entries = new ArrayList<>();
 
 	@Deprecated
@@ -49,12 +51,11 @@ public class CookedFoodData {
 		this.nutrition = size == 0 ? 0 : Math.round(goodness * nutrition / size);
 	}
 
-	@Nullable
 	public FoodProperties toFoodData() {
-		if (score < 60 || size == 0) return null;
+		if (score < 60 || size == 0) return BAD;
 		var ans = new FoodProperties.Builder().nutrition(4).saturationMod(nutrition * 0.1f);
 		if (score == 100) {
-			ans.fast();
+			ans.fast().alwaysEat();
 		}
 		Map<MobEffect, Float> map = new HashMap<>();
 		for (var e : entries) {

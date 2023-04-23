@@ -28,3 +28,9 @@ description='''
     versionRange="[1.8.0,)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.cuisine_delight]]
+    modId="farmarsdelight"
+    mandatory=true
+    versionRange="[,)"
+    ordering="AFTER"
+    side="BOTH"

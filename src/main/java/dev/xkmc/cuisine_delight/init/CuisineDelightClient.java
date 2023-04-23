@@ -1,6 +1,7 @@
 package dev.xkmc.cuisine_delight.init;
 
-import dev.xkmc.cuisine_delight.content.CookingOverlay;
+import dev.xkmc.cuisine_delight.content.client.CookingOverlay;
+import dev.xkmc.cuisine_delight.content.client.FoodItemDecorationRenderer;
 import dev.xkmc.cuisine_delight.content.item.SkilletBEWLR;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +29,7 @@ public class CuisineDelightClient {
 
 	@SubscribeEvent
 	public static void registerItemDecoration(RegisterItemDecorationsEvent event) {
+		event.register(CDItems.FOOD.get(), FoodItemDecorationRenderer::renderCount);
 	}
 
 	@SubscribeEvent

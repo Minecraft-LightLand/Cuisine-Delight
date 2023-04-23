@@ -11,15 +11,21 @@ import javax.annotation.Nullable;
 import java.util.Locale;
 
 public enum LangData {
-	SERVE_SIZE("tooltip.size", "Serve size: %s/%s", 2, ChatFormatting.GRAY),
+	SERVE_SIZE("tooltip.size", "Serve size: %s", 1, ChatFormatting.GRAY),
 	SCORE("tooltip.score", "Quality: %s%%", 1, ChatFormatting.AQUA),
 	BAD_FOOD("tooltip.bad", "Inedible", 0, ChatFormatting.RED),
-	SHIFT("tooltip.shift", "Press Shift for details", 0, ChatFormatting.DARK_GRAY),
+	SHIFT("tooltip.shift", "Press Shift for culinary details", 0, ChatFormatting.GRAY),
 	BAD_BURNT("tooltip.burnt", "Ingredient %s is burnt", 1, ChatFormatting.DARK_RED),
 	BAD_RAW("tooltip.raw", "Ingredient %s is a bit raw", 1, ChatFormatting.DARK_RED),
 	BAD_OVERCOOKED("tooltip.overcooked", "Ingredient %s is overcooked", 1, ChatFormatting.DARK_RED),
 	GOOD("tooltip.good", "Ingredient %s is cooked well", 1, ChatFormatting.DARK_GREEN),
-
+	INFO_MIN_TIME("info.min_time", "Minimum cooking time: %s sec", 1, ChatFormatting.AQUA),
+	INFO_MAX_TIME("info.max_time", "Maximum cooking time: %s sec", 1, ChatFormatting.AQUA),
+	INFO_STIR_TIME("info.stir_time", "Maximum stir interval: %s sec", 1, ChatFormatting.AQUA),
+	INFO_SIZE("info.size", "Serve size: %s serve", 1, ChatFormatting.GREEN),
+	INFO_NUTRITION("info.nutrition", "Nutrition: %s per serve", 1, ChatFormatting.GREEN),
+	INFO_RAW_PENALTY("info.raw_penalty", "Raw serve penalty: -%s%%", 1, ChatFormatting.RED),
+	INFO_OVERCOOK_PENALTY("info.overcook_penalty", "Overcook penalty: -%s%%", 1, ChatFormatting.RED),
 	;
 
 	private final String key, def;
