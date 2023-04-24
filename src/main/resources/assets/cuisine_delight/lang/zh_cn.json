@@ -1,4 +1,9 @@
 {
+  "block.cuisine_delight.cuisine_skillet": "炒锅",
+  "item.cuisine_delight.plate_food": "食物",
+  "item.cuisine_delight.plate": "盘子",
+  "item.cuisine_delight.spatula": "锅铲",
+  "itemGroup.cuisine_delight.general": "料理乐事",
   "cuisine_delight.tooltip.bad": "不可食用",
   "cuisine_delight.tooltip.burnt": "食材%s炒糊了",
   "cuisine_delight.tooltip.good": "食材%s炒得正好",
@@ -7,16 +12,14 @@
   "cuisine_delight.tooltip.score": "品质:%s%%",
   "cuisine_delight.tooltip.shift": "按Shift查看详细料理信息",
   "cuisine_delight.tooltip.size": "分量:%s",
-  "item.cuisine_delight.cuisine_skillet": "炒锅",
-  "item.cuisine_delight.food": "食物",
-  "item.cuisine_delight.plate": "盘子",
-  "item.cuisine_delight.spatula": "锅铲",
-  "itemGroup.cuisine_delight.general": "料理乐事",
-  "cuisine_delight.info.max_time": "最短烹饪时间:%s秒",
-  "cuisine_delight.info.min_time": "最长烹饪时间:%s秒",
+  "cuisine_delight.info.min_time": "最短烹饪时间:%s秒",
+  "cuisine_delight.info.max_time": "最长烹饪时间:%s秒",
   "cuisine_delight.info.nutrition": "营养:每份%s",
   "cuisine_delight.info.overcook_penalty": "焦糊惩罚:-%s%%",
   "cuisine_delight.info.raw_penalty": "未熟惩罚:-%s%%",
   "cuisine_delight.info.size": "分量:%s份",
-  "cuisine_delight.info.stir_time": "最长翻炒间隔:%s秒"
+  "cuisine_delight.info.stir_time": "最长翻炒间隔:%s秒",
+  "cuisine_delight.msg.no_heat": "靠近火源或者给锅附魔火焰附加来开始烹饪",
+  "cuisine_delight.msg.not_ingredient": "这个物品不可烹饪",
+  "cuisine_delight.msg.place_help": "蹲下放置物品"
 }

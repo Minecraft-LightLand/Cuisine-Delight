@@ -1,8 +1,9 @@
-package dev.xkmc.cuisine_delight.content.item;
+package dev.xkmc.cuisine_delight.content.client;
 
 import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.cuisine_delight.init.CuisineDelightClient;

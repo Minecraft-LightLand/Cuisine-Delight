@@ -5,7 +5,9 @@ import dev.xkmc.cuisine_delight.content.item.PlateFoodItem;
 import dev.xkmc.cuisine_delight.content.item.PlateItem;
 import dev.xkmc.cuisine_delight.content.item.SpatulaItem;
 import dev.xkmc.cuisine_delight.init.data.TagGen;
+import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
+import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -33,7 +35,7 @@ public class CDItems {
 		}
 	}
 
-	public static final Tab TAB_GENERATED = new Tab("general", () -> Items.EGG);
+	public static final Tab TAB_GENERAL = new Tab("general", () -> Items.EGG);
 
 	public static final ItemEntry<CuisineSkilletItem> SKILLET;
 	public static final ItemEntry<SpatulaItem> SPATULA;
@@ -41,10 +43,10 @@ public class CDItems {
 	public static final ItemEntry<PlateFoodItem> PLATE_FOOD;
 
 	static {
-		CuisineDelight.REGISTRATE.creativeModeTab(() -> TAB_GENERATED);
-		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(p.stacksTo(1)))
+		CuisineDelight.REGISTRATE.creativeModeTab(() -> TAB_GENERAL);
+		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(CDBlocks.SKILLET.get(), p.stacksTo(1)))
 				.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")))
-				.defaultLang().register();
+				.setData(ProviderType.LANG, NonNullBiConsumer.noop()).register();
 
 		SPATULA = CuisineDelight.REGISTRATE.item("spatula", p -> new SpatulaItem(p.stacksTo(1)))
 				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();

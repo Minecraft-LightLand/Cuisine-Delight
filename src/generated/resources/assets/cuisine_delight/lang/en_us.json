@@ -1,4 +1,5 @@
 {
+  "block.cuisine_delight.cuisine_skillet": "Cuisine Skillet",
   "cuisine_delight.info.max_time": "Maximum cooking time: %s sec",
   "cuisine_delight.info.min_time": "Minimum cooking time: %s sec",
   "cuisine_delight.info.nutrition": "Nutrition: %s per serve",
@@ -6,6 +7,9 @@
   "cuisine_delight.info.raw_penalty": "Raw serve penalty: -%s%%",
   "cuisine_delight.info.size": "Serve size: %s serve",
   "cuisine_delight.info.stir_time": "Maximum stir interval: %s sec",
+  "cuisine_delight.msg.no_heat": "Can't cook, as skillet is not near fire source or enchanted with fire aspect.",
+  "cuisine_delight.msg.not_ingredient": "You cannot cook this.",
+  "cuisine_delight.msg.place_help": "Press shift for placing.",
   "cuisine_delight.tooltip.bad": "Inedible",
   "cuisine_delight.tooltip.burnt": "Ingredient %s is burnt",
   "cuisine_delight.tooltip.good": "Ingredient %s is cooked well",
@@ -14,7 +18,6 @@
   "cuisine_delight.tooltip.score": "Quality: %s%%",
   "cuisine_delight.tooltip.shift": "Press Shift for culinary details",
   "cuisine_delight.tooltip.size": "Serve size: %s",
-  "item.cuisine_delight.cuisine_skillet": "Cuisine Skillet",
   "item.cuisine_delight.plate": "Plate",
   "item.cuisine_delight.plate_food": "Plate Food",
   "item.cuisine_delight.spatula": "Spatula",

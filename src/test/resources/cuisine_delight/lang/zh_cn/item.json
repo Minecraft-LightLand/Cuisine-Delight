@@ -1,5 +1,11 @@
 {
+  "block.cuisine_delight": {
+    "cuisine_skillet": "炒锅"
+  },
   "item.cuisine_delight": {
+    "plate_food": "食物",
+    "plate": "盘子",
+    "spatula": "锅铲"
   },
   "-cartesian": {
   }

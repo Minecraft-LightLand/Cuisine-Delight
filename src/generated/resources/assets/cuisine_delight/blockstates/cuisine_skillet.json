@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,support=false": {
+      "model": "cuisine_delight:cuisine_skillet",
+      "y": 90
+    },
+    "facing=east,support=true": {
+      "model": "cuisine_delight:cuisine_skillet_tray",
+      "y": 90
+    },
+    "facing=north,support=false": {
+      "model": "cuisine_delight:cuisine_skillet"
+    },
+    "facing=north,support=true": {
+      "model": "cuisine_delight:cuisine_skillet_tray"
+    },
+    "facing=south,support=false": {
+      "model": "cuisine_delight:cuisine_skillet",
+      "y": 180
+    },
+    "facing=south,support=true": {
+      "model": "cuisine_delight:cuisine_skillet_tray",
+      "y": 180
+    },
+    "facing=west,support=false": {
+      "model": "cuisine_delight:cuisine_skillet",
+      "y": 270
+    },
+    "facing=west,support=true": {
+      "model": "cuisine_delight:cuisine_skillet_tray",
+      "y": 270
+    }
+  }
+}

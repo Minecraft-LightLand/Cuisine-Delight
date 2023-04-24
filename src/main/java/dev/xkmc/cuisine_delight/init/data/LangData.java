@@ -26,6 +26,9 @@ public enum LangData {
 	INFO_NUTRITION("info.nutrition", "Nutrition: %s per serve", 1, ChatFormatting.GREEN),
 	INFO_RAW_PENALTY("info.raw_penalty", "Raw serve penalty: -%s%%", 1, ChatFormatting.RED),
 	INFO_OVERCOOK_PENALTY("info.overcook_penalty", "Overcook penalty: -%s%%", 1, ChatFormatting.RED),
+	MSG_NO_HEAT("msg.no_heat", "Can't cook, as skillet is not near fire source or enchanted with fire aspect.", 0, ChatFormatting.RED),
+	MSG_NOT_INGREDIENT("msg.not_ingredient", "You cannot cook this.", 0, ChatFormatting.RED),
+	MSG_PLACE_HELP("msg.place_help", "Press shift for placing.", 0, null),
 	;
 
 	private final String key, def;

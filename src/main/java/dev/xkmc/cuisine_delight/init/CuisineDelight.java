@@ -3,6 +3,7 @@ package dev.xkmc.cuisine_delight.init;
 import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.CDConfigGen;
 import dev.xkmc.cuisine_delight.init.data.LangData;
+import dev.xkmc.cuisine_delight.init.data.RecipeGen;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -24,8 +25,10 @@ public class CuisineDelight {
 
 	public CuisineDelight() {
 		CDItems.register();
+		CDBlocks.register();
 		CDConfig.init();
 		NetworkManager.register();
+		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 	}
 
