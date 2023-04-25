@@ -15,8 +15,20 @@ public class CDConfig {
 
 	public static class Common {
 
+		public ForgeConfigSpec.IntValue baseServe;
+		public ForgeConfigSpec.DoubleValue baseNutrition;
+		public ForgeConfigSpec.DoubleValue varietyBonus;
+		public ForgeConfigSpec.DoubleValue perfectionBonus;
 
 		Common(ForgeConfigSpec.Builder builder) {
+			baseServe = builder.comment("base size per serve")
+					.defineInRange("baseServe", 4, 1, 100);
+			baseNutrition = builder.comment("base nutrition factor")
+					.defineInRange("baseNutrition", 0.1, 0, 100);
+			varietyBonus = builder.comment("bonus for every extra food type")
+					.defineInRange("varietyBonus", 0.2, 0, 100);
+			perfectionBonus = builder.comment("bonus for perfect food")
+					.defineInRange("perfectionBonus", 0.5, 0, 100);
 		}
 
 	}

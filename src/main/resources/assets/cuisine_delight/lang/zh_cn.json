@@ -21,5 +21,9 @@
   "cuisine_delight.info.stir_time": "最长翻炒间隔:%s秒",
   "cuisine_delight.msg.no_heat": "靠近火源或者给锅附魔火焰附加来开始烹饪",
   "cuisine_delight.msg.not_ingredient": "这个物品不可烹饪",
-  "cuisine_delight.msg.place_help": "蹲下放置物品"
+  "cuisine_delight.msg.place_help": "蹲下放置物品",
+  "cuisine_delight.food_type.carb": "主食",
+  "cuisine_delight.food_type.meat": "肉类",
+  "cuisine_delight.food_type.veg": "蔬果",
+  "cuisine_delight.food_type.none": "调料"
 }

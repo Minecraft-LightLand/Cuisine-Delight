@@ -1,5 +1,6 @@
 package dev.xkmc.cuisine_delight.content.logic;
 
+import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.l2library.serial.SerialClass;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
@@ -55,8 +56,11 @@ public class CookedFoodData {
 		this.score = Math.round(goodness * 100);
 		this.size = size;
 		this.total = size;
-		float mult = 0.8f + types.size() * 0.2f;
-		this.nutrition = size == 0 ? 0 : Math.round(mult * goodness * nutrition / size);
+		double mult = 1 + (types.size() - 1) * CDConfig.COMMON.varietyBonus.get();
+		if (penalty == 0) {
+			mult += CDConfig.COMMON.perfectionBonus.get();
+		}
+		this.nutrition = size == 0 ? 0 : (int) Math.round(mult * goodness * nutrition / size);
 	}
 
 	public FoodProperties toFoodData() {

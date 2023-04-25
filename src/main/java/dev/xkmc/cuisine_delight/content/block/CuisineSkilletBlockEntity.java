@@ -9,43 +9,35 @@ import dev.xkmc.l2library.serial.SerialClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import vectorwing.farmersdelight.common.block.entity.HeatableBlockEntity;
+
+import javax.annotation.Nonnull;
 
 @SerialClass
-public class CuisineSkilletBlockEntity extends BaseBlockEntity {
+public class CuisineSkilletBlockEntity extends BaseBlockEntity implements HeatableBlockEntity {
 
 	@SerialClass.SerialField(toClient = true)
 	public ItemStack baseItem = CDItems.SKILLET.asStack();
 
+	@Nonnull
 	@SerialClass.SerialField(toClient = true)
 	public CookingData cookingData = new CookingData();
 
 	@SerialClass.SerialField(toClient = true)
-	private boolean updateStir = false;
-
 	private int stirTimer = 0;
 
 	public CuisineSkilletBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
 	}
 
-	public void clientTick(Level pLevel, BlockPos pPos, BlockState pState) {
+	public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
 		if (stirTimer > 0) {
 			stirTimer--;
 		}
-	}
-
-	@SerialClass.OnInject
-	public void onInject() {
-		if (updateStir) {
-			updateStir = false;
-			stirTimer = SpatulaItem.ANIM_TIME;
-		}
-	}
-
-	public void serverTick(Level pLevel, BlockPos pPos, BlockState pState) {
 	}
 
 	public boolean isCooking() {
@@ -58,7 +50,10 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity {
 
 	public void setSkilletItem(ItemStack stack) {
 		baseItem = stack.copy();
-		cookingData = CuisineSkilletItem.getData(stack);
+		var data = CuisineSkilletItem.getData(stack);
+		if (data != null) {
+			cookingData = data;
+		}
 		CuisineSkilletItem.setData(baseItem, null);
 		sync();
 	}
@@ -72,7 +67,8 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity {
 	}
 
 	public boolean canCook() {
-		return true;//TODO predicate
+		return baseItem.getEnchantmentLevel(Enchantments.FIRE_ASPECT) > 0 ||
+				this.level != null && this.isHeated(this.level, this.getBlockPos());
 	}
 
 	public float getStirPercent(float pTick) {
@@ -81,8 +77,7 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity {
 
 	public void stir(long gameTime) {
 		cookingData.stir(gameTime);
-		updateStir = true;
+		stirTimer = SpatulaItem.ANIM_TIME;
 		sync();
-		updateStir = false;
 	}
 }

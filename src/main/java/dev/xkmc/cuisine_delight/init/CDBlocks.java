@@ -18,14 +18,13 @@ public class CDBlocks {
 	public static final BlockEntityEntry<CuisineSkilletBlockEntity> BE_SKILLET;
 
 	static {
-		CuisineDelight.REGISTRATE.creativeModeTab(() -> CDItems.TAB_GENERAL);
 
 		SKILLET = CuisineDelight.REGISTRATE.block("cuisine_skillet", p -> new CuisineSkilletBlock())
 				.blockstate((ctx, pvd) -> pvd.getVariantBuilder(ctx.getEntry()).forAllStates(e ->
 						ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(
 										e.getValue(SkilletBlock.SUPPORT) ?
-												new ResourceLocation(CuisineDelight.MODID, "cuisine_skillet_tray") :
-												new ResourceLocation(CuisineDelight.MODID, "cuisine_skillet"))
+												new ResourceLocation(CuisineDelight.MODID, "block/cuisine_skillet_tray") :
+												new ResourceLocation(CuisineDelight.MODID, "block/cuisine_skillet"))
 								).rotationY(((int) e.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
 								.build())).defaultLoot().register();
 

@@ -26,6 +26,12 @@
 	  "no_heat": "靠近火源或者给锅附魔火焰附加来开始烹饪",
 	  "not_ingredient": "这个物品不可烹饪",
 	  "place_help": "蹲下放置物品"
+	},
+	"food_type": {
+	  "carb": "主食",
+	  "meat": "肉类",
+	  "veg": "蔬果",
+	  "none": "调料"
 	}
   }
 }

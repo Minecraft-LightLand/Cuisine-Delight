@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
+import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
@@ -13,26 +14,53 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import org.jetbrains.annotations.Nullable;
 
 public class CookingOverlay implements IGuiOverlay {
 
 	private static final double FACTOR = 3;
 	private static final int MAX_EXTRA = 60;
 
-	@Override
-	public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
-		if (Minecraft.getInstance().level == null) return;
+	@Nullable
+	private static CookingData getHandData() {
 		LocalPlayer player = Proxy.getClientPlayer();
 		ItemStack mainStack = player.getMainHandItem();
 		ItemStack offStack = player.getOffhandItem();
 		ItemStack stack;
 		if (!mainStack.isEmpty() && mainStack.is(CDItems.SKILLET.get())) stack = mainStack;
 		else if (!offStack.isEmpty() && offStack.is(CDItems.SKILLET.get())) stack = offStack;
-		else return;
-		CookingData data = CuisineSkilletItem.getData(stack);
+		else return null;
+		return CuisineSkilletItem.getData(stack);
+	}
+
+	@Nullable
+	private static CookingData getBlockData() {
+		HitResult result = Minecraft.getInstance().hitResult;
+		if (result == null || result.getType() != HitResult.Type.BLOCK) return null;
+		BlockPos pos = ((BlockHitResult) result).getBlockPos();
+		if (Proxy.getClientWorld().getBlockEntity(pos) instanceof CuisineSkilletBlockEntity be) {
+			return be.cookingData;
+		}
+		return null;
+	}
+
+	@Nullable
+	public static CookingData getData() {
+		CookingData itemData = getHandData();
+		if (itemData != null) return itemData;
+		return getBlockData();
+	}
+
+	@Override
+	public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
+		if (Minecraft.getInstance().level == null) return;
+		CookingData data = getData();
 		if (data == null || data.contents.size() == 0) return;
 		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;

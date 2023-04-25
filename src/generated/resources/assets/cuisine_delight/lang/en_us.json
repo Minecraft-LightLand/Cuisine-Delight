@@ -1,5 +1,9 @@
 {
   "block.cuisine_delight.cuisine_skillet": "Cuisine Skillet",
+  "cuisine_delight.food_type.carb": "Staple",
+  "cuisine_delight.food_type.meat": "Meat",
+  "cuisine_delight.food_type.none": "Seasoning",
+  "cuisine_delight.food_type.veg": "Vegetable",
   "cuisine_delight.info.max_time": "Maximum cooking time: %s sec",
   "cuisine_delight.info.min_time": "Minimum cooking time: %s sec",
   "cuisine_delight.info.nutrition": "Nutrition: %s per serve",

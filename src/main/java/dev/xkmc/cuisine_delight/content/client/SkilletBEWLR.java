@@ -65,12 +65,7 @@ public class SkilletBEWLR extends BlockEntityWithoutLevelRenderer {
 			if (player.getMainHandItem() == stack || player.getOffhandItem() == stack) {
 				time = player.getCooldowns().getCooldownPercent(stack.getItem(), Minecraft.getInstance().getPartialTick());
 			}
-			float fly = time * (1 - time) * 4;
-			poseStack.translate(0, 0, 29 / 64f - fly * 16 / 32f);
-			for (var entry : data.contents) {
-				poseStack.translate(0, 0, -(fly * 4 + 1) / 32f);
-				renderer.renderStatic(entry.item, ItemTransforms.TransformType.GROUND, light, overlay, poseStack, bufferSource, i++);
-			}
+			CuisineSkilletRenderer.renderItem(time, data, poseStack, bufferSource, light, overlay);
 			poseStack.popPose();
 		}
 	}

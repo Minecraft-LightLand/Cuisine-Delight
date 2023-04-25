@@ -12,7 +12,6 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 import java.util.function.Supplier;
@@ -35,15 +34,14 @@ public class CDItems {
 		}
 	}
 
-	public static final Tab TAB_GENERAL = new Tab("general", () -> Items.EGG);
-
 	public static final ItemEntry<CuisineSkilletItem> SKILLET;
 	public static final ItemEntry<SpatulaItem> SPATULA;
 	public static final ItemEntry<PlateItem> PLATE;
 	public static final ItemEntry<PlateFoodItem> PLATE_FOOD;
 
 	static {
-		CuisineDelight.REGISTRATE.creativeModeTab(() -> TAB_GENERAL);
+		CuisineDelight.REGISTRATE.creativeModeTab(() -> new Tab("general", CDItems.SKILLET::get));
+
 		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(CDBlocks.SKILLET.get(), p.stacksTo(1)))
 				.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")))
 				.setData(ProviderType.LANG, NonNullBiConsumer.noop()).register();

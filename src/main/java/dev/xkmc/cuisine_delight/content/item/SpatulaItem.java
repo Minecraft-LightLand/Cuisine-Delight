@@ -52,7 +52,7 @@ public class SpatulaItem extends Item {
 				if (!level.isClientSide()) {
 					be.stir(level.getGameTime());
 					if (player != null) {
-						player.getCooldowns().addCooldown(CDItems.SKILLET.get(), ANIM_TIME);
+						player.getCooldowns().addCooldown(CDItems.SPATULA.get(), ANIM_TIME);
 					}
 				} else if (player != null) {
 					CuisineSkilletItem.playSound(player, level);
@@ -61,4 +61,5 @@ public class SpatulaItem extends Item {
 		}
 		return InteractionResult.PASS;
 	}
+
 }

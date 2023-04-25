@@ -14,6 +14,17 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 
 public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkilletBlockEntity> {
 
+	public static void renderItem(float time, CookingData data, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
+		ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
+		int i = 1;
+		float fly = time * (1 - time) * 4;
+		poseStack.translate(0, 0, 29 / 64f - fly * 16 / 32f);
+		for (var entry : data.contents) {
+			poseStack.translate(0, 0, -(fly * 4 + 1) / 32f);
+			renderer.renderStatic(entry.item, ItemTransforms.TransformType.GROUND, light, overlay, poseStack, buffer, i++);
+		}
+	}
+
 	public CuisineSkilletRenderer(BlockEntityRendererProvider.Context dispatcher) {
 	}
 
@@ -21,18 +32,12 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 	public void render(CuisineSkilletBlockEntity be, float pTick, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
 		CookingData data = be.cookingData;
 		if (data.contents.size() > 0) {
-			int i = 0;
-			ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 			data.update(Proxy.getClientWorld().getGameTime());
 			poseStack.pushPose();
+			poseStack.translate(0.5, 0.5, 0.5);
 			poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
 			float time = be.getStirPercent(pTick);
-			float fly = time * (1 - time) * 4;
-			poseStack.translate(0, 0, 29 / 64f - fly * 16 / 32f);
-			for (var entry : data.contents) {
-				poseStack.translate(0, 0, -(fly * 4 + 1) / 32f);
-				renderer.renderStatic(entry.item, ItemTransforms.TransformType.GROUND, light, overlay, poseStack, buffer, i++);
-			}
+			renderItem(time, data, poseStack, buffer, light, overlay);
 			poseStack.popPose();
 		}
 	}

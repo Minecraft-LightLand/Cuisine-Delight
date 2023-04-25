@@ -100,12 +100,11 @@ public class CuisineSkilletBlock extends SkilletBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-		return type == CDBlocks.BE_SKILLET.get() ? Wrappers.cast(getTicker(level.isClientSide())) : null;
+		return type == CDBlocks.BE_SKILLET.get() ? Wrappers.cast(getTicker()) : null;
 	}
 
-	private static BlockEntityTicker<CuisineSkilletBlockEntity> getTicker(boolean client) {
-		return client ? (level, pos, state, be) -> be.clientTick(level, pos, state) :
-				(level, pos, state, be) -> be.serverTick(level, pos, state);
+	private static BlockEntityTicker<CuisineSkilletBlockEntity> getTicker() {
+		return (level, pos, state, be) -> be.tick(level, pos, state);
 	}
 
 }

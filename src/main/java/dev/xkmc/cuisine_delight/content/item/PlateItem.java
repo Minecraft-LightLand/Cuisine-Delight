@@ -35,7 +35,7 @@ public class PlateItem extends Item {
 		}
 		if (!level.isClientSide()) {
 			CuisineSkilletItem.setData(skilletStack, null);
-			data.update(level.getGameTime());
+			data.stir(level.getGameTime());
 			CookedFoodData food = new CookedFoodData(data);
 			ItemStack foodStack = CDItems.PLATE_FOOD.asStack();
 			PlateFoodItem.setData(foodStack, food);
@@ -55,7 +55,7 @@ public class PlateItem extends Item {
 			}
 			if (!level.isClientSide()) {
 				CookingData data = be.cookingData;
-				data.update(level.getGameTime());
+				data.stir(level.getGameTime());
 				CookedFoodData food = new CookedFoodData(data);
 				ItemStack foodStack = CDItems.PLATE_FOOD.asStack();
 				PlateFoodItem.setData(foodStack, food);

@@ -67,11 +67,10 @@ public class BaseFoodItem extends Item {
 		FoodProperties prop = data.toFoodData();
 		if (prop == CookedFoodData.BAD) {
 			list.add(LangData.BAD_FOOD.get());
-			return;
+		} else {
+			list.add(LangData.SERVE_SIZE.get(data.size));
+			list.add(LangData.SCORE.get(data.score));
 		}
-		list.add(LangData.SERVE_SIZE.get(data.size));
-		list.add(LangData.SCORE.get(data.score));
-
 		if (Screen.hasShiftDown()) {
 			for (var e : data.entries) {
 				ItemStack ingredient = e.stack();

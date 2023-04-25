@@ -1,5 +1,6 @@
 package dev.xkmc.cuisine_delight.init.data;
 
+import dev.xkmc.cuisine_delight.content.logic.FoodType;
 import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
 import net.minecraft.ChatFormatting;
@@ -64,6 +65,9 @@ public enum LangData {
 	public static void genLang(RegistrateLangProvider pvd) {
 		for (LangData lang : LangData.values()) {
 			pvd.add(lang.key, lang.def);
+		}
+		for (FoodType type : FoodType.values()) {
+			pvd.add(type.getID(), type.def);
 		}
 		pvd.add("itemGroup." + CuisineDelight.MODID + ".general", "Cuisine Delight");
 	}
