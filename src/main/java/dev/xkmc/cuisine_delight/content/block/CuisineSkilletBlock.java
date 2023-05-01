@@ -4,6 +4,7 @@ import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
 import dev.xkmc.cuisine_delight.init.CDBlocks;
 import dev.xkmc.cuisine_delight.init.CDItems;
+import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.LangData;
 import dev.xkmc.l2library.util.code.Wrappers;
 import net.minecraft.core.BlockPos;
@@ -39,6 +40,12 @@ public class CuisineSkilletBlock extends SkilletBlock {
 				if (!be.canCook()) {
 					if (player instanceof ServerPlayer serverPlayer) {
 						serverPlayer.sendSystemMessage(LangData.MSG_NO_HEAT.get(), true);
+					}
+					return InteractionResult.FAIL;
+				}
+				if (be.cookingData.contents.size() >= CDConfig.COMMON.maxIngredient.get()) {
+					if (!level.isClientSide()) {
+						((ServerPlayer) player).sendSystemMessage(LangData.MSG_FULL.get(), true);
 					}
 					return InteractionResult.FAIL;
 				}

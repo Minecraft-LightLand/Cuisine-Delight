@@ -69,7 +69,7 @@ public class IngredientConfig extends BaseConfig {
 
 	}
 
-	public record EffectEntry(MobEffect effect, int time) {
+	public record EffectEntry(MobEffect effect, int level, int time) {
 	}
 
 	public static IngredientEntry get(Ingredient ingredient, FoodType type, int min_time, int max_time, int stir_time, float raw_penalty, float overcook_penalty, int size, int nutrition, EffectEntry... effects) {

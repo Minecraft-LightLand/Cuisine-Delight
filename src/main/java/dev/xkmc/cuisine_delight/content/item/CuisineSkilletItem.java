@@ -4,6 +4,7 @@ import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisine_delight.content.client.SkilletBEWLR;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
+import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.core.BlockPos;
@@ -82,6 +83,13 @@ public class CuisineSkilletItem extends SkilletItem {
 			}
 			return InteractionResultHolder.fail(skilletStack);
 		}
+		CookingData data = getData(skilletStack);
+		if (data != null && data.contents.size() >= CDConfig.COMMON.maxIngredient.get()) {
+			if (!level.isClientSide()) {
+				((ServerPlayer) player).sendSystemMessage(LangData.MSG_FULL.get(), true);
+			}
+			return InteractionResultHolder.fail(skilletStack);
+		}
 		InteractionHand otherHand = hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
 		ItemStack otherStack = player.getItemInHand(otherHand);
 
@@ -90,7 +98,6 @@ public class CuisineSkilletItem extends SkilletItem {
 			if (entry != null) {
 				if (!level.isClientSide()) {
 					long time = level.getGameTime();
-					CookingData data = getData(skilletStack);
 					if (data == null) {
 						data = new CookingData();
 					}

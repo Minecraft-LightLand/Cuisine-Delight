@@ -20,6 +20,8 @@ public class CDConfig {
 		public ForgeConfigSpec.DoubleValue varietyBonus;
 		public ForgeConfigSpec.DoubleValue perfectionBonus;
 
+		public ForgeConfigSpec.IntValue maxIngredient;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			baseServe = builder.comment("base size per serve")
 					.defineInRange("baseServe", 4, 1, 100);
@@ -29,6 +31,8 @@ public class CDConfig {
 					.defineInRange("varietyBonus", 0.2, 0, 100);
 			perfectionBonus = builder.comment("bonus for perfect food")
 					.defineInRange("perfectionBonus", 0.5, 0, 100);
+			maxIngredient = builder.comment("max number of ingredient entries")
+					.defineInRange("maxIngredient", 9, 1, 20);
 		}
 
 	}

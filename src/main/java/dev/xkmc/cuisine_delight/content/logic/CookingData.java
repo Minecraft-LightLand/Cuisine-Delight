@@ -2,6 +2,7 @@ package dev.xkmc.cuisine_delight.content.logic;
 
 import dev.xkmc.l2library.serial.SerialClass;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,9 @@ public class CookingData {
 
 	@SerialClass.SerialField
 	public long lastActionTime;
+
+	@SerialClass.SerialField
+	public int glowstone, redstone;
 
 	@SerialClass.SerialField
 	public ArrayList<CookingEntry> contents = new ArrayList<>();
@@ -26,6 +30,12 @@ public class CookingData {
 	}
 
 	public void addItem(ItemStack item, long time) {
+		if (item.is(Items.GLOWSTONE_DUST)) {
+			glowstone++;
+		}
+		if (item.is(Items.REDSTONE)) {
+			redstone++;
+		}
 		update(time);
 		contents.add(new CookingEntry(item, time));
 	}

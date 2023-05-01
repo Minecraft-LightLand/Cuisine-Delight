@@ -113,6 +113,7 @@
       "effects": [
         {
           "effect": "minecraft:saturation",
+          "level": 0,
           "time": 7
         }
       ],
@@ -132,10 +133,12 @@
       "effects": [
         {
           "effect": "minecraft:regeneration",
-          "time": 200
+          "level": 1,
+          "time": 100
         },
         {
           "effect": "minecraft:saturation",
+          "level": 0,
           "time": 8
         }
       ],
@@ -155,18 +158,22 @@
       "effects": [
         {
           "effect": "minecraft:regeneration",
-          "time": 800
+          "level": 1,
+          "time": 400
         },
         {
           "effect": "minecraft:resistance",
+          "level": 0,
           "time": 6000
         },
         {
           "effect": "minecraft:fire_resistance",
+          "level": 0,
           "time": 6000
         },
         {
           "effect": "minecraft:saturation",
+          "level": 0,
           "time": 32
         }
       ],

@@ -36,18 +36,18 @@ public class CDConfigGen extends ConfigDataProvider {
 						240, 360, 60, 0.5f, 0.2f, 1, 25),
 				IngredientConfig.get(Ingredient.of(Items.DANDELION), FoodType.NONE,
 						60, 80, 40, 0, 0, 0, 0,
-						new IngredientConfig.EffectEntry(MobEffects.SATURATION, 7)),
+						new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 7)),
 				IngredientConfig.get(Ingredient.of(Items.GOLDEN_APPLE), FoodType.VEG,
 						120, 140, 40, 0, 0, 1, 5,
-						new IngredientConfig.EffectEntry(MobEffects.REGENERATION, 200),
-						new IngredientConfig.EffectEntry(MobEffects.SATURATION, 8)
+						new IngredientConfig.EffectEntry(MobEffects.REGENERATION, 1, 100),
+						new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 8)
 				),
 				IngredientConfig.get(Ingredient.of(Items.ENCHANTED_GOLDEN_APPLE), FoodType.VEG,
 						120, 140, 40, 0, 0, 1, 5,
-						new IngredientConfig.EffectEntry(MobEffects.REGENERATION, 800),
-						new IngredientConfig.EffectEntry(MobEffects.DAMAGE_RESISTANCE, 6000),
-						new IngredientConfig.EffectEntry(MobEffects.FIRE_RESISTANCE, 6000),
-						new IngredientConfig.EffectEntry(MobEffects.SATURATION, 32)
+						new IngredientConfig.EffectEntry(MobEffects.REGENERATION, 1, 400),
+						new IngredientConfig.EffectEntry(MobEffects.DAMAGE_RESISTANCE, 0, 6000),
+						new IngredientConfig.EffectEntry(MobEffects.FIRE_RESISTANCE, 0, 6000),
+						new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 32)
 				)
 		));
 	}

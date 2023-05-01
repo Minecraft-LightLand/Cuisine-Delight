@@ -3,14 +3,14 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "cuisine_delight:copy_skillet"
+            }
+          ],
           "name": "cuisine_delight:cuisine_skillet"
         }
       ],

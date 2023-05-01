@@ -19,7 +19,7 @@ public class CookedFoodData {
 	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationMod(0).build();
 
 	@SerialClass.SerialField
-	public int total, size, nutrition, score;
+	public int total, size, nutrition, score, glowstone, redstone;
 
 	@SerialClass.SerialField
 	public HashSet<FoodType> types = new HashSet<>();
@@ -61,6 +61,8 @@ public class CookedFoodData {
 			mult += CDConfig.COMMON.perfectionBonus.get();
 		}
 		this.nutrition = size == 0 ? 0 : (int) Math.round(mult * goodness * nutrition / size);
+		this.glowstone = data.glowstone;
+		this.redstone = data.redstone;
 	}
 
 	public FoodProperties toFoodData() {
@@ -72,24 +74,36 @@ public class CookedFoodData {
 		if (types.contains(FoodType.MEAT)) {
 			ans.meat();
 		}
-		Map<MobEffect, Float> map = new HashMap<>();
+		Map<MobEffect, EffectData> map = new HashMap<>();
 		for (var e : entries) {
 			e.addMobEffects(map, total);
 		}
-		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(k, Math.round(v)), 1));
+		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(k, Math.round(v.duration), v.level()), 1));
 		return ans.build();
 	}
 
 	public record Entry(ItemStack stack, boolean burnt, boolean raw, boolean overcooked) {
 
-		public void addMobEffects(Map<MobEffect, Float> map, int divisor) {
+		public void addMobEffects(Map<MobEffect, EffectData> map, int divisor) {
 			var config = IngredientConfig.get().getEntry(stack);
 			if (config == null) return;
 			if (burnt || raw || overcooked) return;
 			for (var e : config.effects) {
-				map.compute(e.effect(), (k, v) -> (v == null ? 0 : v) + e.time() * stack.getCount() / divisor);
+				map.compute(e.effect(), (k, v) -> {
+					float ans = 1.0f * e.time() * stack.getCount() / divisor;
+					if (v != null) {
+						if (v.level > e.level()) return v;
+						if (v.level == e.level())
+							return new EffectData(v.level, v.duration + ans);
+					}
+					return new EffectData(e.level(), ans);
+				});
 			}
 		}
+
+	}
+
+	private record EffectData(int level, float duration) {
 
 	}
 

@@ -8,9 +8,11 @@ import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +26,10 @@ public class CuisineDelight {
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
 
 	public CuisineDelight() {
+		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		CDItems.register();
 		CDBlocks.register();
+		CDMisc.register(bus);
 		CDConfig.init();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);

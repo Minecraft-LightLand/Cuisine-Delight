@@ -11,7 +11,8 @@ public enum FoodType {
 	NONE(0, "Seasoning", ChatFormatting.GRAY),
 	MEAT(1, "Meat", ChatFormatting.LIGHT_PURPLE),
 	VEG(1, "Vegetable", ChatFormatting.GREEN),
-	CARB(1, "Staple", ChatFormatting.YELLOW);
+	CARB(1, "Staple", ChatFormatting.YELLOW),
+	SEAFOOD(1, "Sea Food", ChatFormatting.AQUA);
 
 	public final int bonus;
 	public final String def;
