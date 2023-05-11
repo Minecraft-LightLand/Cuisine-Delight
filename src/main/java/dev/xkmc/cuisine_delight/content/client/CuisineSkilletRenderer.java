@@ -12,16 +12,24 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 
+import java.util.Random;
+
 public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkilletBlockEntity> {
 
 	public static void renderItem(float time, CookingData data, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
 		ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 		int i = 1;
 		float fly = time * (1 - time) * 4;
-		poseStack.translate(0, 0, 29 / 64f - fly * 16 / 32f);
+		poseStack.translate(0, -29 / 64f + fly * 16 / 32f, 0);
 		for (var entry : data.contents) {
-			poseStack.translate(0, 0, -(fly * 4 + 1) / 32f);
+			Random random = new Random(new Random(entry.startTime).nextLong());
+			poseStack.translate(0, (fly * 4 + 1) / 32f, 0);
+			poseStack.pushPose();
+			poseStack.mulPose(Vector3f.ZP.rotationDegrees(time * 360));
+			poseStack.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 90f));
+			poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
 			renderer.renderStatic(entry.item, ItemTransforms.TransformType.GROUND, light, overlay, poseStack, buffer, i++);
+			poseStack.popPose();
 		}
 	}
 
@@ -35,7 +43,6 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 			data.update(Proxy.getClientWorld().getGameTime());
 			poseStack.pushPose();
 			poseStack.translate(0.5, 0.5, 0.5);
-			poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
 			float time = be.getStirPercent(pTick);
 			renderItem(time, data, poseStack, buffer, light, overlay);
 			poseStack.popPose();

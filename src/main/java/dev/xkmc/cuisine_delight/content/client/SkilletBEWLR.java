@@ -59,7 +59,6 @@ public class SkilletBEWLR extends BlockEntityWithoutLevelRenderer {
 			data.update(Proxy.getClientWorld().getGameTime());
 			poseStack.pushPose();
 			model.applyTransform(type, poseStack, false);
-			poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
 			float time = 0;
 			LocalPlayer player = Proxy.getClientPlayer();
 			if (player.getMainHandItem() == stack || player.getOffhandItem() == stack) {
