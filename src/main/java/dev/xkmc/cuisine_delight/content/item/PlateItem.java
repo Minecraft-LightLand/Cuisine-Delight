@@ -3,6 +3,7 @@ package dev.xkmc.cuisine_delight.content.item;
 import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
+import dev.xkmc.cuisine_delight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisine_delight.init.CDItems;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -37,8 +38,7 @@ public class PlateItem extends Item {
 			CuisineSkilletItem.setData(skilletStack, null);
 			data.stir(level.getGameTime());
 			CookedFoodData food = new CookedFoodData(data);
-			ItemStack foodStack = CDItems.PLATE_FOOD.asStack();
-			PlateFoodItem.setData(foodStack, food);
+			ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 			plateStack.shrink(1);
 			player.getInventory().placeItemBackInInventory(foodStack);
 		}
@@ -57,8 +57,7 @@ public class PlateItem extends Item {
 				CookingData data = be.cookingData;
 				data.stir(level.getGameTime());
 				CookedFoodData food = new CookedFoodData(data);
-				ItemStack foodStack = CDItems.PLATE_FOOD.asStack();
-				PlateFoodItem.setData(foodStack, food);
+				ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 				ctx.getItemInHand().shrink(1);
 				if (player != null) {
 					player.getInventory().placeItemBackInInventory(foodStack);

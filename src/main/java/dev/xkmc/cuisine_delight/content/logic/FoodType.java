@@ -4,6 +4,8 @@ import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.Locale;
 
@@ -32,4 +34,7 @@ public enum FoodType {
 		return Component.translatable(getID());
 	}
 
+	public ItemStack getDisplay() {
+		return Items.BOWL.getDefaultInstance();//TODO
+	}
 }

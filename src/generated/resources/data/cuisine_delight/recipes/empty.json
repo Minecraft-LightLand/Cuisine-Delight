@@ -1,0 +1,7 @@
+{
+  "type": "cuisine_delight:plate_cuisine",
+  "holderItem": "cuisine_delight:plate_food",
+  "list": [],
+  "saturationBonus": 0.0,
+  "saturationBonusModifier": 0.0
+}

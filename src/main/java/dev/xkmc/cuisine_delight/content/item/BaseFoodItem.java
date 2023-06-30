@@ -1,6 +1,7 @@
 package dev.xkmc.cuisine_delight.content.item;
 
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
+import dev.xkmc.cuisine_delight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisine_delight.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
@@ -22,6 +23,7 @@ import java.util.List;
 public class BaseFoodItem extends Item {
 
 	private static final String KEY_ROOT = "CookedFoodData";
+	private static final String KEY_DISPLAY = "Display";
 
 	@Nullable
 	public static CookedFoodData getData(ItemStack stack) {
@@ -59,6 +61,13 @@ public class BaseFoodItem extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		if (stack.hasTag()) {
+			var tag = stack.getTagElement(KEY_DISPLAY);
+			if (tag != null) {
+				list.add(LangData.INFO_DISPLAY.get(tag.getDouble("min"), tag.getDouble("max")));
+				return;
+			}
+		}
 		CookedFoodData data = getData(stack);
 		if (data == null) {
 			list.add(LangData.BAD_FOOD.get());
@@ -106,4 +115,11 @@ public class BaseFoodItem extends Item {
 		}
 	}
 
+	public ItemStack displayStack(BaseCuisineRecipe<?> recipe) {
+		ItemStack ans = getDefaultInstance();
+		var ctag = ans.getOrCreateTagElement(KEY_DISPLAY);
+		ctag.putDouble("min", recipe.getMinSaturationBonus());
+		ctag.putDouble("max", recipe.getMaxSaturationBonus());
+		return ans;
+	}
 }
