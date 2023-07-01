@@ -19,13 +19,13 @@ public class SkilletUseEventListeners {
 	private static boolean noBlockUse(Player player) {
 		return player.getMainHandItem().is(CDItems.SKILLET.get()) ||
 				player.getOffhandItem().is(CDItems.SKILLET.get()) &&
-						CuisineSkilletItem.canUse(player.getOffhandItem(), player, player.level) &&
+						CuisineSkilletItem.canUse(player.getOffhandItem(), player, player.level()) &&
 						IngredientConfig.get().getEntry(player.getMainHandItem()) != null;
 	}
 
 	private static boolean useOffHand(Player player) {
 		if (player.getOffhandItem().is(CDItems.SKILLET.get())) {
-			return CuisineSkilletItem.canUse(player.getOffhandItem(), player, player.level) &&
+			return CuisineSkilletItem.canUse(player.getOffhandItem(), player, player.level()) &&
 					IngredientConfig.get().getEntry(player.getMainHandItem()) != null;
 		}
 		if (player.getMainHandItem().is(CDItems.SKILLET.get())) {

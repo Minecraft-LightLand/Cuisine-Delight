@@ -2,7 +2,6 @@ package dev.xkmc.cuisine_delight.content.client;
 
 import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.init.CDItems;
@@ -13,11 +12,11 @@ import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
@@ -45,7 +44,7 @@ public class SkilletBEWLR extends BlockEntityWithoutLevelRenderer {
 	}
 
 	@Override
-	public void renderByItem(ItemStack stack, ItemTransforms.TransformType type, PoseStack poseStack,
+	public void renderByItem(ItemStack stack, ItemDisplayContext type, PoseStack poseStack,
 							 MultiBufferSource bufferSource, int light, int overlay) {
 		if (stack.isEmpty() || stack.getItem() != CDItems.SKILLET.get()) return;
 		poseStack.popPose();

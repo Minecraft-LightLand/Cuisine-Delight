@@ -6,7 +6,7 @@ import dev.xkmc.cuisine_delight.init.CDBlocks;
 import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.LangData;
-import dev.xkmc.l2library.util.code.Wrappers;
+import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;

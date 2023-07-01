@@ -1,49 +1,27 @@
 package dev.xkmc.cuisine_delight.content.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.util.FastColor;
+import org.joml.Matrix4f;
 
 public class CommonDecoUtil {
 
-	/**
-	 * Draw with the WorldRenderer
-	 */
-	public static void fillRect(BufferBuilder buffer, double x, double y, double w, double h, double z, int color, int a) {
-		int r = (color >> 16) & 0xff;
-		int g = (color >> 8) & 0xff;
-		int b = color & 0xff;
-		RenderSystem.disableDepthTest();
-		RenderSystem.disableTexture();
-		RenderSystem.setShader(GameRenderer::getPositionColorShader);
-		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-		buffer.vertex(x, y, z).color(r, g, b, a).endVertex();
-		buffer.vertex(x, y + h, z).color(r, g, b, a).endVertex();
-		buffer.vertex(x + w, y + h, z).color(r, g, b, a).endVertex();
-		buffer.vertex(x + w, y, z).color(r, g, b, a).endVertex();
-		BufferUploader.drawWithShader(buffer.end());
-	}
+	private static final int Z = -1;
 
-	public static void fillRect(BufferBuilder builder, double x, double y, double w, double h, int r, int g, int b, int a) {
-		RenderSystem.setShader(GameRenderer::getPositionColorShader);
-		builder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-		builder.vertex(x, y, 0.0D).color(r, g, b, a).endVertex();
-		builder.vertex(x, y + h, 0.0D).color(r, g, b, a).endVertex();
-		builder.vertex(x + w, y + h, 0.0D).color(r, g, b, a).endVertex();
-		builder.vertex(x + w, y, 0.0D).color(r, g, b, a).endVertex();
-		BufferUploader.drawWithShader(builder.end());
+	public static void fillRect(GuiGraphics g, float x, float y, float w, float h, int col) {
+		Matrix4f matrix4f = g.pose().last().pose();
+		float f3 = (float) FastColor.ARGB32.alpha(col) / 255.0F;
+		float f = (float) FastColor.ARGB32.red(col) / 255.0F;
+		float f1 = (float) FastColor.ARGB32.green(col) / 255.0F;
+		float f2 = (float) FastColor.ARGB32.blue(col) / 255.0F;
+		VertexConsumer vertexconsumer = g.bufferSource().getBuffer(RenderType.gui());
+		vertexconsumer.vertex(matrix4f, x, y, Z).color(f, f1, f2, f3).endVertex();
+		vertexconsumer.vertex(matrix4f, x, y + h, Z).color(f, f1, f2, f3).endVertex();
+		vertexconsumer.vertex(matrix4f, x + w, y + h, Z).color(f, f1, f2, f3).endVertex();
+		vertexconsumer.vertex(matrix4f, x + w, y, Z).color(f, f1, f2, f3).endVertex();
+		g.flush();
 	}
-
-	public static void drawText(int x, int y, Font font, int col, String s, float blitOffset) {
-		PoseStack pose = new PoseStack();
-		pose.translate(0, 0, blitOffset + 202);
-		MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-		font.drawInBatch(s, x, y, col, true, pose.last().pose(), buffer,
-				false, 0, 0xF000F0);
-		buffer.endBatch();
-	}
-
 
 }

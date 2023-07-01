@@ -3,25 +3,22 @@ package dev.xkmc.cuisine_delight.init.data;
 import dev.xkmc.cuisine_delight.content.logic.FoodType;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
 import dev.xkmc.cuisine_delight.init.CuisineDelight;
-import dev.xkmc.cuisine_delight.init.NetworkManager;
-import dev.xkmc.l2library.serial.network.BaseConfig;
-import dev.xkmc.l2library.serial.network.ConfigDataProvider;
+import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.Map;
-
 public class CDConfigGen extends ConfigDataProvider {
 
 	public CDConfigGen(DataGenerator generator) {
-		super(generator, "data/" + CuisineDelight.MODID + "/cuisine_config/", "Cuisine Delight Config");
+		super(generator, "Cuisine Delight Config");
 	}
 
 	@Override
-	public void add(Map<String, BaseConfig> map) {
-		map.put(NetworkManager.INGREDIENT.getID() + "/default", IngredientConfig.build(
+	public void add(Collector map) {
+		map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "/default"), IngredientConfig.build(
 				IngredientConfig.get(Ingredient.of(Items.CHICKEN, Items.PORKCHOP, Items.RABBIT), FoodType.MEAT,
 						180, 240, 80, 1f, 0.5f, 3, 10),
 				IngredientConfig.get(Ingredient.of(Items.MUTTON, Items.BEEF), FoodType.MEAT,

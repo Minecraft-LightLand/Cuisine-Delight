@@ -5,7 +5,7 @@ import dev.xkmc.cuisine_delight.content.item.SpatulaItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.l2library.base.tile.BaseBlockEntity;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;

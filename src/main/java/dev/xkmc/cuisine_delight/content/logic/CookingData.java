@@ -1,6 +1,6 @@
 package dev.xkmc.cuisine_delight.content.logic;
 
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 

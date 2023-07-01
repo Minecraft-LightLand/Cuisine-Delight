@@ -1,11 +1,11 @@
 package dev.xkmc.cuisine_delight.init;
 
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlock;
 import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisine_delight.content.client.CuisineSkilletRenderer;
 import dev.xkmc.cuisine_delight.init.data.CopySkilletFunction;
-import dev.xkmc.l2library.repack.registrate.util.entry.BlockEntityEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.BlockEntry;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;

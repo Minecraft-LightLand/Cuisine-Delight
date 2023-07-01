@@ -1,8 +1,8 @@
 package dev.xkmc.cuisine_delight.init.data;
 
+import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
+import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import dev.xkmc.cuisine_delight.init.CuisineDelight;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemTagsProvider;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;

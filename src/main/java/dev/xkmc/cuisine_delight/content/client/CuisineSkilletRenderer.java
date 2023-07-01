@@ -1,16 +1,16 @@
 package dev.xkmc.cuisine_delight.content.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.item.ItemDisplayContext;
 
 import java.util.Random;
 
@@ -25,10 +25,10 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 			Random random = new Random(new Random(entry.startTime).nextLong());
 			poseStack.translate(0, (fly * 4 + 1) / 32f, 0);
 			poseStack.pushPose();
-			poseStack.mulPose(Vector3f.ZP.rotationDegrees(time * 360));
-			poseStack.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 90f));
-			poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
-			renderer.renderStatic(entry.item, ItemTransforms.TransformType.GROUND, light, overlay, poseStack, buffer, i++);
+			poseStack.mulPose(Axis.ZP.rotationDegrees(time * 360));
+			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 90f));
+			poseStack.mulPose(Axis.XP.rotationDegrees(90));
+			renderer.renderStatic(entry.item, ItemDisplayContext.GROUND, light, overlay, poseStack, buffer, Minecraft.getInstance().level, i++);
 			poseStack.popPose();
 		}
 	}

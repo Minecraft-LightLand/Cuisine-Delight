@@ -29,7 +29,7 @@ public class CuisineDelightClient {
 
 	@SubscribeEvent
 	public static void registerItemDecoration(RegisterItemDecorationsEvent event) {
-		event.register(CDItems.PLATE_FOOD.get(), FoodItemDecorationRenderer::renderCount);
+		event.register(CDItems.PLATE_FOOD.get(),new FoodItemDecorationRenderer());
 	}
 
 	@SubscribeEvent

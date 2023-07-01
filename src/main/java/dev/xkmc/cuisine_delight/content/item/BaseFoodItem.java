@@ -3,7 +3,7 @@ package dev.xkmc.cuisine_delight.content.item;
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
 import dev.xkmc.cuisine_delight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisine_delight.init.data.LangData;
-import dev.xkmc.l2library.serial.codec.TagCodec;
+import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

@@ -1,7 +1,7 @@
 package dev.xkmc.cuisine_delight.content.recipe;
 
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
-import dev.xkmc.l2library.base.recipe.BaseRecipe;
+import dev.xkmc.l2library.serial.recipe.BaseRecipe;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

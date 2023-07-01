@@ -1,7 +1,7 @@
 package dev.xkmc.cuisine_delight.content.recipe;
 
 import dev.xkmc.cuisine_delight.init.CDMisc;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.resources.ResourceLocation;
 
 @SerialClass

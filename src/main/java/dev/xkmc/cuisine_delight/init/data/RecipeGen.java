@@ -1,13 +1,14 @@
 package dev.xkmc.cuisine_delight.init.data;
 
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.DataIngredient;
 import dev.xkmc.cuisine_delight.content.logic.FoodType;
 import dev.xkmc.cuisine_delight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisine_delight.content.recipe.PlateCuisineBuilder;
 import dev.xkmc.cuisine_delight.init.CDItems;
 import dev.xkmc.cuisine_delight.init.CuisineDelight;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
-import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -24,9 +25,9 @@ public class RecipeGen {
 
 	public static void genRecipe(RegistrateRecipeProvider pvd) {
 		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
-		unlock(pvd, ShapelessRecipeBuilder.shapeless(CDItems.SKILLET.get())::unlockedBy, ModItems.SKILLET.get())
+		unlock(pvd, ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CDItems.SKILLET.get())::unlockedBy, ModItems.SKILLET.get())
 				.requires(ModItems.SKILLET.get()).requires(Tags.Items.INGOTS_BRICK).save(pvd);
-		pvd.stonecutting(DataIngredient.items(Items.WHITE_GLAZED_TERRACOTTA), CDItems.PLATE, 16);
+		pvd.stonecutting(DataIngredient.items(Items.WHITE_GLAZED_TERRACOTTA), RecipeCategory.MISC, CDItems.PLATE, 16);
 
 		unlock(pvd, new PlateCuisineBuilder(CDItems.PLATE_FOOD.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "empty"));

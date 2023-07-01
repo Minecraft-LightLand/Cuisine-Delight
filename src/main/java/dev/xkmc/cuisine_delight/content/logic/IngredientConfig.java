@@ -1,10 +1,10 @@
 package dev.xkmc.cuisine_delight.content.logic;
 
-import dev.xkmc.cuisine_delight.init.NetworkManager;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.cuisine_delight.init.CuisineDelight;
+import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
-import dev.xkmc.l2library.serial.network.BaseConfig;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +17,7 @@ import java.util.*;
 public class IngredientConfig extends BaseConfig {
 
 	public static IngredientConfig get() {
-		return NetworkManager.INGREDIENT.getMerged();
+		return CuisineDelight.INGREDIENT.getMerged();
 	}
 
 	@SerialClass.SerialField

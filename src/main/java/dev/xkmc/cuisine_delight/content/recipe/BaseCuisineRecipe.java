@@ -3,8 +3,9 @@ package dev.xkmc.cuisine_delight.content.recipe;
 import dev.xkmc.cuisine_delight.content.item.BaseFoodItem;
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
 import dev.xkmc.cuisine_delight.init.CDMisc;
-import dev.xkmc.l2library.base.recipe.BaseRecipe;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.serial.recipe.BaseRecipe;
+import dev.xkmc.l2serial.serialization.SerialClass;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +30,7 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 		}
 		assert ans != null;
 		score -= ans.getScoreOffset();
-		ItemStack result = ans.assemble(inv);
+		ItemStack result = ans.assemble(inv, level.registryAccess());
 		food.nutrition *= 1 + ans.saturationBonusModifier * score;
 		BaseFoodItem.setData(result, food);
 		return result;
@@ -69,7 +70,7 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 	}
 
 	@Override
-	public ItemStack assemble(CuisineRecipeContainer cont) {
+	public ItemStack assemble(CuisineRecipeContainer cont, RegistryAccess access) {
 		return holderItem.getDefaultInstance();
 	}
 
@@ -79,7 +80,7 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 	}
 
 	@Override
-	public ItemStack getResultItem() {
+	public ItemStack getResultItem(RegistryAccess access) {
 		if (holderItem instanceof BaseFoodItem food) {
 			return food.displayStack(this);
 		}

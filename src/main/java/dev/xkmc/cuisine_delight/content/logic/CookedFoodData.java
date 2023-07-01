@@ -1,7 +1,7 @@
 package dev.xkmc.cuisine_delight.content.logic;
 
 import dev.xkmc.cuisine_delight.init.data.CDConfig;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;

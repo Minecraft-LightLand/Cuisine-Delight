@@ -3,9 +3,8 @@ package dev.xkmc.cuisine_delight.content.recipe;
 import dev.xkmc.cuisine_delight.content.logic.FoodType;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
 import dev.xkmc.cuisine_delight.init.CuisineDelight;
-import dev.xkmc.cuisine_delight.init.NetworkManager;
-import dev.xkmc.l2library.base.ingredients.BaseIngredient;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.serial.ingredients.BaseIngredient;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -37,7 +36,7 @@ public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
 
 	@Override
 	public boolean test(ItemStack stack) {
-		IngredientConfig config = NetworkManager.INGREDIENT.getMerged();
+		IngredientConfig config = CuisineDelight.INGREDIENT.getMerged();
 		var entry = config.getEntry(stack);
 		if (entry == null) return false;
 		return entry.type == foodType;

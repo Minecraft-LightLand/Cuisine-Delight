@@ -6,7 +6,7 @@ import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
 import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.LangData;
-import dev.xkmc.l2library.serial.codec.TagCodec;
+import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
