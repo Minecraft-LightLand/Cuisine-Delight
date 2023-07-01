@@ -70,7 +70,6 @@ public enum LangData {
 		for (FoodType type : FoodType.values()) {
 			pvd.add(type.getID(), type.def);
 		}
-		pvd.add("itemGroup." + CuisineDelight.MODID + ".general", "Cuisine Delight");
 	}
 
 

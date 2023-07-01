@@ -1,0 +1,18 @@
+// 1.20	2023-07-01T17:31:36.061753	Registrate Provider for cuisine_delight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+2b77f983a78785b1b66330802a37dec16d098ce7 assets/cuisine_delight/blockstates/cuisine_skillet.json
+7bf444c47e7b26cbb33552a879b4218f51e5921a assets/cuisine_delight/lang/en_ud.json
+406d213c6ff3fda7f7b49db45be3b94703832cfb assets/cuisine_delight/lang/en_us.json
+e0f7b66a84e6588f01abbbce75b1803ffe5d46e2 assets/cuisine_delight/models/item/cuisine_skillet.json
+8496e51ec50a5697823d2ac373d25a9f1cb21e85 assets/cuisine_delight/models/item/plate.json
+88982723f67be75894901c041ef7b0600c584264 assets/cuisine_delight/models/item/plate_food.json
+2635594936d5582767b3d845944160daa1a04f0a assets/cuisine_delight/models/item/spatula.json
+89370ecd2d68a2a34e00da765d6ba07f2f3c00df data/cuisine_delight/advancements/recipes/misc/cuisine_skillet.json
+7a315506ba031f5e465e3a336d27bfe55fa0f1d8 data/cuisine_delight/advancements/recipes/misc/plate_from_white_glazed_terracotta_stonecutting.json
+dd831217c39b25544ed324377f4504c000c8e2ae data/cuisine_delight/advancements/recipes/plate_cuisine/empty.json
+ff6a5b1424776d7765c0087a5096a89004f2df2a data/cuisine_delight/advancements/recipes/plate_cuisine/meat_plate.json
+befcdabb10d5fe74001448ee56ff861ed7ce808c data/cuisine_delight/loot_tables/blocks/cuisine_skillet.json
+ce9c47843451755022ee6b627e06c50418e53ca9 data/cuisine_delight/recipes/cuisine_skillet.json
+c6949cd1eb3796ecc7f501c7dc593da270f151f0 data/cuisine_delight/recipes/empty.json
+549a9d46b8a3d3d7baa815b33f5bedcb1beb26e6 data/cuisine_delight/recipes/meat_plate.json
+13819083cdcab8277abf0ef73461f8e0e9b3daa5 data/cuisine_delight/recipes/plate_from_white_glazed_terracotta_stonecutting.json
+8e93bc0b6f00134823cf292366dc5df6c9818c8b data/cuisine_delight/tags/items/utensils.json

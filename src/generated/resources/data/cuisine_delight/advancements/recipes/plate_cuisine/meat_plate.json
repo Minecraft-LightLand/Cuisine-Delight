@@ -30,5 +30,6 @@
     "recipes": [
       "cuisine_delight:meat_plate"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

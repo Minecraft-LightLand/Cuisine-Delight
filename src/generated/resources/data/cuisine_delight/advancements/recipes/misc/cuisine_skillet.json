@@ -30,5 +30,6 @@
     "recipes": [
       "cuisine_delight:cuisine_skillet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -3,7 +3,7 @@
   "item.cuisine_delight.plate_food": "食物",
   "item.cuisine_delight.plate": "盘子",
   "item.cuisine_delight.spatula": "锅铲",
-  "itemGroup.cuisine_delight.general": "料理乐事",
+  "itemGroup.cuisine_delight.cuisine": "料理乐事",
   "cuisine_delight.tooltip.bad": "不可食用",
   "cuisine_delight.tooltip.burnt": "食材%s炒糊了",
   "cuisine_delight.tooltip.good": "食材%s炒得正好",

@@ -30,5 +30,6 @@
     "recipes": [
       "cuisine_delight:empty"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

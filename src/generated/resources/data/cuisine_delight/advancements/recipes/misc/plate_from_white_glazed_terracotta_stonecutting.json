@@ -30,5 +30,6 @@
     "recipes": [
       "cuisine_delight:plate_from_white_glazed_terracotta_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
