@@ -1,0 +1,9 @@
+{
+  "parent": "cuisine_delight:block/dark_pot",
+  "textures": {
+    "bottom": "cuisine_delight:block/pot_bottom",
+    "parts": "cuisine_delight:block/pot_parts",
+    "side": "cuisine_delight:block/pot_side",
+    "top": "cuisine_delight:block/pot_top"
+  }
+}

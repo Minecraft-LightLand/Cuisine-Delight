@@ -1,0 +1,198 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_u_shape",
+        "y": 90
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_u_shape",
+        "y": 180
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_corner"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "true",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_u_shape",
+        "y": 270
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_channel",
+        "y": 90
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_corner",
+        "y": 90
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_side",
+        "y": 90
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "true",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_u_shape"
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_corner",
+        "y": 270
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_channel"
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_side"
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "true",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_corner",
+        "y": 180
+      },
+      "when": {
+        "east": "true",
+        "north": "true",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_side",
+        "y": 270
+      },
+      "when": {
+        "east": "true",
+        "north": "true",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_side",
+        "y": 180
+      },
+      "when": {
+        "east": "true",
+        "north": "true",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_middle"
+      },
+      "when": {
+        "east": "true",
+        "north": "true",
+        "south": "true",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cuisine_delight:block/dark_cooking_pot_tray"
+      },
+      "when": {
+        "support": "true"
+      }
+    }
+  ]
+}

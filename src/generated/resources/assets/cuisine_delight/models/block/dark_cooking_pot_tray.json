@@ -1,0 +1,7 @@
+{
+  "parent": "cuisine_delight:block/tray",
+  "textures": {
+    "side": "cuisine_delight:block/tray_side",
+    "top": "cuisine_delight:block/tray_top"
+  }
+}
