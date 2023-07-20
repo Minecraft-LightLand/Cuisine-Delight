@@ -25,8 +25,13 @@
   "cuisine_delight.tooltip.score": "Quality: %s%%",
   "cuisine_delight.tooltip.shift": "Press Shift for culinary details",
   "cuisine_delight.tooltip.size": "Serve size: %s",
+  "item.cuisine_delight.fried_rice": "Fried Rice",
+  "item.cuisine_delight.ham_fried_rice": "Ham Fried Rice",
+  "item.cuisine_delight.meat_pasta": "Meat Pasta",
   "item.cuisine_delight.plate": "Plate",
   "item.cuisine_delight.plate_food": "Plate Food",
+  "item.cuisine_delight.seafood_fried_rice": "Seafood Fried Rice",
   "item.cuisine_delight.spatula": "Spatula",
+  "item.cuisine_delight.vegetable_pasta": "Vegetable Pasta",
   "itemGroup.cuisine_delight.cuisine": "Cuisine Delight"
 }

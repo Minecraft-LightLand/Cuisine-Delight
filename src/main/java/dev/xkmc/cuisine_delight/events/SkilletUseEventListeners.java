@@ -2,7 +2,7 @@ package dev.xkmc.cuisine_delight.events;
 
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
-import dev.xkmc.cuisine_delight.init.CDItems;
+import dev.xkmc.cuisine_delight.init.registrate.CDItems;
 import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import dev.xkmc.cuisine_delight.init.data.TagGen;
 import net.minecraft.world.InteractionHand;

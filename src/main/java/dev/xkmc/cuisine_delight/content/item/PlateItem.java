@@ -4,7 +4,7 @@ import dev.xkmc.cuisine_delight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
 import dev.xkmc.cuisine_delight.content.recipe.BaseCuisineRecipe;
-import dev.xkmc.cuisine_delight.init.CDItems;
+import dev.xkmc.cuisine_delight.init.registrate.CDItems;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;

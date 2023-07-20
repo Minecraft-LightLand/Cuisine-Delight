@@ -1,7 +1,7 @@
 package dev.xkmc.cuisine_delight.content.recipe;
 
 import dev.xkmc.cuisine_delight.content.item.PlateFoodItem;
-import dev.xkmc.cuisine_delight.init.CDMisc;
+import dev.xkmc.cuisine_delight.init.registrate.CDMisc;
 import dev.xkmc.l2library.serial.recipe.BaseRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;

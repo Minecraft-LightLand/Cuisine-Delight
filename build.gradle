@@ -186,10 +186,7 @@ dependencies {
         String[] strs = str.substring(0, str.length() - 4).split("-");
         String artifact = "dev.xkmc.${strs[0]}:${strs[0]}:${strs[1]}";
         if(strs.length == 3) artifact += "-"+strs[2];
-        implementation fg.deobf(jarJar(artifact)) {
-            transitive = false
-            jarJar.ranged(it, "[${strs[1]},)")
-        }
+        implementation fg.deobf(artifact);
     }
 
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")

@@ -1,10 +1,11 @@
-package dev.xkmc.cuisine_delight.init;
+package dev.xkmc.cuisine_delight.init.registrate;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.cuisine_delight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisine_delight.content.recipe.CuisineRecipeContainer;
 import dev.xkmc.cuisine_delight.content.recipe.PlateCuisineRecipe;
+import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import dev.xkmc.cuisine_delight.init.data.CopySkilletFunction;
 import dev.xkmc.l2library.serial.recipe.BaseRecipe;
 import net.minecraft.core.registries.Registries;

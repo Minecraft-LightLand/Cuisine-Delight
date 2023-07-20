@@ -1,13 +1,13 @@
-package dev.xkmc.cuisine_delight.init;
+package dev.xkmc.cuisine_delight.init.registrate;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
-import dev.xkmc.cuisine_delight.content.item.PlateFoodItem;
 import dev.xkmc.cuisine_delight.content.item.PlateItem;
 import dev.xkmc.cuisine_delight.content.item.SpatulaItem;
+import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import dev.xkmc.cuisine_delight.init.data.TagGen;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,7 +23,6 @@ public class CDItems {
 	public static final ItemEntry<CuisineSkilletItem> SKILLET;
 	public static final ItemEntry<SpatulaItem> SPATULA;
 	public static final ItemEntry<PlateItem> PLATE;
-	public static final ItemEntry<PlateFoodItem> PLATE_FOOD;
 
 	static {
 
@@ -35,8 +34,7 @@ public class CDItems {
 				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();
 		PLATE = CuisineDelight.REGISTRATE.item("plate", PlateItem::new)
 				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();
-		PLATE_FOOD = CuisineDelight.REGISTRATE.item("plate_food", p -> new PlateFoodItem(p.stacksTo(1)))
-				.defaultModel().defaultLang().register();
+		PlateFood.register();
 	}
 
 	public static void register() {

@@ -2,8 +2,8 @@ package dev.xkmc.cuisine_delight.content.block;
 
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
-import dev.xkmc.cuisine_delight.init.CDBlocks;
-import dev.xkmc.cuisine_delight.init.CDItems;
+import dev.xkmc.cuisine_delight.init.registrate.CDBlocks;
+import dev.xkmc.cuisine_delight.init.registrate.CDItems;
 import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.LangData;
 import dev.xkmc.l2serial.util.Wrappers;

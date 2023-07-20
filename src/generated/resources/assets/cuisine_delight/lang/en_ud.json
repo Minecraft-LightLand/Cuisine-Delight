@@ -25,8 +25,13 @@
   "cuisine_delight.tooltip.score": "%s%% :ʎʇıןɐnὉ",
   "cuisine_delight.tooltip.shift": "sןıɐʇǝp ʎɹɐuıןnɔ ɹoɟ ʇɟıɥS ssǝɹԀ",
   "cuisine_delight.tooltip.size": "%s :ǝzıs ǝʌɹǝS",
+  "item.cuisine_delight.fried_rice": "ǝɔıᴚ pǝıɹℲ",
+  "item.cuisine_delight.ham_fried_rice": "ǝɔıᴚ pǝıɹℲ ɯɐH",
+  "item.cuisine_delight.meat_pasta": "ɐʇsɐԀ ʇɐǝW",
   "item.cuisine_delight.plate": "ǝʇɐןԀ",
   "item.cuisine_delight.plate_food": "pooℲ ǝʇɐןԀ",
+  "item.cuisine_delight.seafood_fried_rice": "ǝɔıᴚ pǝıɹℲ pooɟɐǝS",
   "item.cuisine_delight.spatula": "ɐןnʇɐdS",
+  "item.cuisine_delight.vegetable_pasta": "ɐʇsɐԀ ǝןqɐʇǝbǝΛ",
   "itemGroup.cuisine_delight.cuisine": "ʇɥbıןǝᗡ ǝuısınƆ"
 }

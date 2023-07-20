@@ -2,7 +2,7 @@ package dev.xkmc.cuisine_delight.content.recipe;
 
 import dev.xkmc.cuisine_delight.content.item.BaseFoodItem;
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
-import dev.xkmc.cuisine_delight.init.CDMisc;
+import dev.xkmc.cuisine_delight.init.registrate.CDMisc;
 import dev.xkmc.l2library.serial.recipe.BaseRecipe;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.core.RegistryAccess;

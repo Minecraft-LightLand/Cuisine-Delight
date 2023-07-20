@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cuisine_delight:meat_plate"
+        "recipe": "cuisine_delight:meat_pasta"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cuisine_delight:meat_plate"
+      "cuisine_delight:meat_pasta"
     ]
   },
   "sends_telemetry_event": true

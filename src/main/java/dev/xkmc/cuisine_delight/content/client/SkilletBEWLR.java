@@ -4,7 +4,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.cuisine_delight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisine_delight.content.logic.CookingData;
-import dev.xkmc.cuisine_delight.init.CDItems;
+import dev.xkmc.cuisine_delight.init.registrate.CDItems;
 import dev.xkmc.cuisine_delight.init.CuisineDelightClient;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;

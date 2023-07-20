@@ -1,6 +1,6 @@
 {
   "type": "cuisine_delight:plate_cuisine",
-  "holderItem": "cuisine_delight:plate_food",
+  "holderItem": "cuisine_delight:meat_pasta",
   "list": [
     {
       "bonus": 0.1,

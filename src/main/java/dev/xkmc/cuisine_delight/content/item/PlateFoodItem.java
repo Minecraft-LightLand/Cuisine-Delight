@@ -1,7 +1,7 @@
 package dev.xkmc.cuisine_delight.content.item;
 
 import dev.xkmc.cuisine_delight.content.logic.CookedFoodData;
-import dev.xkmc.cuisine_delight.init.CDItems;
+import dev.xkmc.cuisine_delight.init.registrate.CDItems;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
