@@ -98,9 +98,9 @@ public class GUIGenerator {
     private final String GUI, DST, CONT, CDST;
 
     GUIGenerator(String modid) {
-        GUI = "./src/test/resources/" + modid + "/gui/";
-        DST = "./src/test/resources/" + modid + "/assets/textures/gui/";
-        CDST = "./src/test/resources/" + modid + "/data/" + modid + "/gui/";
+        GUI = "./src/test/resources/" + modid + "/g/";
+        DST = "./src/test/resources/" + modid + "/assets/textures/g/";
+        CDST = "./src/test/resources/" + modid + "/data/" + modid + "/g/";
         CONT = GUI + "-templates/container/" + modid + "/";
     }
 

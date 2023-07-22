@@ -1,2 +1,6 @@
-// 1.20	2023-07-01T17:30:52.037805	Cuisine Delight Config
-af849d80fe7869cac5c5ba36d342b3953319f9cb data/cuisine_delight/cuisine_delight_config/ingredient/default.json
+// 1.20.1	2023-07-21T17:10:49.255216	Cuisine Delight Config
+ed209c522457c2665193aaae389b4bb1d7ac4ec4 data/cuisine_delight/cuisine_delight_config/ingredient/meat.json
+2062a448e4f4ae7e8f0d6ba24a85b4db90689d4b data/cuisine_delight/cuisine_delight_config/ingredient/misc.json
+b2e1295de9a001c5860885954692835157cf8390 data/cuisine_delight/cuisine_delight_config/ingredient/vege.json
+1f057635741a1f3dab22f59d2d354cdb4845a7a7 data/farmersdelight/cuisine_delight_config/ingredient/meat.json
+7a5237a107d3d77c0ea0c6f7b1798a3468c7e22a data/farmersdelight/cuisine_delight_config/ingredient/vege.json

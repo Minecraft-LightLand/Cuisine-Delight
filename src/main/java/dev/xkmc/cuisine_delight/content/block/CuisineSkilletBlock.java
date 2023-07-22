@@ -30,6 +30,10 @@ import vectorwing.farmersdelight.common.registry.ModSounds;
 
 public class CuisineSkilletBlock extends SkilletBlock {
 
+	public CuisineSkilletBlock(Properties properties) {
+		super(properties);
+	}
+
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		BlockEntity tileEntity = level.getBlockEntity(pos);

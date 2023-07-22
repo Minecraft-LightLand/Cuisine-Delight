@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "farmersdelight:ham"
+      },
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 10,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 3,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "farmersdelight:minced_beef"
+        },
+        {
+          "item": "farmersdelight:mutton_chops"
+        }
+      ],
+      "max_time": 240,
+      "min_time": 120,
+      "nutrition": 10,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "farmersdelight:bacon"
+      },
+      "max_time": 240,
+      "min_time": 120,
+      "nutrition": 10,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 1.0,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "farmersdelight:chicken_cuts"
+      },
+      "max_time": 240,
+      "min_time": 120,
+      "nutrition": 8,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 1.0,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "SEAFOOD",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "farmersdelight:cod_slice"
+        },
+        {
+          "item": "farmersdelight:salmon_slice"
+        }
+      ],
+      "max_time": 120,
+      "min_time": 60,
+      "nutrition": 12,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 40
+    }
+  ]
+}

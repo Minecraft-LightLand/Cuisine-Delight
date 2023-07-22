@@ -7,7 +7,7 @@ import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import java.util.Locale;
 
 public enum PlateFood {
-	PLATE_FOOD, FRIED_RICE, HAM_FRIED_RICE, MEAT_PASTA, SEAFOOD_FRIED_RICE, VEGETABLE_PASTA;;
+	SUSPICIOUS_MIX, FRIED_RICE, HAM_FRIED_RICE, MEAT_PASTA, SEAFOOD_FRIED_RICE, VEGETABLE_PASTA;;
 
 	public final ItemEntry<PlateFoodItem> item;
 

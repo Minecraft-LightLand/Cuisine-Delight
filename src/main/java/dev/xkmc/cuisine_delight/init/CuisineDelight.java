@@ -2,6 +2,7 @@ package dev.xkmc.cuisine_delight.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.cuisine_delight.content.logic.IngredientConfig;
+import dev.xkmc.cuisine_delight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisine_delight.init.data.CDConfig;
 import dev.xkmc.cuisine_delight.init.data.CDConfigGen;
 import dev.xkmc.cuisine_delight.init.data.LangData;
@@ -12,7 +13,11 @@ import dev.xkmc.cuisine_delight.init.registrate.CDMisc;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
+import dev.xkmc.l2library.serial.ingredients.EnchantmentIngredient;
+import dev.xkmc.l2library.serial.ingredients.MobEffectIngredient;
+import dev.xkmc.l2library.serial.ingredients.PotionIngredient;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,6 +25,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -62,6 +69,13 @@ public class CuisineDelight {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(event.includeServer(), new CDConfigGen(event.getGenerator()));
+	}
+
+	@SubscribeEvent
+	public static void registerRecipeSerializers(RegisterEvent event) {
+		if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
+			CraftingHelper.register(FoodTypeIngredient.INSTANCE.id(), FoodTypeIngredient.INSTANCE);
+		}
 	}
 
 }

@@ -1,0 +1,79 @@
+{
+  "entries": [
+    {
+      "type": "CARB",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "farmersdelight:rice"
+        },
+        {
+          "item": "farmersdelight:raw_pasta"
+        },
+        {
+          "item": "farmersdelight:wheat_dough"
+        }
+      ],
+      "max_time": 360,
+      "min_time": 300,
+      "nutrition": 8,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.7,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "farmersdelight:tomato"
+        },
+        {
+          "item": "farmersdelight:cabbage"
+        },
+        {
+          "item": "farmersdelight:onion"
+        },
+        {
+          "item": "farmersdelight:pumpkin_slice"
+        }
+      ],
+      "max_time": 360,
+      "min_time": 0,
+      "nutrition": 5,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.0,
+      "size": 2,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": {
+        "item": "farmersdelight:cabbage_leaf"
+      },
+      "max_time": 240,
+      "min_time": 0,
+      "nutrition": 5,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "NONE",
+      "effects": [],
+      "ingredient": {
+        "item": "farmersdelight:milk_bottle"
+      },
+      "max_time": 360,
+      "min_time": 0,
+      "nutrition": 1,
+      "overcook_penalty": 0.0,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 60
+    }
+  ]
+}

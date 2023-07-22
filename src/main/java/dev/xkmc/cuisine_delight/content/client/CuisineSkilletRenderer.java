@@ -25,8 +25,9 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 			Random random = new Random(new Random(entry.startTime).nextLong());
 			poseStack.translate(0, (fly * 4 + 1) / 32f, 0);
 			poseStack.pushPose();
+			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360f));
 			poseStack.mulPose(Axis.ZP.rotationDegrees(time * 360));
-			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 90f));
+			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360f));
 			poseStack.mulPose(Axis.XP.rotationDegrees(90));
 			renderer.renderStatic(entry.item, ItemDisplayContext.GROUND, light, overlay, poseStack, buffer, Minecraft.getInstance().level, i++);
 			poseStack.popPose();

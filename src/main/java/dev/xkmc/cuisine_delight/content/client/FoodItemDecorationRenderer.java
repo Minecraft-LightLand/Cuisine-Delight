@@ -14,7 +14,7 @@ public class FoodItemDecorationRenderer implements IItemDecorator {
 		if (data == null || data.size == 0) return false;
 		String s = "" + data.size;
 		g.pose().pushPose();
-		g.pose().translate(0,0,300);
+		g.pose().translate(0,0,250);
 		g.drawString(font, s, x + 17 - font.width(s), y + 9, 0xffffff7f);
 		g.pose().popPose();
 		return true;

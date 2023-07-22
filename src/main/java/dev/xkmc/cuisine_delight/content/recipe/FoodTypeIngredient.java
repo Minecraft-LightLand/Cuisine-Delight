@@ -21,7 +21,7 @@ public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
 	 * @deprecated
 	 */
 	@Deprecated
-	protected FoodTypeIngredient() {
+	public FoodTypeIngredient() {
 	}
 
 	public FoodTypeIngredient(FoodType foodType) {

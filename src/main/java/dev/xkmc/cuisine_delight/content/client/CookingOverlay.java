@@ -11,6 +11,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -20,8 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CookingOverlay implements IGuiOverlay {
 
-	private static final float FACTOR = 3;
-	private static final int MAX_EXTRA = 60;
+	private static final float MAX_TIME = 400, STIR_TIME = 100, R = 9;
 
 	@Nullable
 	private static CookingData getHandData() {
@@ -74,54 +74,29 @@ public class CookingOverlay implements IGuiOverlay {
 			ItemStack food = entry.item;
 			var config = IngredientConfig.get().getEntry(food);
 			if (config != null) {
-				int ix = x;
-				int iy = y + 4;
-				int val = (int) (data.lastActionTime - entry.startTime);
-				int max = config.min_time;
+				PieRenderer cook = new PieRenderer(g, x + 8, y + 12);
+				float min = config.min_time / MAX_TIME;
+				float max = config.max_time / MAX_TIME;
+				cook.fillPie(0, min, PieRenderer.Texture.PIE_GREEN);
+				cook.fillPie(min, max, PieRenderer.Texture.PIE_YELLOW);
+				cook.fillPie(max, 1, PieRenderer.Texture.PIE_RED);
 
-				fillBar(g, ix, iy, max, 2, val, 255, 192, 192);
+				float cook_needle = Mth.clamp(((int) (data.lastActionTime - entry.startTime) + partialTick) / MAX_TIME, 0f, 1f);
+				cook.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, cook_needle);
+				cook.drawIcon(PieRenderer.Texture.COOK);
 
-				ix += max / FACTOR;
-				val -= max;
-				max = config.max_time - max;
-				fillBar(g, ix, iy, max, 2, val, 255, 255, 192);
+				PieRenderer flip = new PieRenderer(g, x + 28, y + 12);
+				float thr = config.stir_time / STIR_TIME;
+				flip.fillPie(0, thr, PieRenderer.Texture.PIE_GREEN);
+				flip.fillPie(thr, 1, PieRenderer.Texture.PIE_RED);
 
-				ix += max / FACTOR;
-				val -= max;
-				max = Math.min(MAX_EXTRA, Math.max(val, 0));
-				fillBar(g, ix, iy, max, 2, val, 0, 0, 0);
-
-				ix = x;
-				iy += 4;
-				val = (int) (data.lastActionTime - entry.lastStirTime);
-				max = config.stir_time;
-				fillBar(g, ix, iy, max, 2, val, 192, 255, 192);
-
-				ix += max / FACTOR;
-				val -= max;
-				max = Math.min(MAX_EXTRA, Math.max(val, entry.maxStirTime - max));
-				fillBar(g, ix, iy, max, 2, val, 255, 128, 128);
+				float stir_current = Mth.clamp(((int) (data.lastActionTime - entry.lastStirTime) + partialTick) / STIR_TIME, 0f, 1f);
+				float stir_max = Mth.clamp(Math.max(stir_current, entry.maxStirTime / STIR_TIME), 0f, 1f);
+				flip.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, stir_current);
+				flip.drawNeedle(PieRenderer.Texture.NEEDLE_RED, stir_max + 0.5f);
+				flip.drawIcon(PieRenderer.Texture.FLIP);
 			}
 			y += 20;
 		}
 	}
-
-	private static void fillBar(GuiGraphics gui, int x, int y, int w, int h, int w0, int r, int g, int b) {
-		if (w <= 0) {
-			return;
-		}
-		if (w0 >= w) {
-			CommonDecoUtil.fillRect(gui, x, y, w / FACTOR, h, color(r, g, b, 255));
-		} else if (w0 <= 0) {
-			CommonDecoUtil.fillRect(gui, x, y, w / FACTOR, h, color(r / 2, g / 2, b / 2, 255));
-		} else {
-			CommonDecoUtil.fillRect(gui, x, y, w0 / FACTOR, h, color(r, g, b, 255));
-			CommonDecoUtil.fillRect(gui, x + w0 / FACTOR, y, (w - w0) / FACTOR, h, color(r / 2, g / 2, b / 2, 255));
-		}
-	}
-
-	public static int color(int r, int g, int b, int a) {
-		return a << 24 | r << 16 | g << 8 | b;
-	}
-
 }

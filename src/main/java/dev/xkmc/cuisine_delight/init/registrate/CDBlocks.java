@@ -9,7 +9,10 @@ import dev.xkmc.cuisine_delight.init.CuisineDelight;
 import dev.xkmc.cuisine_delight.init.data.CopySkilletFunction;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -23,7 +26,9 @@ public class CDBlocks {
 	public static final BlockEntityEntry<CuisineSkilletBlockEntity> BE_SKILLET;
 
 	static {
-		SKILLET = CuisineDelight.REGISTRATE.block("cuisine_skillet", p -> new CuisineSkilletBlock())
+		SKILLET = CuisineDelight.REGISTRATE.block("cuisine_skillet", p -> new CuisineSkilletBlock(
+						BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+								.strength(0.5F, 6.0F).sound(SoundType.LANTERN)))
 				.blockstate((ctx, pvd) -> pvd.getVariantBuilder(ctx.getEntry()).forAllStates(e ->
 						ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(
 										e.getValue(SkilletBlock.SUPPORT) ?

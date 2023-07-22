@@ -8,7 +8,7 @@ import org.joml.Matrix4f;
 
 public class CommonDecoUtil {
 
-	private static final int Z = -1;
+	private static final int Z = -1, PIE_SIZE = 50;
 
 	public static void fillRect(GuiGraphics g, float x, float y, float w, float h, int col) {
 		Matrix4f matrix4f = g.pose().last().pose();

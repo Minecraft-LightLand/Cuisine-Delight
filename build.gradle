@@ -189,6 +189,8 @@ dependencies {
         implementation fg.deobf(artifact);
     }
 
+    implementation fg.deobf("curse.maven:farmers-delight-398521:4638874")
+
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 

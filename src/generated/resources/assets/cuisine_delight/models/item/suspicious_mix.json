@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "cuisine_delight:item/plate_food"
+    "layer0": "cuisine_delight:item/suspicious_mix"
   }
 }
