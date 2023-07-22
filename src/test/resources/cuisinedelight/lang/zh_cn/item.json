@@ -1,0 +1,17 @@
+{
+  "block.cuisinedelight": {
+    "cuisine_skillet": "炒锅"
+  },
+  "item.cuisinedelight": {
+    "plate": "盘子",
+    "spatula": "锅铲",
+    "fried_rice": "炒饭",
+    "ham_fried_rice": "火腿炒饭",
+    "meat_pasta": "肉酱意面",
+    "seafood_fried_rice": "海鲜炒饭",
+    "suspicious_mix": "可疑的大杂烩",
+    "vegetable_pasta": "素食意面"
+  },
+  "-cartesian": {
+  }
+}

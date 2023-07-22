@@ -1,0 +1,40 @@
+{
+  "itemGroup.cuisinedelight": {
+	"cuisine": "料理乐事"
+  },
+  "cuisinedelight": {
+	"tooltip": {
+	  "bad": "不可食用",
+	  "burnt": "食材%s炒糊了",
+	  "good": "食材%s炒得正好",
+	  "overcooked": "食材%s炒过头了",
+	  "raw": "食材%s有点生",
+	  "score": "品质:%s%%",
+	  "shift": "按Shift查看详细料理信息",
+	  "size": "分量:%s"
+	},
+	"info": {
+	  "min_time": "最短烹饪时间:%s秒",
+	  "max_time": "最长烹饪时间:%s秒",
+	  "nutrition": "营养:每份%s",
+	  "overcook_penalty": "焦糊惩罚:-%s%%",
+	  "raw_penalty": "未熟惩罚:-%s%%",
+	  "size": "分量:%s份",
+	  "stir_time": "最长翻炒间隔:%s秒",
+	  "display": "饱和提升: %sx~%sx"
+	},
+	"msg": {
+	  "no_heat": "靠近火源或者给锅附魔火焰附加来开始烹饪",
+	  "not_ingredient": "这个物品不可烹饪",
+	  "place_help": "蹲下放置物品",
+	  "full": "炒锅已满"
+	},
+	"food_type": {
+	  "carb": "主食",
+	  "meat": "肉类",
+	  "veg": "蔬果",
+	  "seafood": "海鲜",
+	  "none": "调料"
+	}
+  }
+}

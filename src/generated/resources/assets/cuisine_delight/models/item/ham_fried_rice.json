@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "cuisine_delight:item/ham_fried_rice"
-  }
-}
