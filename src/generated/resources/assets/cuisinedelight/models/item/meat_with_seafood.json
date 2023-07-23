@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "cuisinedelight:item/ham_fried_rice"
+    "layer0": "cuisinedelight:item/meat_with_seafood"
   }
 }

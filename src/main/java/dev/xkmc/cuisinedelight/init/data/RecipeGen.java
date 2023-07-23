@@ -5,8 +5,8 @@ import com.tterrag.registrate.util.DataIngredient;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.content.recipe.PlateCuisineBuilder;
-import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.cuisinedelight.init.registrate.PlateFood;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -32,7 +32,7 @@ public class RecipeGen {
 
 		unlock(pvd, new PlateCuisineBuilder(PlateFood.SUSPICIOUS_MIX.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "empty"));
-		unlock(pvd, new PlateCuisineBuilder(PlateFood.MEAT_PASTA.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+		unlock(pvd, new PlateCuisineBuilder(PlateFood.MEAT_PLATTER.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 				.addAtLeast(new FoodTypeIngredient(FoodType.MEAT), 0.6, 1, 0.1)
 				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "meat_pasta"));
 	}

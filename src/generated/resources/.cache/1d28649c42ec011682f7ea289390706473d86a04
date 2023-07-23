@@ -1,16 +1,21 @@
-// 1.20.1	2023-07-22T19:45:19.9161	Registrate Provider for cuisinedelight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-07-23T23:17:00.431777	Registrate Provider for cuisinedelight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 d577e4e89ca3fa6d80afc261c1f855be66c53fc4 assets/cuisinedelight/blockstates/cuisine_skillet.json
-e8c5fb32cb38ef3fe8ff074ff14c3e380ff52770 assets/cuisinedelight/lang/en_ud.json
-a71d8837e10abe640231c89a0dc9c47a558883ba assets/cuisinedelight/lang/en_us.json
+fc71d396cf564c31e4d141587d4534ff57041732 assets/cuisinedelight/lang/en_ud.json
+0ca91f10ca677711f5f7f1bda367b7d96f5538f3 assets/cuisinedelight/lang/en_us.json
 e0f7b66a84e6588f01abbbce75b1803ffe5d46e2 assets/cuisinedelight/models/item/cuisine_skillet.json
 3ddf9ee0964b4d366e745926e52522eff30a62ef assets/cuisinedelight/models/item/fried_rice.json
-d85dd667b5d44bf6182fd0f8ca38ff8ab98db744 assets/cuisinedelight/models/item/ham_fried_rice.json
-39d32d5ea73d27e6d963e490bbd2ae62111571f6 assets/cuisinedelight/models/item/meat_pasta.json
+4eedbe8f98a3738262593b5c7d4fabd0e3eb360c assets/cuisinedelight/models/item/meat_platter.json
+ff4d41997b3280fef4f36ecb3b6cb4ce971893d4 assets/cuisinedelight/models/item/meat_with_seafood.json
+9b7cf5c271653de3f78ff8490b06071f2df4295d assets/cuisinedelight/models/item/meat_with_vegetables.json
+8a906823014052d2160952cd2dc198067dfdea2c assets/cuisinedelight/models/item/pasta.json
 2b2baa67b5e1f45301792a9a64194761397bd8c8 assets/cuisinedelight/models/item/plate.json
-6b6675d8cb61688d9f190ee053df5cbce59759a4 assets/cuisinedelight/models/item/seafood_fried_rice.json
+c66bb8e91c73b51ad9741ebaf0cd0e0bc31669b4 assets/cuisinedelight/models/item/seafood_pasta.json
+5270a846ed192282b8c80c30515e1b35530144af assets/cuisinedelight/models/item/seafood_platter.json
+eafee55c9505e14415cebe406c7f88b9577c3609 assets/cuisinedelight/models/item/seafood_with_vegetables.json
 10a62bc4db0e37f4b7286f2628e81112490a9cde assets/cuisinedelight/models/item/spatula.json
 7bc75ad2252dbb1cd18d7ab0601a59c70143ab4f assets/cuisinedelight/models/item/suspicious_mix.json
 4f3a929333ce14673c400a80e80178cb7e2ae91a assets/cuisinedelight/models/item/vegetable_pasta.json
+b7ed01c4fa886730b37f6745fe1089d78f3794e2 assets/cuisinedelight/models/item/vegetable_platter.json
 5c813a785afebaf84027bb43e219af9c38d3c5ed data/cuisinedelight/advancements/recipes/misc/cuisine_skillet.json
 adae8fdfac1d04bcb0af9d96197cdded7c10a183 data/cuisinedelight/advancements/recipes/misc/plate_from_white_glazed_terracotta_stonecutting.json
 46ba67f042f5b47945317733c878c996dbd70147 data/cuisinedelight/advancements/recipes/plate_cuisine/empty.json
@@ -18,6 +23,6 @@ f62d0ef329357720d2e3d131ca81812f0fa27f21 data/cuisinedelight/advancements/recipe
 efebdf529de80791fd6f260130b9e427959dffb9 data/cuisinedelight/loot_tables/blocks/cuisine_skillet.json
 1295655ef70c4cdc6dae10f255e144e7a43f109e data/cuisinedelight/recipes/cuisine_skillet.json
 e5396949c70cb29feb48655595cd4d90a4ba1573 data/cuisinedelight/recipes/empty.json
-c11ff9fd609872b2f501baf5ed4ed20645143761 data/cuisinedelight/recipes/meat_pasta.json
+563d2ad7bb97ce5d41a59e7bf078e3b3b705234a data/cuisinedelight/recipes/meat_pasta.json
 18e78fd5c4f5893f355971363247b382ec5b8041 data/cuisinedelight/recipes/plate_from_white_glazed_terracotta_stonecutting.json
 51e90a5b0dd670ad94aec1bccc5047353a6778de data/cuisinedelight/tags/items/utensils.json

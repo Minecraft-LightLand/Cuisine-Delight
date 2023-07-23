@@ -1,6 +1,6 @@
 {
   "type": "cuisinedelight:plate_cuisine",
-  "holderItem": "cuisinedelight:meat_pasta",
+  "holderItem": "cuisinedelight:meat_platter",
   "list": [
     {
       "bonus": 0.1,
