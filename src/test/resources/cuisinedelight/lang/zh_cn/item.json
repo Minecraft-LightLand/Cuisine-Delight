@@ -5,17 +5,21 @@
   "item.cuisinedelight": {
 	"plate": "盘子",
 	"spatula": "锅铲",
-	"fried_rice": "什锦炒饭",
+	"fried_rice": "炒饭",
+	"mixed_fried_rice": "什锦炒饭",
 	"suspicious_mix": "可疑的大杂烩",
 	"meat_platter": "小炒肉",
 	"seafood_with_vegetables": "时蔬海鲜",
 	"meat_with_vegetables": "时蔬炒肉",
-	"pasta": "杂炒意面",
+	"mixed_pasta": "杂炒意面",
 	"meat_with_seafood": "海味炒肉",
+	"meat_pasta": "肉意面",
 	"seafood_pasta": "海鲜意面",
+	"seafood_fried_rice": "海鲜炒饭",
 	"vegetable_platter": "炒时蔬",
 	"seafood_platter": "炒海鲜",
-	"vegetable_pasta": "蔬菜意面"
+	"vegetable_pasta": "蔬菜意面",
+	"ham_fried_rice": "火腿炒饭"
   },
   "-cartesian": {
   }

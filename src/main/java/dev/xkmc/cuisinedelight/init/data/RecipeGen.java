@@ -14,6 +14,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
@@ -34,7 +35,11 @@ public class RecipeGen {
 				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "empty"));
 		unlock(pvd, new PlateCuisineBuilder(PlateFood.MEAT_PLATTER.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 				.addAtLeast(new FoodTypeIngredient(FoodType.MEAT), 0.6, 1, 0.1)
-				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "meat_pasta"));
+				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "meat_platter"));
+
+		unlock(pvd, new PlateCuisineBuilder(PlateFood.FRIED_RICE.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+				.addAtLeast(Ingredient.of(ModItems.RICE.get()), 0.8, 3, 0.3)
+				.save(pvd, new ResourceLocation(CuisineDelight.MODID, "fried_rice"));
 	}
 
 	public static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, InventoryChangeTrigger.TriggerInstance, T> func, Item item) {

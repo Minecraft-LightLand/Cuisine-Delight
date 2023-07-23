@@ -20,7 +20,7 @@ public class CuisineRecipeContainer extends SimpleContainer implements BaseRecip
 		List<ItemStack> special = new ArrayList<>();
 		for (var ent : foodData.entries) {
 			if (!ent.stack().hasTag()) {
-				map.put(ent.stack().getItem(), ent.itemSize());
+				map.compute(ent.stack().getItem(), (x, old) -> (old == null ? 0 : old) + ent.itemSize());
 			} else {
 				ItemStack copy = ent.stack().copy();
 				copy.setCount(ent.itemSize());

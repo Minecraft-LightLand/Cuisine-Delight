@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cuisinedelight:meat_pasta"
+        "recipe": "cuisinedelight:fried_rice"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cuisinedelight:meat_pasta"
+      "cuisinedelight:fried_rice"
     ]
   },
   "sends_telemetry_event": true
