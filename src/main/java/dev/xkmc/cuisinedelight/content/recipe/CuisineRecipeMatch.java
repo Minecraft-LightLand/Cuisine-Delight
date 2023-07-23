@@ -18,7 +18,7 @@ public record CuisineRecipeMatch(Ingredient ingredient, double min, double max, 
 		}
 		if (total == 0) return 0;
 		double percentage = 1.0 * amount / total;
-		if (percentage < min || percentage < max) return 0;
+		if (percentage < min || percentage > max) return 0;
 		double mid = (min + max) / 2;
 		double range = (max - min) / 2;
 		if (range > 0 && bonus > 0) {
