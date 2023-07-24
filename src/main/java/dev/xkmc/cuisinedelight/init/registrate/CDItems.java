@@ -31,7 +31,7 @@ public class CDItems {
 				.setData(ProviderType.LANG, NonNullBiConsumer.noop()).register();
 
 		SPATULA = CuisineDelight.REGISTRATE.item("spatula", p -> new SpatulaItem(p.stacksTo(1)))
-				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();
+				.tag(TagGen.UTENSILS).model((ctx, pvd) -> pvd.handheld(ctx)).defaultLang().register();
 		PLATE = CuisineDelight.REGISTRATE.item("plate", PlateItem::new)
 				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();
 		PlateFood.register();

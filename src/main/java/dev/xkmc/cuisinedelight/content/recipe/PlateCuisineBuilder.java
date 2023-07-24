@@ -6,7 +6,9 @@ import dev.xkmc.l2library.serial.recipe.BaseRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, PlateCuisineRecipe, BaseCuisineRecipe<?>, CuisineRecipeContainer> {
@@ -37,6 +39,10 @@ public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, 
 			recipe.saturationBonusModifier = maxBonus / scoreBonus;
 		}
 		super.save(pvd, id);
+	}
+
+	public void save(Consumer<FinishedRecipe> pvd){
+		save(pvd, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(recipe.holderItem)));
 	}
 
 }

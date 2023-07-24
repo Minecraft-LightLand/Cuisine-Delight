@@ -1,12 +1,12 @@
 {
   "type": "cuisinedelight:plate_cuisine",
-  "holderItem": "cuisinedelight:meat_platter",
+  "holderItem": "cuisinedelight:seafood_platter",
   "list": [
     {
       "bonus": 0.1,
       "ingredient": {
         "type": "cuisinedelight:food_type",
-        "foodType": "MEAT"
+        "foodType": "SEAFOOD"
       },
       "max": 1.25,
       "min": 0.75,

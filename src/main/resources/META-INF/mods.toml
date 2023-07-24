@@ -6,8 +6,9 @@ modId="cuisinedelight"
 version="${file.jarVersion}" #mandatory
 displayName="Cuisine Delight" #mandatory
 logoFile="cuisinedelight.png" #optional
-credits="Thanks for this example mod goes to Java" #optional
-authors="Love, Cheese and small house plants" #optional
+logoBlur=false
+credits="LightLand Team" #optional
+authors="lcy0x1" #optional
 description='''
 '''
 [[dependencies.cuisinedelight]]
@@ -28,3 +29,12 @@ description='''
     versionRange="[2.4.0,)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.cuisinedelight]]
+    modId="farmersdelight"
+    mandatory=true
+    versionRange="[1.20.1-1.2.2a,)"
+    ordering="AFTER"
+    side="BOTH"
+
+
+

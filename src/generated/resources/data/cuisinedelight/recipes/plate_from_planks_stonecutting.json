@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "count": 16,
   "ingredient": {
-    "item": "minecraft:white_glazed_terracotta"
+    "tag": "minecraft:planks"
   },
   "result": "cuisinedelight:plate"
 }

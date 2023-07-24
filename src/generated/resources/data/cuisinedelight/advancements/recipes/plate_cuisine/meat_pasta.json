@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cuisinedelight:empty"
+        "recipe": "cuisinedelight:meat_pasta"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cuisinedelight:empty"
+      "cuisinedelight:meat_pasta"
     ]
   },
   "sends_telemetry_event": true
