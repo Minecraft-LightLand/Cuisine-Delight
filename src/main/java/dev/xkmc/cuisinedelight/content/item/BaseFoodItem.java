@@ -2,6 +2,7 @@ package dev.xkmc.cuisinedelight.content.item;
 
 import dev.xkmc.cuisinedelight.content.logic.CookedFoodData;
 import dev.xkmc.cuisinedelight.content.recipe.BaseCuisineRecipe;
+import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeContainer;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
@@ -98,6 +99,12 @@ public class BaseFoodItem extends Item {
 			}
 		} else {
 			list.add(LangData.SHIFT.get());
+			CuisineRecipeContainer cont = new CuisineRecipeContainer(data);
+			for (var e : cont.list) {
+				if (e.isEmpty()) continue;
+				double perc = Math.round(1000d * e.getCount() / data.size) / 10d;
+				list.add(e.getHoverName().copy().append(": " + perc + "%"));
+			}
 		}
 
 

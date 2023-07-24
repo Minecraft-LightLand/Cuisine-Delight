@@ -5,15 +5,18 @@ import dev.xkmc.cuisinedelight.content.logic.CookedFoodData;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.Vec3;
 
 public class PlateItem extends Item {
 
@@ -41,6 +44,7 @@ public class PlateItem extends Item {
 			ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 			plateStack.shrink(1);
 			player.getInventory().placeItemBackInInventory(foodStack);
+			ExperienceOrb.award((ServerLevel) level, player.position(), food.score * food.size / 100);
 		}
 		return InteractionResultHolder.success(plateStack);
 	}
@@ -61,8 +65,10 @@ public class PlateItem extends Item {
 				ctx.getItemInHand().shrink(1);
 				if (player != null) {
 					player.getInventory().placeItemBackInInventory(foodStack);
+					ExperienceOrb.award((ServerLevel) level, player.position(), food.score * food.size / 100);
 				} else {
 					Block.popResource(level, ctx.getClickedPos(), foodStack);
+					ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(ctx.getClickedPos()), food.score * food.size / 100);
 				}
 				be.cookingData = new CookingData();
 				be.sync();
