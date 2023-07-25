@@ -1,6 +1,11 @@
-// 1.20.1	2023-07-25T22:10:25.482712	Cuisine Delight Config
+// 1.20.1	2023-07-25T22:14:47.101991	Cuisine Delight Config
 ed209c522457c2665193aaae389b4bb1d7ac4ec4 data/cuisinedelight/cuisinedelight_config/ingredient/meat.json
 922c4ec82d7968c3d80c533aeabb413c746e8094 data/cuisinedelight/cuisinedelight_config/ingredient/misc.json
 b2e1295de9a001c5860885954692835157cf8390 data/cuisinedelight/cuisinedelight_config/ingredient/vege.json
+f58a586bc4f15ef71ff320efb69e9de9f7d3d613 data/ends_delight/cuisinedelight_config/ingredient/all.json
 43150288825b628512e67bdad599af00a9d92d68 data/farmersdelight/cuisinedelight_config/ingredient/meat.json
 7a5237a107d3d77c0ea0c6f7b1798a3468c7e22a data/farmersdelight/cuisinedelight_config/ingredient/vege.json
+ba17355df1668945850957e7d22786de8a00aa2a data/twilightdelight/cuisinedelight_config/ingredient/meat.json
+464d388aa159217d0053505c9941245051dbe5ff data/twilightdelight/cuisinedelight_config/ingredient/veges.json
+e5413e00601bc7d74e4261098b50e650d6b9ee08 data/twilightforest/cuisinedelight_config/ingredient/meat.json
+da26d744e1cee7d9169068667b0dd8330eb2df86 data/twilightforest/cuisinedelight_config/ingredient/veges.json
