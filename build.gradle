@@ -181,12 +181,14 @@ repositories {
 
 dependencies {
 
-    for (File f : new File("./libs").listFiles()) {
-        String str = f.getName();
-        String[] strs = str.substring(0, str.length() - 4).split("-");
-        String artifact = "dev.xkmc.${strs[0]}:${strs[0]}:${strs[1]}";
-        if(strs.length == 3) artifact += "-"+strs[2];
-        implementation fg.deobf(artifact);
+    implementation fg.deobf(jarJar("dev.xkmc.l2library:l2library:2.4.14-slim")) {
+        transitive = false
+        jarJar.ranged(it, "[2.4.14,)")
+    }
+
+    implementation fg.deobf(jarJar("dev.xkmc.l2serial:l2serial:1.2.0")) {
+        transitive = false
+        jarJar.ranged(it, "[1.2.0,)")
     }
 
     implementation fg.deobf("curse.maven:farmers-delight-398521:4638874")
