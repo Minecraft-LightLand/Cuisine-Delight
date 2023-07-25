@@ -191,6 +191,10 @@ dependencies {
         jarJar.ranged(it, "[1.2.0,)")
     }
 
+
+    implementation fg.deobf("curse.maven:the-twilight-forest-227639:4635921")
+    implementation fg.deobf("dev.xkmc.twilightdelight:twilightdelight:2.0.1-slim")
+
     implementation fg.deobf("curse.maven:farmers-delight-398521:4638874")
 
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
@@ -201,5 +205,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:attributefix-280510:4588114")
     runtimeOnly fg.deobf("curse.maven:bookshelf-228525:4581675")
     runtimeOnly fg.deobf("curse.maven:enchantment-descriptions-250419:4587429")
+
+    implementation fg.deobf("curse.maven:ends-delight-662675:4643639")
 
 }

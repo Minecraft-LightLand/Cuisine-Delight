@@ -1,15 +1,23 @@
 package dev.xkmc.cuisinedelight.init.data;
 
+import cn.foggyhillside.ends_delight.EndsDelight;
+import cn.foggyhillside.ends_delight.registry.ItemRegistry;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
+import dev.xkmc.twilightdelight.init.TwilightDelight;
+import dev.xkmc.twilightdelight.init.registrate.TDEffects;
+import dev.xkmc.twilightdelight.init.registrate.delight.DelightFood;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.fml.ModList;
+import twilightforest.TwilightForestMod;
+import twilightforest.init.TFItems;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -104,6 +112,96 @@ public class CDConfigGen extends ConfigDataProvider {
 							60, 120, 40, 0.5f, 0.5f, 1, 12)
 			));
 		}
+
+		// twilight forest
+		if (ModList.get().isLoaded(TwilightForestMod.ID)) {
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(TwilightForestMod.ID, "meat"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(TFItems.RAW_MEEF.get()), FoodType.MEAT,
+							240, 360, 80, 0.5f, 0.5f, 3, 12),
+					IngredientConfig.get(Ingredient.of(TFItems.RAW_VENISON.get()), FoodType.MEAT,
+							240, 360, 80, 0.5f, 0.5f, 3, 10),
+					IngredientConfig.get(Ingredient.of(TFItems.HYDRA_CHOP.get()), FoodType.MEAT,
+							0, 360, 80, 0.5f, 0.5f, 6, 30),
+					IngredientConfig.get(Ingredient.of(TFItems.EXPERIMENT_115.get()), FoodType.MEAT,
+							0, 360, 80, 0.5f, 0.5f, 1, 8)
+			));
+
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(TwilightForestMod.ID, "veges"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(TFItems.TORCHBERRIES.get()), FoodType.VEG,
+							0, 60, 40, 0.5f, 0.5f, 1, 4,
+							new IngredientConfig.EffectEntry(MobEffects.GLOWING, 0, 1200)),
+					IngredientConfig.get(Ingredient.of(TFItems.LIVEROOT.get()), FoodType.VEG,
+							300, 360, 40, 0.5f, 0.5f, 1, 1,
+							new IngredientConfig.EffectEntry(MobEffects.DAMAGE_RESISTANCE, 0, 1200))
+			));
+
+		}
+
+		// twilight delight
+		if (ModList.get().isLoaded(TwilightDelight.MODID)) {
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(TwilightDelight.MODID, "meat"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(DelightFood.RAW_INSECT.item.get()), FoodType.MEAT,
+							240, 360, 80, 1, 0.5f, 2, 8),
+					IngredientConfig.get(Ingredient.of(DelightFood.RAW_TOMAHAWK_SMEAK.item.get()), FoodType.MEAT,
+							240, 360, 80, 0.5f, 0.5f, 6, 12),
+					IngredientConfig.get(Ingredient.of(DelightFood.RAW_MEEF_SLICE.item.get()), FoodType.MEAT,
+							180, 300, 80, 0.5f, 0.5f, 2, 12),
+					IngredientConfig.get(Ingredient.of(DelightFood.RAW_VENISON_RIB.item.get()), FoodType.MEAT,
+							180, 300, 80, 0.5f, 0.5f, 2, 10),
+					IngredientConfig.get(Ingredient.of(DelightFood.HYDRA_PIECE.item.get()), FoodType.MEAT,
+							180, 300, 80, 0.5f, 0.5f, 3, 30),
+					IngredientConfig.get(Ingredient.of(DelightFood.EXPERIMENT_113.item.get()), FoodType.MEAT,
+							180, 300, 80, 0.5f, 0.5f, 2, 8,
+							new IngredientConfig.EffectEntry(TDEffects.TEMPORAL_SADNESS.get(), 0, 60)),
+					IngredientConfig.get(Ingredient.of(DelightFood.EXPERIMENT_110.item.get()), FoodType.MEAT,
+							180, 300, 80, 0.5f, 0.5f, 3, 8,
+							new IngredientConfig.EffectEntry(MobEffects.HEALTH_BOOST, 4, 2400),
+							new IngredientConfig.EffectEntry(MobEffects.NIGHT_VISION, 0, 2400),
+							new IngredientConfig.EffectEntry(MobEffects.CONFUSION, 0, 2400),
+							new IngredientConfig.EffectEntry(MobEffects.POISON, 0, 2400),
+							new IngredientConfig.EffectEntry(MobEffects.BLINDNESS, 0, 1200),
+							new IngredientConfig.EffectEntry(TDEffects.TEMPORAL_SADNESS.get(), 0, 100)
+					)
+			));
+
+
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(TwilightDelight.MODID, "veges"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(TFItems.STEELEAF_INGOT.get()), FoodType.VEG,
+							300, 360, 40, 0.5f, 0.5f, 1, 1,
+							new IngredientConfig.EffectEntry(TDEffects.POISON_RANGE.get(), 0, 1200)),
+					IngredientConfig.get(Ingredient.of(TFItems.ICE_BOMB.get()), FoodType.NONE,
+							0, 360, 40, 0.5f, 0.5f, 1, 1,
+							new IngredientConfig.EffectEntry(TDEffects.FROZEN_RANGE.get(), 0, 1200)),
+					IngredientConfig.get(Ingredient.of(TFItems.FIERY_BLOOD.get(), TFItems.FIERY_TEARS.get()), FoodType.NONE,
+							0, 360, 80, 0.5f, 0.5f, 1, 1,
+							new IngredientConfig.EffectEntry(TDEffects.FIRE_RANGE.get(), 0, 1200))
+			));
+		}
+
+		// ends delight
+		if (ModList.get().isLoaded(EndsDelight.MODID)) {
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(EndsDelight.MODID, "all"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(ItemRegistry.DragonLeg.get(), ItemRegistry.RawDragonMeat.get()), FoodType.MEAT,
+							240, 360, 80, 1, 0.5f, 3, 12),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.RawDragonMeatCuts.get()), FoodType.MEAT,
+							180, 300, 80, 1, 0.5f, 2, 12),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.LiquidDragonEgg.get()), FoodType.MEAT,
+							180, 240, 80, 1, 0.5f, 2, 15),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.ShulkerMeat.get()), FoodType.MEAT,
+							180, 240, 80, 1, 0.5f, 2, 8,
+							new IngredientConfig.EffectEntry(MobEffects.LEVITATION, 0, 80)),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.ShulkerMeatSlice.get()), FoodType.MEAT,
+							120, 180, 80, 1, 0.5f, 1, 8,
+							new IngredientConfig.EffectEntry(MobEffects.LEVITATION, 0, 40)),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.RawEnderMiteMeat.get()), FoodType.MEAT,
+							180, 300, 80, 1, 0.5f, 1, 8),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.ChorusSucculent.get()), FoodType.VEG,
+							0, 120, 60, 0.3f, 0.3f, 1, 3),
+					IngredientConfig.get(Ingredient.of(ItemRegistry.ChorusFruitGrain.get()), FoodType.VEG,
+							0, 120, 60, 0.3f, 0.3f, 1, 2)
+			));
+		}
+
 	}
 
 }
