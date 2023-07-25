@@ -99,7 +99,7 @@ public class CDConfigGen extends ConfigDataProvider {
 					IngredientConfig.get(Ingredient.of(ModItems.BACON.get()), FoodType.MEAT,
 							120, 240, 80, 1f, 0.5f, 2, 10),
 					IngredientConfig.get(Ingredient.of(ModItems.CHICKEN_CUTS.get()), FoodType.MEAT,
-							120, 240, 80, 1f, 0.5f, 2, 8),
+							120, 240, 80, 1f, 0.5f, 1, 8),
 					IngredientConfig.get(Ingredient.of(ModItems.COD_SLICE.get(), ModItems.SALMON_SLICE.get()), FoodType.SEAFOOD,
 							60, 120, 40, 0.5f, 0.5f, 1, 12)
 			));
