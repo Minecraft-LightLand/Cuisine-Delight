@@ -19,6 +19,7 @@ public class CDConfig {
 		public ForgeConfigSpec.DoubleValue baseNutrition;
 		public ForgeConfigSpec.DoubleValue varietyBonus;
 		public ForgeConfigSpec.DoubleValue perfectionBonus;
+		public ForgeConfigSpec.IntValue nourishmentDuration;
 
 		public ForgeConfigSpec.IntValue maxIngredient;
 
@@ -33,6 +34,8 @@ public class CDConfig {
 					.defineInRange("perfectionBonus", 0.5, 0, 100);
 			maxIngredient = builder.comment("max number of ingredient entries")
 					.defineInRange("maxIngredient", 9, 1, 20);
+			nourishmentDuration = builder.comment("nourishment duration per food type")
+					.defineInRange("nourishmentDuration", 100, 1, 10000);
 		}
 
 	}

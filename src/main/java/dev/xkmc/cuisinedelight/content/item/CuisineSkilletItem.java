@@ -9,9 +9,11 @@ import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -59,15 +61,13 @@ public class CuisineSkilletItem extends SkilletItem {
 		return isPlayerNearHeatSource(player, level);
 	}
 
-	public static void playSound(Player player, Level level) {
+	public static void playSound(Player player, Level level, SoundEvent event) {
 		Vec3 pos = player.position();
 		double x = pos.x() + 0.5D;
 		double y = pos.y();
 		double z = pos.z() + 0.5D;
-		if (level.random.nextInt(50) == 0) {
-			level.playLocalSound(x, y, z, ModSounds.BLOCK_SKILLET_SIZZLE.get(), SoundSource.BLOCKS,
-					0.4F, level.random.nextFloat() * 0.2F + 0.9F, false);
-		}
+		level.playLocalSound(x, y, z, event, SoundSource.BLOCKS,
+				0.4F, level.random.nextFloat() * 0.2F + 0.9F, false);
 	}
 
 	public CuisineSkilletItem(Block block, Properties properties) {
@@ -105,7 +105,7 @@ public class CuisineSkilletItem extends SkilletItem {
 					data.addItem(otherStack.split(amount), time);
 					setData(skilletStack, data);
 				} else {
-					playSound(player, level);
+					playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());
 				}
 			} else {
 				if (!level.isClientSide()) {
@@ -119,6 +119,20 @@ public class CuisineSkilletItem extends SkilletItem {
 		}
 		return InteractionResultHolder.fail(skilletStack);
 	}
+
+	@Override
+	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
+		if (level.isClientSide() && (entity instanceof Player player) &&
+				(player.getMainHandItem() == stack || player.getOffhandItem() == stack)) {
+			if (level.getRandom().nextInt(10) == 0) {
+				if (canUse(stack, player, level) && getData(stack) != null) {
+					playSound(player, level, ModSounds.BLOCK_SKILLET_SIZZLE.get());
+
+				}
+			}
+		}
+	}
+
 
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {

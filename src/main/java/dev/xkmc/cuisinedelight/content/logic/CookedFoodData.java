@@ -80,8 +80,9 @@ public class CookedFoodData {
 		for (var e : entries) {
 			e.addMobEffects(map, total);
 		}
-		if (score == 100) {
-			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 600 * types.size()), 1);
+		if (score == 100 && types.size() > 1) {
+			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(),
+					CDConfig.COMMON.nourishmentDuration.get() * types.size()), 1);
 		}
 		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(k, Math.round(v.duration), v.level()), 1));
 		return ans.build();

@@ -1,6 +1,6 @@
 package dev.xkmc.cuisinedelight.content.recipe;
 
-import dev.xkmc.cuisinedelight.content.item.PlateFoodItem;
+import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
 import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
 import dev.xkmc.l2library.serial.recipe.BaseRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -16,7 +16,7 @@ public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, 
 	private double maxBonus = 0;
 	private double scoreBonus = 0;
 
-	public PlateCuisineBuilder(PlateFoodItem result, double minBonus, double maxBonus) {
+	public PlateCuisineBuilder(BaseFoodItem result, double minBonus, double maxBonus) {
 		super(CDMisc.PLATE_CUISINE.get());
 		recipe.holderItem = result;
 		recipe.saturationBonus = minBonus;
@@ -41,7 +41,7 @@ public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, 
 		super.save(pvd, id);
 	}
 
-	public void save(Consumer<FinishedRecipe> pvd){
+	public void save(Consumer<FinishedRecipe> pvd) {
 		save(pvd, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(recipe.holderItem)));
 	}
 
