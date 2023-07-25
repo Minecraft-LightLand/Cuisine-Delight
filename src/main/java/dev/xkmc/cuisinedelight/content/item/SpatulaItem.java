@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import vectorwing.farmersdelight.common.registry.ModSounds;
 
 public class SpatulaItem extends Item {
 
@@ -36,7 +37,7 @@ public class SpatulaItem extends Item {
 				player.getCooldowns().addCooldown(this, ANIM_TIME);
 				player.getCooldowns().addCooldown(CDItems.SKILLET.get(), ANIM_TIME);
 			} else {
-				CuisineSkilletItem.playSound(player, level);
+				CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());
 			}
 			return InteractionResultHolder.success(spatulaStack);
 		}
@@ -55,7 +56,7 @@ public class SpatulaItem extends Item {
 						player.getCooldowns().addCooldown(CDItems.SPATULA.get(), ANIM_TIME);
 					}
 				} else if (player != null) {
-					CuisineSkilletItem.playSound(player, level);
+					CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_SIZZLE.get());
 				}
 			}
 		}

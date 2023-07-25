@@ -1,7 +1,7 @@
 package dev.xkmc.cuisinedelight.init.registrate;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
-import dev.xkmc.cuisinedelight.content.item.PlateFoodItem;
+import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,11 +18,11 @@ public enum PlateFood {
 	SUSPICIOUS_MIX, HAM_FRIED_RICE,
 	MIXED_PASTA, VEGETABLE_PASTA, VEGETABLE_PLATTER;
 
-	public final ItemEntry<PlateFoodItem> item;
+	public final ItemEntry<BaseFoodItem> item;
 
 	PlateFood() {
 		item = CuisineDelight.REGISTRATE.item(name().toLowerCase(Locale.ROOT),
-						p -> new PlateFoodItem(p.stacksTo(1)))
+						p -> new BaseFoodItem(p.stacksTo(1).craftRemainder(CDItems.PLATE.get())))
 				.defaultModel().lang(toEnglishName(name())).register();
 	}
 

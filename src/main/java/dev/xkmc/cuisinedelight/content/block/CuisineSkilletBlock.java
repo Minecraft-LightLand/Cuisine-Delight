@@ -2,10 +2,10 @@ package dev.xkmc.cuisinedelight.content.block;
 
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
-import dev.xkmc.cuisinedelight.init.registrate.CDBlocks;
-import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import dev.xkmc.cuisinedelight.init.registrate.CDBlocks;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,7 +59,7 @@ public class CuisineSkilletBlock extends SkilletBlock {
 					be.cookingData.addItem(add, level.getGameTime());
 					be.sync();
 				} else {
-					CuisineSkilletItem.playSound(player, level);
+					CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());
 				}
 				return InteractionResult.SUCCESS;
 			}
