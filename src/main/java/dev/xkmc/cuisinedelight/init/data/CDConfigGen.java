@@ -75,7 +75,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							60, 80, 40, 0, 0, 0, 0,
 							new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 7)),
 					IngredientConfig.get(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE), FoodType.NONE,
-							0, 0, 80, 0, 0, 1, 1)
+							0, 300, 80, 0, 0, 1, 1)
 			));
 		}
 		// farmer's delight

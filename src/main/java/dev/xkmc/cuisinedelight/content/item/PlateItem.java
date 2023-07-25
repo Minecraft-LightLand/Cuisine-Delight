@@ -20,9 +20,55 @@ import net.minecraft.world.phys.Vec3;
 
 public class PlateItem extends Item {
 
+	public interface ReturnTarget {
+
+		void addItem(ItemStack foodStack);
+
+		void addExp(int i);
+
+	}
+
+	public record PlayerTarget(Player player) implements ReturnTarget {
+
+		@Override
+		public void addItem(ItemStack foodStack) {
+			player.getInventory().placeItemBackInInventory(foodStack);
+		}
+
+		@Override
+		public void addExp(int i) {
+			ExperienceOrb.award((ServerLevel) player.level(), player.position(), i);
+		}
+
+	}
+
+	public record BlockTarget(UseOnContext ctx) implements ReturnTarget {
+
+		@Override
+		public void addItem(ItemStack foodStack) {
+			Block.popResource(ctx.getLevel(), ctx.getClickedPos(), foodStack);
+		}
+
+		@Override
+		public void addExp(int i) {
+			ExperienceOrb.award((ServerLevel) ctx.getLevel(), Vec3.atCenterOf(ctx.getClickedPos()), i);
+		}
+	}
 
 	public PlateItem(Properties pProperties) {
 		super(pProperties);
+	}
+
+	private void giveBack(ItemStack foodStack, CookedFoodData food, ReturnTarget target) {
+		target.addItem(foodStack);
+		for (var e : food.entries) {
+			if (e.stack().hasCraftingRemainingItem()) {
+				ItemStack remain = e.stack().getCraftingRemainingItem();
+				remain.setCount(remain.getCount() * e.stack().getCount());
+				target.addItem(remain);
+			}
+		}
+		target.addExp(food.score * food.size / 100);
 	}
 
 	@Override
@@ -43,8 +89,7 @@ public class PlateItem extends Item {
 			CookedFoodData food = new CookedFoodData(data);
 			ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 			plateStack.shrink(1);
-			player.getInventory().placeItemBackInInventory(foodStack);
-			ExperienceOrb.award((ServerLevel) level, player.position(), food.score * food.size / 100);
+			giveBack(foodStack, food, new PlayerTarget(player));
 		}
 		return InteractionResultHolder.success(plateStack);
 	}
@@ -64,11 +109,9 @@ public class PlateItem extends Item {
 				ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 				ctx.getItemInHand().shrink(1);
 				if (player != null) {
-					player.getInventory().placeItemBackInInventory(foodStack);
-					ExperienceOrb.award((ServerLevel) level, player.position(), food.score * food.size / 100);
+					giveBack(foodStack, food, new PlayerTarget(player));
 				} else {
-					Block.popResource(level, ctx.getClickedPos(), foodStack);
-					ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(ctx.getClickedPos()), food.score * food.size / 100);
+					giveBack(foodStack, food, new BlockTarget(ctx));
 				}
 				be.cookingData = new CookingData();
 				be.sync();

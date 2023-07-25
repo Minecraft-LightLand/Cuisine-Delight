@@ -7,10 +7,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import vectorwing.farmersdelight.common.registry.ModEffects;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @SerialClass
@@ -50,7 +51,8 @@ public class CookedFoodData {
 			size += itemSize;
 			nutrition += config.nutrition * itemSize;
 			entries.add(new Entry(e.item, itemSize, burnt, raw, overcooked));
-			types.add(config.type);
+			if (config.type != FoodType.NONE)
+				types.add(config.type);
 		}
 		float goodness = size == 0 ? 0 : Mth.clamp(1 - penalty / size, 0, 1);
 		this.score = Math.round(goodness * 100);
@@ -74,9 +76,12 @@ public class CookedFoodData {
 		if (types.contains(FoodType.MEAT)) {
 			ans.meat();
 		}
-		Map<MobEffect, EffectData> map = new HashMap<>();
+		Map<MobEffect, EffectData> map = new LinkedHashMap<>();
 		for (var e : entries) {
 			e.addMobEffects(map, total);
+		}
+		if (score == 100) {
+			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 600 * types.size()), 1);
 		}
 		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(k, Math.round(v.duration), v.level()), 1));
 		return ans.build();
