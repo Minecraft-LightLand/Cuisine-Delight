@@ -43,6 +43,18 @@ public class RecipeGen {
 					.addAtLeast(new FoodTypeIngredient(FoodType.SEAFOOD), 0.3, 1, 0.1)
 					.save(pvd);
 
+
+			unlock(pvd, new PlateCuisineBuilder(PlateFood.MEAT_FRIED_RICE.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+					.addAtLeast(Ingredient.of(ModItems.RICE.get()), 0.4, 1, 0.1)
+					.addAtLeast(new FoodTypeIngredient(FoodType.MEAT), 0.3, 1, 0.1)
+					.save(pvd);
+
+
+			unlock(pvd, new PlateCuisineBuilder(PlateFood.VEGETABLE_FRIED_RICE.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+					.addAtLeast(Ingredient.of(ModItems.RICE.get()), 0.4, 1, 0.1)
+					.addAtLeast(new FoodTypeIngredient(FoodType.VEG), 0.3, 1, 0.1)
+					.save(pvd);
+
 			unlock(pvd, new PlateCuisineBuilder(PlateFood.HAM_FRIED_RICE.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 					.addAtLeast(Ingredient.of(ModItems.RICE.get()), 0.4, 2, 0.2)
 					.addAtLeast(Ingredient.of(ModItems.HAM.get()), 0.2, 1, 0.2)
@@ -51,6 +63,10 @@ public class RecipeGen {
 
 		// pasta
 		{
+
+			unlock(pvd, new PlateCuisineBuilder(PlateFood.FRIED_PASTA.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+					.addAtLeast(Ingredient.of(ModItems.RAW_PASTA.get()), 0.75, 2, 0.1)
+					.save(pvd);
 			unlock(pvd, new PlateCuisineBuilder(PlateFood.MIXED_PASTA.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 					.addAtLeast(Ingredient.of(ModItems.RAW_PASTA.get()), 0.4, 1, 0.1)
 					.save(pvd);

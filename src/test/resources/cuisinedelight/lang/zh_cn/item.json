@@ -19,7 +19,10 @@
 	"vegetable_platter": "炒时蔬",
 	"seafood_platter": "炒海鲜",
 	"vegetable_pasta": "蔬菜意面",
-	"ham_fried_rice": "火腿炒饭"
+	"ham_fried_rice": "火腿炒饭",
+	"vegetable_fried_rice": "蔬菜炒饭",
+	"meat_fried_rice": "肉粒炒饭",
+	"fried_pasta": "炒意面"
   },
   "-cartesian": {
   }
