@@ -25,8 +25,10 @@
   "cuisinedelight.tooltip.score": "Quality: %s%%",
   "cuisinedelight.tooltip.shift": "Press Shift for culinary details",
   "cuisinedelight.tooltip.size": "Serve size: %s",
+  "item.cuisinedelight.fried_pasta": "Fried Pasta",
   "item.cuisinedelight.fried_rice": "Fried Rice",
   "item.cuisinedelight.ham_fried_rice": "Ham Fried Rice",
+  "item.cuisinedelight.meat_fried_rice": "Meat Fried Rice",
   "item.cuisinedelight.meat_pasta": "Meat Pasta",
   "item.cuisinedelight.meat_platter": "Meat Platter",
   "item.cuisinedelight.meat_with_seafood": "Meat with Seafood",
@@ -40,6 +42,7 @@
   "item.cuisinedelight.seafood_with_vegetables": "Seafood with Vegetables",
   "item.cuisinedelight.spatula": "Spatula",
   "item.cuisinedelight.suspicious_mix": "Suspicious Mix",
+  "item.cuisinedelight.vegetable_fried_rice": "Vegetable Fried Rice",
   "item.cuisinedelight.vegetable_pasta": "Vegetable Pasta",
   "item.cuisinedelight.vegetable_platter": "Vegetable Platter",
   "itemGroup.cuisinedelight.cuisine": "Cuisine Delight"
