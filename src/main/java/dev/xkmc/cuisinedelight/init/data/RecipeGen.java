@@ -12,6 +12,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -24,6 +25,7 @@ public class RecipeGen {
 		unlock(pvd, ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CDItems.SKILLET.get())::unlockedBy, ModItems.SKILLET.get())
 				.requires(ModItems.SKILLET.get()).requires(Tags.Items.INGOTS_BRICK).save(pvd);
 		pvd.stonecutting(DataIngredient.tag(ItemTags.PLANKS), RecipeCategory.MISC, CDItems.PLATE, 16);
+		pvd.stonecutting(DataIngredient.items(Items.IRON_INGOT), RecipeCategory.MISC, CDItems.SPATULA, 1);
 
 		unlock(pvd, new PlateCuisineBuilder(PlateFood.SUSPICIOUS_MIX.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
 				.save(pvd);
