@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-26T08:54:13.270218	Registrate Provider for cuisinedelight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-07-29T13:08:09.682942	Registrate Provider for cuisinedelight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 d577e4e89ca3fa6d80afc261c1f855be66c53fc4 assets/cuisinedelight/blockstates/cuisine_skillet.json
 c96cdf9ccd2991bb3411c4995a494e46e40da543 assets/cuisinedelight/lang/en_ud.json
 e5dbe01331f64845cd2bfd9535bc329be7dad6e9 assets/cuisinedelight/lang/en_us.json
@@ -25,6 +25,7 @@ eb44b1979d5804e35df99d1027b5d1d72a59f46c assets/cuisinedelight/models/item/veget
 b7ed01c4fa886730b37f6745fe1089d78f3794e2 assets/cuisinedelight/models/item/vegetable_platter.json
 5c813a785afebaf84027bb43e219af9c38d3c5ed data/cuisinedelight/advancements/recipes/misc/cuisine_skillet.json
 a780b9b7ebdd03dec2abff50ce2bff0de27b1893 data/cuisinedelight/advancements/recipes/misc/plate_from_planks_stonecutting.json
+00926cb6729effc312367e15269ef5eca627afc1 data/cuisinedelight/advancements/recipes/misc/spatula_from_iron_ingot_stonecutting.json
 6c487b964f491501f72a03cfd8a91afeb3b2dd9b data/cuisinedelight/advancements/recipes/plate_cuisine/fried_pasta.json
 06feb4b2dfff3dfc09cf7fcfb8b532e63308788a data/cuisinedelight/advancements/recipes/plate_cuisine/fried_rice.json
 722f6e34ee1a3c66e48027a8b075b957e007ba84 data/cuisinedelight/advancements/recipes/plate_cuisine/ham_fried_rice.json
@@ -60,6 +61,7 @@ e8eae205e9fc2d6055432a04a6076b228ad95a41 data/cuisinedelight/recipes/seafood_fri
 708d3063f506650649af9d3d3edeb68c7169b208 data/cuisinedelight/recipes/seafood_pasta.json
 f241b380a8c7b22605bb1aa5ff2e10317305b4bb data/cuisinedelight/recipes/seafood_platter.json
 bb1555076b5f99d8cd23930542f28f3fe63ae0b5 data/cuisinedelight/recipes/seafood_with_vegetables.json
+595b954a9cf171529c273b452d97d5af20f5fe41 data/cuisinedelight/recipes/spatula_from_iron_ingot_stonecutting.json
 e5396949c70cb29feb48655595cd4d90a4ba1573 data/cuisinedelight/recipes/suspicious_mix.json
 57c4760445d1399210d5ece6447eb90ad8e1d6dd data/cuisinedelight/recipes/vegetable_fried_rice.json
 501251a231b6845d002deba83beee64bcb185b1d data/cuisinedelight/recipes/vegetable_pasta.json
