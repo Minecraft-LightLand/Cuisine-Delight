@@ -2,7 +2,7 @@
   "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
-	"3": "cuisine_delight:block/cuisine_skillet_side",
+	"3": "cuisinedelight:block/cuisine_skillet_side",
 	"particle": "farmersdelight:block/skillet_top",
 	"top": "farmersdelight:block/skillet_top",
 	"bottom": "farmersdelight:block/skillet_bottom",

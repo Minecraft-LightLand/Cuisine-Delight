@@ -1,9 +1,9 @@
 {
   "required": true,
   "priority": 1000,
-  "package": "dev.xkmc.cuisine_delight.mixin",
+  "package": "dev.xkmc.cuisinedelight.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "cuisine_delight.refmap.json",
+  "refmap": "cuisinedelight.refmap.json",
   "mixins": [
   ],
   "client": [

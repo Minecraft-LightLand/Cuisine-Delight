@@ -1,5 +1,5 @@
 {
-  "parent": "cuisine_delight:block/cuisine_skillet",
+  "parent": "cuisinedelight:block/cuisine_skillet",
   "display": {
     "thirdperson_righthand": {
       "rotation": [70, 0, 0],
