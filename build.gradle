@@ -120,7 +120,10 @@ dependencies {
 
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
-    implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}")
+    implementation fg.deobf(jarJar("dev.xkmc.l2library:${l2library_version}")) {
+        transitive = false
+        jarJar.ranged(it, "[${l2library_version},)")
+    }
 
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")

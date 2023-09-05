@@ -14,7 +14,7 @@ description='''
 [[dependencies.cuisinedelight]]
     modId="forge"
     mandatory=true
-    versionRange="[43.0.0,)"
+    versionRange="[43.2.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.cuisinedelight]]
@@ -26,13 +26,13 @@ description='''
 [[dependencies.cuisinedelight]]
     modId="l2library"
     mandatory=true
-    versionRange="[1.9.0,)"
+    versionRange="[1.9.4,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.cuisinedelight]]
     modId="farmersdelight"
     mandatory=true
-    versionRange="[1.19-1.2.0,)"
+    versionRange="[1.19-1.2.3,)"
     ordering="AFTER"
     side="BOTH"
 

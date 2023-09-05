@@ -40,6 +40,7 @@ public class CDMisc {
 
 	public static void register(IEventBus bus) {
 		REGISTER_LOOT_ITEM_FUNC.register(bus);
+		RECIPE_TYPE.register(bus);
 	}
 
 }

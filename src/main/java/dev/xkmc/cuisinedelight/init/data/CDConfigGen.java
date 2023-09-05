@@ -32,8 +32,7 @@ public class CDConfigGen extends ConfigDataProvider {
 	public void add(Map<String, BaseConfig> map) {
 		// vanilla
 		{
-
-			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "meat", IngredientConfig.build(
+			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/meat", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.MUTTON, Items.PORKCHOP, Items.BEEF), FoodType.MEAT,
 							180, 240, 80, 0.5f, 0.5f, 3, 10),
 					IngredientConfig.get(Ingredient.of(Items.PORKCHOP), FoodType.MEAT,
@@ -52,7 +51,7 @@ public class CDConfigGen extends ConfigDataProvider {
 					)
 			));
 
-			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "vege", IngredientConfig.build(
+			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/vege", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.POTATO), FoodType.CARB,
 							180, 360, 60, 0.5f, 0.3f, 1, 8),
 					IngredientConfig.get(Ingredient.of(Items.BEETROOT, Items.CARROT), FoodType.VEG,
@@ -80,7 +79,7 @@ public class CDConfigGen extends ConfigDataProvider {
 			));
 
 
-			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "misc", IngredientConfig.build(
+			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/misc", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.DANDELION), FoodType.NONE,
 							60, 80, 40, 0, 0, 0, 0,
 							new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 7)),
@@ -91,7 +90,7 @@ public class CDConfigGen extends ConfigDataProvider {
 		// farmer's delight
 		{
 
-			map.put(FarmersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "vege", IngredientConfig.build(
+			map.put(FarmersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/vege", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(ModItems.RICE.get(), ModItems.RAW_PASTA.get(), ModItems.WHEAT_DOUGH.get()), FoodType.CARB,
 							300, 360, 80, 0.7f, 0.5f, 2, 8),
 					IngredientConfig.get(Ingredient.of(ModItems.TOMATO.get(), ModItems.CABBAGE.get(), ModItems.ONION.get(), ModItems.PUMPKIN_SLICE.get()), FoodType.VEG,
@@ -102,7 +101,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 360, 60, 0, 0, 1, 1)
 			));
 
-			map.put(FarmersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "meat", IngredientConfig.build(
+			map.put(FarmersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/meat", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(ModItems.HAM.get()), FoodType.MEAT,
 							240, 360, 80, 0.5f, 0.5f, 3, 10),
 					IngredientConfig.get(Ingredient.of(ModItems.MINCED_BEEF.get(), ModItems.MUTTON_CHOPS.get()), FoodType.MEAT,
@@ -118,7 +117,7 @@ public class CDConfigGen extends ConfigDataProvider {
 
 		// twilight forest
 		if (ModList.get().isLoaded(TwilightForestMod.ID)) {
-			map.put(TwilightForestMod.ID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "meat", IngredientConfig.build(
+			map.put(TwilightForestMod.ID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/meat", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(TFItems.RAW_MEEF.get()), FoodType.MEAT,
 							240, 360, 80, 0.5f, 0.5f, 3, 12),
 					IngredientConfig.get(Ingredient.of(TFItems.RAW_VENISON.get()), FoodType.MEAT,
@@ -129,7 +128,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 360, 80, 0.5f, 0.5f, 1, 8)
 			));
 
-			map.put(TwilightForestMod.ID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "veges", IngredientConfig.build(
+			map.put(TwilightForestMod.ID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/veges", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(TFItems.TORCHBERRIES.get()), FoodType.VEG,
 							0, 60, 40, 0.5f, 0.5f, 1, 4,
 							new IngredientConfig.EffectEntry(MobEffects.GLOWING, 0, 1200)),
@@ -142,7 +141,7 @@ public class CDConfigGen extends ConfigDataProvider {
 
 		// twilight delight
 		if (ModList.get().isLoaded(TwilightDelight.MODID)) {
-			map.put(TwilightDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "meat", IngredientConfig.build(
+			map.put(TwilightDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/meat", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(DelightFood.RAW_INSECT.item.get()), FoodType.MEAT,
 							240, 360, 80, 1, 0.5f, 2, 8),
 					IngredientConfig.get(Ingredient.of(DelightFood.RAW_TOMAHAWK_SMEAK.item.get()), FoodType.MEAT,
@@ -168,7 +167,7 @@ public class CDConfigGen extends ConfigDataProvider {
 			));
 
 
-			map.put(TwilightDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "veges", IngredientConfig.build(
+			map.put(TwilightDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/veges", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(TFItems.STEELEAF_INGOT.get()), FoodType.VEG,
 							300, 360, 40, 0.5f, 0.5f, 1, 1,
 							new IngredientConfig.EffectEntry(TDEffects.POISON_RANGE.get(), 0, 1200)),
@@ -183,7 +182,7 @@ public class CDConfigGen extends ConfigDataProvider {
 
 		// ends delight
 		if (ModList.get().isLoaded(EndsDelight.MOD_ID)) {
-			map.put(EndsDelight.MOD_ID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "all", IngredientConfig.build(
+			map.put(EndsDelight.MOD_ID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/all", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(ItemRegistry.DragonLeg.get(), ItemRegistry.RawDragonMeat.get()), FoodType.MEAT,
 							240, 360, 80, 1, 0.5f, 3, 12),
 					IngredientConfig.get(Ingredient.of(ItemRegistry.RawDragonMeatCuts.get()), FoodType.MEAT,

@@ -1,12 +1,9 @@
-
 package dev.xkmc.cuisinedelight.init.data;
 
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.l2library.serial.config.ConfigMerger;
 import dev.xkmc.l2library.serial.network.BaseConfig;
-import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Locale;
 
