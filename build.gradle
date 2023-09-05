@@ -124,7 +124,12 @@ dependencies {
 
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    implementation fg.deobf('curse.maven:farmers-delight-398521:3999157')
+
+    implementation fg.deobf("curse.maven:farmers-delight-398521:4679318")
+    implementation fg.deobf("curse.maven:ends-delight-662675:4675407")
+    implementation fg.deobf("curse.maven:twilights-flavors-delight-871735:4639747")
+    implementation fg.deobf("curse.maven:the-twilight-forest-227639:4389567")
+
     runtimeOnly fg.deobf('curse.maven:appleskin-248787:3872808')
     runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:3947982')
     runtimeOnly fg.deobf('curse.maven:badpackets-615134:3903799')
