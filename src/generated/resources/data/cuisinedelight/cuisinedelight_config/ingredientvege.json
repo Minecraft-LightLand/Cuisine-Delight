@@ -1,0 +1,168 @@
+{
+  "_class": "dev.xkmc.cuisinedelight.content.logic.IngredientConfig",
+  "entries": [
+    {
+      "type": "CARB",
+      "effects": [],
+      "ingredient": {
+        "item": "minecraft:potato"
+      },
+      "max_time": 360,
+      "min_time": 180,
+      "nutrition": 8,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "minecraft:beetroot"
+        },
+        {
+          "item": "minecraft:carrot"
+        }
+      ],
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 5,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.2,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": {
+        "tag": "forge:mushrooms"
+      },
+      "max_time": 360,
+      "min_time": 60,
+      "nutrition": 4,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.2,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": {
+        "item": "minecraft:kelp"
+      },
+      "max_time": 180,
+      "min_time": 120,
+      "nutrition": 3,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.3,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "minecraft:apple"
+        },
+        {
+          "item": "minecraft:melon_slice"
+        },
+        {
+          "item": "minecraft:sweet_berries"
+        },
+        {
+          "item": "minecraft:glow_berries"
+        },
+        {
+          "item": "minecraft:chorus_fruit"
+        }
+      ],
+      "max_time": 80,
+      "min_time": 0,
+      "nutrition": 4,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": {
+        "item": "minecraft:golden_carrot"
+      },
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 20,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 40
+    },
+    {
+      "type": "VEG",
+      "effects": [
+        {
+          "effect": "minecraft:regeneration",
+          "level": 1,
+          "time": 100
+        },
+        {
+          "effect": "minecraft:saturation",
+          "level": 0,
+          "time": 8
+        }
+      ],
+      "ingredient": {
+        "item": "minecraft:golden_apple"
+      },
+      "max_time": 80,
+      "min_time": 0,
+      "nutrition": 10,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [
+        {
+          "effect": "minecraft:regeneration",
+          "level": 1,
+          "time": 400
+        },
+        {
+          "effect": "minecraft:resistance",
+          "level": 0,
+          "time": 6000
+        },
+        {
+          "effect": "minecraft:fire_resistance",
+          "level": 0,
+          "time": 6000
+        },
+        {
+          "effect": "minecraft:saturation",
+          "level": 0,
+          "time": 32
+        }
+      ],
+      "ingredient": {
+        "item": "minecraft:enchanted_golden_apple"
+      },
+      "max_time": 80,
+      "min_time": 0,
+      "nutrition": 10,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.0,
+      "size": 1,
+      "stir_time": 60
+    }
+  ]
+}

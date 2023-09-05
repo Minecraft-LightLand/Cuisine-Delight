@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farmersdelight:skillet"
+    },
+    {
+      "tag": "forge:ingots/brick"
+    }
+  ],
+  "result": {
+    "item": "cuisinedelight:cuisine_skillet"
+  }
+}

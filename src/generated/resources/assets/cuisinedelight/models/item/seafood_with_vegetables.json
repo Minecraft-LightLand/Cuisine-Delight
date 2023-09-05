@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cuisinedelight:item/seafood_with_vegetables"
+  }
+}

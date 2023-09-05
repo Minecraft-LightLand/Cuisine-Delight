@@ -1,0 +1,140 @@
+{
+  "_class": "dev.xkmc.cuisinedelight.content.logic.IngredientConfig",
+  "entries": [
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "twilightdelight:raw_insect"
+      },
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 8,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 1.0,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "twilightdelight:raw_tomahawk_smeak"
+      },
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 12,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 6,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "twilightdelight:raw_meef_slice"
+      },
+      "max_time": 300,
+      "min_time": 180,
+      "nutrition": 12,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "twilightdelight:raw_venison_rib"
+      },
+      "max_time": 300,
+      "min_time": 180,
+      "nutrition": 10,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "twilightdelight:hydra_piece"
+      },
+      "max_time": 300,
+      "min_time": 180,
+      "nutrition": 30,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 3,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [
+        {
+          "effect": "twilightdelight:temporal_sadness",
+          "level": 0,
+          "time": 60
+        }
+      ],
+      "ingredient": {
+        "item": "twilightdelight:experiment_113"
+      },
+      "max_time": 300,
+      "min_time": 180,
+      "nutrition": 8,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 2,
+      "stir_time": 80
+    },
+    {
+      "type": "MEAT",
+      "effects": [
+        {
+          "effect": "minecraft:health_boost",
+          "level": 4,
+          "time": 2400
+        },
+        {
+          "effect": "minecraft:night_vision",
+          "level": 0,
+          "time": 2400
+        },
+        {
+          "effect": "minecraft:nausea",
+          "level": 0,
+          "time": 2400
+        },
+        {
+          "effect": "minecraft:poison",
+          "level": 0,
+          "time": 2400
+        },
+        {
+          "effect": "minecraft:blindness",
+          "level": 0,
+          "time": 1200
+        },
+        {
+          "effect": "twilightdelight:temporal_sadness",
+          "level": 0,
+          "time": 100
+        }
+      ],
+      "ingredient": {
+        "item": "twilightdelight:experiment_110"
+      },
+      "max_time": 300,
+      "min_time": 180,
+      "nutrition": 8,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 3,
+      "stir_time": 80
+    }
+  ]
+}
