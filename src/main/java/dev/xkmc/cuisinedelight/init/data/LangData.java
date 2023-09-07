@@ -31,6 +31,12 @@ public enum LangData {
 	MSG_FULL("msg.full", "The skillet is full.", 0, ChatFormatting.RED),
 	MSG_NOT_INGREDIENT("msg.not_ingredient", "You cannot cook this.", 0, ChatFormatting.RED),
 	MSG_PLACE_HELP("msg.place_help", "Press shift for placing.", 0, null),
+
+	ENCH_SHIFT("ench.shift", "Press Shift for enchantment details", 0, ChatFormatting.GRAY),
+	ENCH_SILK("ench.silk", "Silk touch makes stirring more lenient.", 0, ChatFormatting.GRAY),
+	ENCH_FIRE("ench.fire", "Fire aspect allows cooking without stove. Level I cooks slower.", 0, ChatFormatting.GRAY),
+	ENCH_EFFICIENCY("ench.efficiency", "Efficiency allows more than 1 items be added as 1 entry", 0, ChatFormatting.GRAY),
+
 	;
 
 	private final String key, def;

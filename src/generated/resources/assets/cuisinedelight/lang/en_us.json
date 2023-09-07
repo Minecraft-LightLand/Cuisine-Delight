@@ -1,5 +1,9 @@
 {
   "block.cuisinedelight.cuisine_skillet": "Cuisine Skillet",
+  "cuisinedelight.ench.efficiency": "Efficiency allows more than 1 items be added as 1 entry",
+  "cuisinedelight.ench.fire": "Fire aspect allows cooking without stove. Level I cooks slower.",
+  "cuisinedelight.ench.shift": "Press Shift for enchantment details",
+  "cuisinedelight.ench.silk": "Silk touch makes stirring more lenient.",
   "cuisinedelight.food_type.carb": "Staple",
   "cuisinedelight.food_type.meat": "Meat",
   "cuisinedelight.food_type.none": "Seasoning",
