@@ -85,7 +85,7 @@ public class PlateItem extends Item {
 		}
 		if (!level.isClientSide()) {
 			CuisineSkilletItem.setData(skilletStack, null);
-			data.stir(level.getGameTime());
+			data.stir(level.getGameTime(), 0);
 			CookedFoodData food = new CookedFoodData(data);
 			ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 			plateStack.shrink(1);
@@ -104,7 +104,7 @@ public class PlateItem extends Item {
 			}
 			if (!level.isClientSide()) {
 				CookingData data = be.cookingData;
-				data.stir(level.getGameTime());
+				data.stir(level.getGameTime(), 0);
 				CookedFoodData food = new CookedFoodData(data);
 				ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 				ctx.getItemInHand().shrink(1);

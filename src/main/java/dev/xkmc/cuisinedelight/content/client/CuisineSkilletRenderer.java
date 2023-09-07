@@ -22,7 +22,7 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 		float fly = time * (1 - time) * 4;
 		poseStack.translate(0, -29 / 64f + fly * 16 / 32f, 0);
 		for (var entry : data.contents) {
-			Random random = new Random(new Random(entry.startTime).nextLong());
+			Random random = new Random(entry.seed());
 			poseStack.translate(0, (fly * 4 + 1) / 32f, 0);
 			poseStack.pushPose();
 			poseStack.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360f));

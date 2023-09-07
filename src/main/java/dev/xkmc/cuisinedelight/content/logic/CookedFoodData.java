@@ -38,19 +38,19 @@ public class CookedFoodData {
 		int nutrition = 0;
 		float penalty = 0;
 		for (var e : data.contents) {
-			var config = IngredientConfig.get().getEntry(e.item);
+			var config = IngredientConfig.get().getEntry(e.getItem());
 			if (config == null) continue;
-			boolean raw = e.startTime + config.min_time > data.lastActionTime;
-			boolean overcooked = e.startTime + config.max_time < data.lastActionTime;
-			boolean burnt = e.maxStirTime > config.stir_time;
+			boolean raw = config.min_time > e.getDuration(data, 0);
+			boolean overcooked = config.max_time < e.getDuration(data, 0);
+			boolean burnt = e.getMaxStirTime(data) > config.stir_time;
 			float badness = 0;
 			if (raw) badness += config.raw_penalty;
 			if (overcooked || burnt) badness += config.overcook_penalty;
-			int itemSize = config.size * e.item.getCount();
+			int itemSize = config.size * e.getItem().getCount();
 			penalty += itemSize * badness;
 			size += itemSize;
 			nutrition += config.nutrition * itemSize;
-			entries.add(new Entry(e.item, itemSize, burnt, raw, overcooked));
+			entries.add(new Entry(e.getItem(), itemSize, burnt, raw, overcooked));
 			if (config.type != FoodType.NONE)
 				types.add(config.type);
 		}

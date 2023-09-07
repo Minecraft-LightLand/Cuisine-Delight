@@ -6,6 +6,7 @@ import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
+import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
@@ -59,8 +60,7 @@ public class CookingOverlay implements IGuiOverlay {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
 		if (data == null || data.contents.size() == 0) return;
-		float scale = 1 + Minecraft.getInstance().level.getGameTime() % 20 / 20f;//TODO
-		screenWidth /= scale;
+		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
 		screenHeight /= scale;
 		PoseStack pose = RenderSystem.getModelViewStack();
 		pose.pushPose();
@@ -79,7 +79,7 @@ public class CookingOverlay implements IGuiOverlay {
 		x += 20;
 		y = screenHeight / 2 - data.contents.size() * 10;
 		for (var entry : data.contents) {
-			ItemStack food = entry.item;
+			ItemStack food = entry.getItem();
 			var config = IngredientConfig.get().getEntry(food);
 			if (config != null) {
 				PieRenderer cook = new PieRenderer(g, x + 8, y + 12);
@@ -89,7 +89,7 @@ public class CookingOverlay implements IGuiOverlay {
 				cook.fillPie(min, max, PieRenderer.Texture.PIE_YELLOW);
 				cook.fillPie(max, 1, PieRenderer.Texture.PIE_RED);
 
-				float cook_needle = Mth.clamp(((int) (data.lastActionTime - entry.startTime) + partialTick) / MAX_TIME, 0f, 1f);
+				float cook_needle = Mth.clamp(entry.getDuration(data, partialTick) / MAX_TIME, 0f, 1f);
 				cook.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, cook_needle);
 				cook.drawIcon(PieRenderer.Texture.COOK);
 
@@ -98,8 +98,8 @@ public class CookingOverlay implements IGuiOverlay {
 				flip.fillPie(0, thr, PieRenderer.Texture.PIE_GREEN);
 				flip.fillPie(thr, 1, PieRenderer.Texture.PIE_RED);
 
-				float stir_current = Mth.clamp(((int) (data.lastActionTime - entry.lastStirTime) + partialTick) / STIR_TIME, 0f, 1f);
-				float stir_max = Mth.clamp(Math.max(stir_current, entry.maxStirTime / STIR_TIME), 0f, 1f);
+				float stir_current = Mth.clamp(entry.timeSinceStir(data, partialTick) / STIR_TIME, 0f, 1f);
+				float stir_max = Mth.clamp(Math.max(stir_current, entry.getMaxStirTime(data) / STIR_TIME), 0f, 1f);
 				flip.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, stir_current);
 				flip.drawNeedle(PieRenderer.Texture.NEEDLE_RED, stir_max + 0.5f);
 				flip.drawIcon(PieRenderer.Texture.FLIP);
