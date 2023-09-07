@@ -8,18 +8,22 @@ public class CDConfig {
 
 	public static class Client {
 
+		public final ForgeConfigSpec.DoubleValue uiScale;
+
 		Client(ForgeConfigSpec.Builder builder) {
+			uiScale = builder.comment("Cooking UI Scale")
+					.defineInRange("uiScale", 1, 0, 16d);
 		}
 
 	}
 
 	public static class Common {
 
-		public ForgeConfigSpec.IntValue baseServe;
-		public ForgeConfigSpec.DoubleValue baseNutrition;
-		public ForgeConfigSpec.DoubleValue varietyBonus;
-		public ForgeConfigSpec.DoubleValue perfectionBonus;
-		public ForgeConfigSpec.IntValue nourishmentDuration;
+		public final ForgeConfigSpec.IntValue baseServe;
+		public final ForgeConfigSpec.DoubleValue baseNutrition;
+		public final ForgeConfigSpec.DoubleValue varietyBonus;
+		public final ForgeConfigSpec.DoubleValue perfectionBonus;
+		public final ForgeConfigSpec.IntValue nourishmentDuration;
 
 		public ForgeConfigSpec.IntValue maxIngredient;
 
