@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.content.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
@@ -61,8 +62,10 @@ public class CookingOverlay implements IGuiOverlay {
 		float scale = 1 + Minecraft.getInstance().level.getGameTime() % 20 / 20f;//TODO
 		screenWidth /= scale;
 		screenHeight /= scale;
-		g.pose().pushPose();
-		g.pose().scale(scale, scale, scale);
+		PoseStack pose = RenderSystem.getModelViewStack();
+		pose.pushPose();
+		pose.scale(scale, scale, scale);
+		RenderSystem.applyModelViewMatrix();
 		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;
 		int x = 8;
@@ -103,7 +106,7 @@ public class CookingOverlay implements IGuiOverlay {
 			}
 			y += 20;
 		}
-		g.pose().popPose();
-		;
+		pose.popPose();
+		RenderSystem.applyModelViewMatrix();
 	}
 }
