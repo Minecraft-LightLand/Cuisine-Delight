@@ -6,8 +6,10 @@ import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
-import dev.xkmc.l2library.serial.codec.TagCodec;
+import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -18,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -32,6 +35,7 @@ import vectorwing.farmersdelight.common.item.SkilletItem;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class CuisineSkilletItem extends SkilletItem {
@@ -192,10 +196,20 @@ public class CuisineSkilletItem extends SkilletItem {
 	}
 
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		if (enchantment == Enchantments.BLOCK_EFFICIENCY) {
+		if (enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.FIRE_ASPECT) {
 			return true;
 		}
 		return super.canApplyAtEnchantingTable(stack, enchantment);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		if (Screen.hasShiftDown()) {
+			list.add(LangData.ENCH_FIRE.get());
+			list.add(LangData.ENCH_EFFICIENCY.get());
+		} else {
+			list.add(LangData.ENCH_SHIFT.get());
+		}
 	}
 
 }
