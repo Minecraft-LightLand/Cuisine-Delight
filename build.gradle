@@ -86,6 +86,22 @@ mixin {
     config "${modid}.mixins.json"
 }
 
+jarJar.enable()
+
+reobf {
+    jarJar {}
+}
+
+tasks.jarJar.finalizedBy('reobfJarJar')
+
+tasks.jarJar.configure {
+    archiveClassifier.set('')
+}
+
+jar {
+    archiveClassifier.set('slim')
+}
+
 repositories {
     maven { url 'https://jitpack.io' }
     maven {
@@ -120,7 +136,7 @@ dependencies {
 
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
-    implementation fg.deobf(jarJar("dev.xkmc.l2library:${l2library_version}")) {
+    implementation fg.deobf(jarJar("dev.xkmc.l2library:l2library:${l2library_version}")) {
         transitive = false
         jarJar.ranged(it, "[${l2library_version},)")
     }
