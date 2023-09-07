@@ -5,12 +5,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @SerialClass
 public class CookingData {
 
 	@SerialClass.SerialField
-	public long lastActionTime;
+	private long lastActionTime;
+
+	@SerialClass.SerialField
+	private float speed = 1;
 
 	@SerialClass.SerialField
 	public int glowstone, redstone;
@@ -22,10 +26,14 @@ public class CookingData {
 		lastActionTime = time;
 	}
 
-	public void stir(long time) {
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
+
+	public void stir(long time, int reduce) {
 		update(time);
 		for (CookingEntry entry : contents) {
-			entry.stir(time);
+			entry.stir(time, reduce);
 		}
 	}
 
@@ -44,16 +52,16 @@ public class CookingData {
 	public static class CookingEntry {
 
 		@SerialClass.SerialField
-		public ItemStack item;
+		private ItemStack item;
 
 		@SerialClass.SerialField
-		public long startTime;
+		private long startTime;
 
 		@SerialClass.SerialField
-		public long lastStirTime;
+		private long lastStirTime;
 
 		@SerialClass.SerialField
-		public int maxStirTime;
+		private int maxStirTime;
 
 		@Deprecated
 		public CookingEntry() {
@@ -67,11 +75,30 @@ public class CookingData {
 			this.maxStirTime = 0;
 		}
 
-		public void stir(long time) {
+		public void stir(long time, int reduce) {
 			maxStirTime = Math.max(maxStirTime, (int) (time - lastStirTime));
-			lastStirTime = time;
+			lastStirTime = time + reduce;
 		}
 
+		public float getDuration(CookingData data, float partialTick) {
+			return (partialTick + data.lastActionTime - startTime) * data.speed;
+		}
+
+		public float timeSinceStir(CookingData data, float partialTick) {
+			return Math.max(0, partialTick + data.lastActionTime - lastStirTime) * data.speed;
+		}
+
+		public float getMaxStirTime(CookingData data) {
+			return maxStirTime * data.speed;
+		}
+
+		public ItemStack getItem() {
+			return item;
+		}
+
+		public long seed() {
+			return new Random(startTime).nextLong();
+		}
 	}
 
 }

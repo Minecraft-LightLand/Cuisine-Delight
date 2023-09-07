@@ -22,14 +22,14 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 		float fly = time * (1 - time) * 4;
 		poseStack.translate(0, -29 / 64f + fly * 16 / 32f, 0);
 		for (var entry : data.contents) {
-			Random random = new Random(new Random(entry.startTime).nextLong());
+			Random random = new Random(entry.seed());
 			poseStack.translate(0, (fly * 4 + 1) / 32f, 0);
 			poseStack.pushPose();
 			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360f));
 			poseStack.mulPose(Axis.ZP.rotationDegrees(time * 360));
 			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360f));
 			poseStack.mulPose(Axis.XP.rotationDegrees(90));
-			renderer.renderStatic(entry.item, ItemDisplayContext.GROUND, light, overlay, poseStack, buffer, Minecraft.getInstance().level, i++);
+			renderer.renderStatic(entry.getItem(), ItemDisplayContext.GROUND, light, overlay, poseStack, buffer, Minecraft.getInstance().level, i++);
 			poseStack.popPose();
 		}
 	}

@@ -103,6 +103,10 @@ public class CuisineSkilletItem extends SkilletItem {
 						data = new CookingData();
 					}
 					int amount = 1 + getEnchantmentLevel(skilletStack, Enchantments.BLOCK_EFFICIENCY);
+					int speed = getEnchantmentLevel(skilletStack, Enchantments.FIRE_ASPECT);
+					if (speed == 1) {
+						data.setSpeed(0.5f);
+					}
 					data.addItem(otherStack.split(amount), time);
 					setData(skilletStack, data);
 				} else {
