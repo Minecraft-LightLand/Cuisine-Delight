@@ -58,6 +58,11 @@ public class CookingOverlay implements IGuiOverlay {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
 		if (data == null || data.contents.size() == 0) return;
+		float scale = 1 + Minecraft.getInstance().level.getGameTime() % 20 / 20f;//TODO
+		screenWidth /= scale;
+		screenHeight /= scale;
+		g.pose().pushPose();
+		g.pose().scale(scale, scale, scale);
 		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;
 		int x = 8;
@@ -98,5 +103,7 @@ public class CookingOverlay implements IGuiOverlay {
 			}
 			y += 20;
 		}
+		g.pose().popPose();
+		;
 	}
 }
