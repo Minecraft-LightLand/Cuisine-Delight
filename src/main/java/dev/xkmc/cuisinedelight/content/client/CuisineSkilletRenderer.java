@@ -29,7 +29,7 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 			poseStack.mulPose(Vector3f.ZP.rotationDegrees(time * 360));
 			poseStack.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360f));
 			poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
-			renderer.renderStatic(entry.item, ItemTransforms.TransformType.GROUND, light, overlay, poseStack, buffer, i++);
+			renderer.renderStatic(entry.getItem(), ItemTransforms.TransformType.GROUND, light, overlay, poseStack, buffer, i++);
 			poseStack.popPose();
 		}
 	}

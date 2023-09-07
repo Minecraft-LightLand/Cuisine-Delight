@@ -71,7 +71,7 @@ public class CookingOverlay implements IGuiOverlay {
 		int x = 8;
 		Font font = Minecraft.getInstance().font;
 		for (var entry : data.contents) {
-			ItemStack food = entry.item;
+			ItemStack food = entry.getItem();
 			gui.getMinecraft().getItemRenderer().renderAndDecorateItem(food, x, y + 2);
 			gui.getMinecraft().getItemRenderer().renderGuiItemDecorations(font, food, x, y + 2);
 			y += 20;
