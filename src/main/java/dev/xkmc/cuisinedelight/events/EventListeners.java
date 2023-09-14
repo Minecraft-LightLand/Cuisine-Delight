@@ -3,6 +3,7 @@ package dev.xkmc.cuisinedelight.events;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -24,6 +25,7 @@ public class EventListeners {
 		var config = IngredientConfig.get().getEntry(stack);
 		if (config == null) return;
 		if (Screen.hasShiftDown()) {
+			event.getToolTip().add(config.type.get().withStyle(ChatFormatting.GOLD));
 			event.getToolTip().add(LangData.INFO_SIZE.get(config.size));
 			event.getToolTip().add(LangData.INFO_NUTRITION.get(config.nutrition));
 			event.getToolTip().add(LangData.INFO_MIN_TIME.get(config.min_time / 20));

@@ -16,7 +16,7 @@ public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
 			new Serializer<>(FoodTypeIngredient.class, new ResourceLocation(CuisineDelight.MODID, "food_type"));
 
 	@SerialClass.SerialField
-	private FoodType foodType;
+	public FoodType foodType;
 
 	/**
 	 * @deprecated
@@ -47,4 +47,10 @@ public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
 	public Serializer<FoodTypeIngredient> getSerializer() {
 		return INSTANCE;
 	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return IngredientConfig.get().getAll(foodType);
+	}
+
 }

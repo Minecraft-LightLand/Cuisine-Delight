@@ -40,7 +40,7 @@
   "cuisinedelight.info.raw_penalty": "未熟惩罚:-%s%%",
   "cuisinedelight.info.size": "分量:%s份",
   "cuisinedelight.info.stir_time": "最长翻炒间隔:%s秒",
-  "cuisinedelight.info.display": "饱和提升: %sx~%sx",
+  "cuisinedelight.info.display": "饱和提升: %sx-%sx",
   "cuisinedelight.msg.no_heat": "靠近火源或者给锅附魔火焰附加来开始烹饪",
   "cuisinedelight.msg.not_ingredient": "这个物品不可烹饪",
   "cuisinedelight.msg.place_help": "蹲下放置物品",
@@ -49,5 +49,8 @@
   "cuisinedelight.food_type.meat": "肉类",
   "cuisinedelight.food_type.veg": "蔬果",
   "cuisinedelight.food_type.seafood": "海鲜",
-  "cuisinedelight.food_type.none": "调料"
+  "cuisinedelight.food_type.none": "调料",
+  "cuisinedelight.jei.ingredient_amount": "比例: %s",
+  "cuisinedelight.jei.food_type": "接受任何%s",
+  "cuisinedelight.jei.title": "料理配方"
 }

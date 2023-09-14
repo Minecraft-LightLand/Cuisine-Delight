@@ -26,6 +26,7 @@ public class IngredientConfig extends BaseConfig {
 
 	private final HashMap<Item, IngredientEntry> cache = new HashMap<>();
 	private final HashSet<Item> empty = new HashSet<>();
+	private final ItemStack[][] byType = new ItemStack[FoodType.values().length][];
 
 	@Nullable
 	public IngredientEntry getEntry(ItemStack stack) {
@@ -49,6 +50,15 @@ public class IngredientConfig extends BaseConfig {
 			empty.add(stack.getItem());
 		}
 		return null;
+	}
+
+	public ItemStack[] getAll(FoodType type) {
+		if (byType[type.ordinal()] != null) return byType[type.ordinal()];
+		byType[type.ordinal()] = entries.stream()
+				.filter(e -> e.type == type)
+				.flatMap(e -> Arrays.stream(e.ingredient.getItems()))
+				.map(BaseFoodItem::setIngredientDisplay).toArray(ItemStack[]::new);
+		return byType[type.ordinal()];
 	}
 
 	@SerialClass

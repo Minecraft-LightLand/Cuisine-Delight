@@ -27,7 +27,7 @@
 	  "raw_penalty": "未熟惩罚:-%s%%",
 	  "size": "分量:%s份",
 	  "stir_time": "最长翻炒间隔:%s秒",
-	  "display": "饱和提升: %sx~%sx"
+	  "display": "饱和提升: %sx-%sx"
 	},
 	"msg": {
 	  "no_heat": "靠近火源或者给锅附魔火焰附加来开始烹饪",
@@ -41,6 +41,11 @@
 	  "veg": "蔬果",
 	  "seafood": "海鲜",
 	  "none": "调料"
+	},
+	"jei": {
+	  "ingredient_amount": "比例: %s",
+	  "food_type": "接受任何%s",
+	  "title": "料理配方"
 	}
   }
 }
