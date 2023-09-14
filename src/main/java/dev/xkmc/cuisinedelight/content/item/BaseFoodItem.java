@@ -7,6 +7,7 @@ import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionResult;
@@ -34,6 +35,19 @@ public class BaseFoodItem extends Item {
 
 	private static final String KEY_ROOT = "CookedFoodData";
 	private static final String KEY_DISPLAY = "Display";
+
+	public static ItemStack setResultDisplay(BaseCuisineRecipe<?> recipe, ItemStack stack) {
+		CompoundTag tag = new CompoundTag();
+		tag.putDouble("min", recipe.getMinSaturationBonus());
+		tag.putDouble("max", recipe.getMaxSaturationBonus());
+		stack.getOrCreateTag().put(KEY_DISPLAY, tag);
+		return stack;
+	}
+
+	public static ItemStack setIngredientDisplay(ItemStack stack) {
+		stack.getOrCreateTag().putBoolean("cuisinedelight:display", true);
+		return stack;
+	}
 
 	@Nullable
 	public static CookedFoodData getData(ItemStack stack) {
@@ -67,6 +81,12 @@ public class BaseFoodItem extends Item {
 		CookedFoodData data = getData(stack);
 		if (data == null) return CookedFoodData.BAD;
 		return data.toFoodData();
+	}
+
+	@Nullable
+	@Override
+	public FoodProperties getFoodProperties() {
+		return CookedFoodData.BAD;
 	}
 
 	@Override
@@ -138,7 +158,11 @@ public class BaseFoodItem extends Item {
 		if (stack.hasTag()) {
 			var tag = stack.getTagElement(KEY_DISPLAY);
 			if (tag != null) {
-				list.add(LangData.INFO_DISPLAY.get(tag.getDouble("min"), tag.getDouble("max")));
+				double min = tag.getDouble("min");
+				double max = tag.getDouble("max");
+				if (max > 0) {
+					list.add(LangData.INFO_DISPLAY.get(min, max));
+				}
 				return;
 			}
 		}

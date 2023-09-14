@@ -1,7 +1,7 @@
-// 1.20.1	2023-09-07T10:09:40.961349	Registrate Provider for cuisinedelight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-09-14T15:20:35.189486	Registrate Provider for cuisinedelight [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 d577e4e89ca3fa6d80afc261c1f855be66c53fc4 assets/cuisinedelight/blockstates/cuisine_skillet.json
-4a280a039c3b0dfb6c273a0388676069cd30db8d assets/cuisinedelight/lang/en_ud.json
-9cda714567b87bc7f9c2b00924da4978a371188b assets/cuisinedelight/lang/en_us.json
+c99f75da938201f4e53e86b01a9689b51e45a462 assets/cuisinedelight/lang/en_ud.json
+0df402f00122eb4b49856e439d69798502110deb assets/cuisinedelight/lang/en_us.json
 e0f7b66a84e6588f01abbbce75b1803ffe5d46e2 assets/cuisinedelight/models/item/cuisine_skillet.json
 17fb6065e1d043f990af6f0a9de0f540c7f5f2f8 assets/cuisinedelight/models/item/fried_pasta.json
 3ddf9ee0964b4d366e745926e52522eff30a62ef assets/cuisinedelight/models/item/fried_rice.json
