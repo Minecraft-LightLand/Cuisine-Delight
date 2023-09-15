@@ -1,6 +1,11 @@
 package dev.xkmc.cuisinedelight.init;
 
+import com.cazsius.solcarrot.SOLCarrot;
+import com.tarinoita.solsweetpotato.SOLSweetPotato;
 import com.tterrag.registrate.providers.ProviderType;
+import dev.xkmc.cuisinedelight.compat.DietEvents;
+import dev.xkmc.cuisinedelight.compat.SolApplePieEvents;
+import dev.xkmc.cuisinedelight.compat.SolCarrotEvents;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
@@ -14,11 +19,13 @@ import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -51,6 +58,10 @@ public class CuisineDelight {
 		CDConfig.init();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
+		if (ModList.get().isLoaded(SOLCarrot.MOD_ID)) MinecraftForge.EVENT_BUS.register(SolCarrotEvents.class);
+		if (ModList.get().isLoaded(SOLSweetPotato.MOD_ID)) MinecraftForge.EVENT_BUS.register(SolApplePieEvents.class);
+		if (ModList.get().isLoaded("diet")) MinecraftForge.EVENT_BUS.register(DietEvents.class);
+
 	}
 
 	@SubscribeEvent

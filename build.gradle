@@ -207,5 +207,8 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:enchantment-descriptions-250419:4587429")
 
     implementation fg.deobf("curse.maven:ends-delight-662675:4643639")
+    implementation fg.deobf("curse.maven:spice-of-life-carrot-edition-277616:4650707")
+    implementation fg.deobf("curse.maven:spice-of-life-apple-pie-edition-704584:4596285")
+    implementation fg.deobf("curse.maven:diet-443570:4634780")
 
 }

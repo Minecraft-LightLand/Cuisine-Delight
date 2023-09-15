@@ -3,6 +3,7 @@ package dev.xkmc.cuisinedelight.content.item;
 import dev.xkmc.cuisinedelight.content.logic.CookedFoodData;
 import dev.xkmc.cuisinedelight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeContainer;
+import dev.xkmc.cuisinedelight.events.FoodEatenEvent;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
@@ -15,6 +16,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -93,6 +96,9 @@ public class BaseFoodItem extends Item {
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
 		CookedFoodData food = getData(stack);
 		super.finishUsingItem(stack, level, entity);
+		if (entity instanceof Player player && food != null) {
+			MinecraftForge.EVENT_BUS.post(new FoodEatenEvent(player, food));
+		}
 		if (food == null) return getCraftingRemainingItem(stack);
 		food.size--;
 		if (food.size <= 0) return getCraftingRemainingItem(stack);
