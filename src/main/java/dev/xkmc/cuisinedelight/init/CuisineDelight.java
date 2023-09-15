@@ -44,6 +44,10 @@ public class CuisineDelight {
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
+		if (ModList.get().isLoaded(SOLCarrot.MOD_ID)) MinecraftForge.EVENT_BUS.register(SolCarrotEvents.class);
+		if (ModList.get().isLoaded(SOLSweetPotato.MOD_ID)) MinecraftForge.EVENT_BUS.register(SolApplePieEvents.class);
+		if (ModList.get().isLoaded("diet")) MinecraftForge.EVENT_BUS.register(DietEvents.class);
+
 	}
 
 	@SubscribeEvent
