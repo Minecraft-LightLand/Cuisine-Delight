@@ -1,5 +1,10 @@
 package dev.xkmc.cuisinedelight.init;
 
+import com.cazsius.solcarrot.SOLCarrot;
+import com.tarinoita.solsweetpotato.SOLSweetPotato;
+import dev.xkmc.cuisinedelight.compat.DietEvents;
+import dev.xkmc.cuisinedelight.compat.SolApplePieEvents;
+import dev.xkmc.cuisinedelight.compat.SolCarrotEvents;
 import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.init.data.*;
 import dev.xkmc.cuisinedelight.init.registrate.CDBlocks;
@@ -9,11 +14,13 @@ import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
