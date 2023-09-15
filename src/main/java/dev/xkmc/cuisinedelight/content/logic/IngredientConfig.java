@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
+import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
 import dev.xkmc.cuisinedelight.init.data.NetworkManager;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.config.CollectType;
