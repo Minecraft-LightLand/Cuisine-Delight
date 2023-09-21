@@ -30,6 +30,5 @@
     "recipes": [
       "cuisinedelight:fried_meat_and_melon"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

@@ -6,6 +6,7 @@ import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeMatch;
 import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2library.base.recipe.BaseRecipeCategory;
 import dev.xkmc.l2library.util.code.Wrappers;
 import mezz.jei.api.constants.VanillaTypes;

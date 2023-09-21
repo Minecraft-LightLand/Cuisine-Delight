@@ -30,6 +30,5 @@
     "recipes": [
       "cuisinedelight:scrambled_egg_and_tomato"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

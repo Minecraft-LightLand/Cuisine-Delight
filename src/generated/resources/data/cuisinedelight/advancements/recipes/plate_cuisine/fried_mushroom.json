@@ -30,6 +30,5 @@
     "recipes": [
       "cuisinedelight:fried_mushroom"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }
