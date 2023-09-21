@@ -2,7 +2,8 @@
     - Add JEI recipe
     - Add dummy food property to fix potential incompatibility with Autumnity
     - Support Diet, Spice of Life: carrot, and Spice of Life: apple pie
-    - Add 3 plates TODO
+    - Add 3 plates
+    - Fix food percentage change after being eaten
 
 1.1.9 / 1.0.2
     - add enchantment description

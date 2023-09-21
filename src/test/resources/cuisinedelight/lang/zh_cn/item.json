@@ -22,7 +22,10 @@
 	"ham_fried_rice": "火腿炒饭",
 	"vegetable_fried_rice": "蔬菜炒饭",
 	"meat_fried_rice": "肉粒炒饭",
-	"fried_pasta": "炒意面"
+	"fried_pasta": "炒意面",
+	"fried_meat_and_melon": "西瓜炒肉",
+	"fried_mushroom": "炒蘑菇",
+	"scrambled_egg_and_tomato": "番茄炒蛋"
   },
   "-cartesian": {
   }

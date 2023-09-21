@@ -17,7 +17,8 @@ public enum PlateFood {
 	FRIED_PASTA, MIXED_PASTA,
 	MEAT_FRIED_RICE, MEAT_PASTA, MEAT_PLATTER,
 	SEAFOOD_FRIED_RICE, SEAFOOD_PASTA, SEAFOOD_PLATTER,
-	VEGETABLE_FRIED_RICE, VEGETABLE_PASTA, VEGETABLE_PLATTER;
+	VEGETABLE_FRIED_RICE, VEGETABLE_PASTA, VEGETABLE_PLATTER,
+	FRIED_MUSHROOM, FRIED_MEAT_AND_MELON, SCRAMBLED_EGG_AND_TOMATO;
 
 	public final ItemEntry<BaseFoodItem> item;
 
@@ -28,7 +29,7 @@ public enum PlateFood {
 	}
 
 	public static String toEnglishName(String internalName) {
-		Set<String> SMALL_WORDS = Set.of("of", "the", "with");
+		Set<String> SMALL_WORDS = Set.of("of", "the", "with", "and");
 		return Arrays.stream(internalName.toLowerCase(Locale.ROOT).split("_"))
 				.map(e -> SMALL_WORDS.contains(e) ? e : StringUtils.capitalize(e))
 				.collect(Collectors.joining(" "));
