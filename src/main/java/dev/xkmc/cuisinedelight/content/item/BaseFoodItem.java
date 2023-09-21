@@ -205,7 +205,7 @@ public class BaseFoodItem extends Item {
 			CuisineRecipeContainer cont = new CuisineRecipeContainer(data);
 			for (var e : cont.list) {
 				if (e.isEmpty()) continue;
-				double perc = Math.round(1000d * e.getCount() / data.size) / 10d;
+				double perc = Math.round(1000d * e.getCount() / data.total) / 10d;
 				list.add(e.getHoverName().copy().append(": " + perc + "%"));
 			}
 		}

@@ -6,6 +6,7 @@ import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeMatch;
 import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2library.serial.recipe.BaseRecipeCategory;
 import dev.xkmc.l2serial.util.Wrappers;
 import mezz.jei.api.constants.VanillaTypes;
@@ -18,7 +19,6 @@ import mezz.jei.common.Constants;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class CuisineRecipeCategory extends BaseRecipeCategory<BaseCuisineRecipe<
 	public CuisineRecipeCategory init(IGuiHelper guiHelper) {
 		ResourceLocation location = Constants.RECIPE_GUI_VANILLA;
 		background = guiHelper.createDrawable(location, 0, 60, 116, 54);
-		icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, Items.IRON_SWORD.getDefaultInstance());
+		icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, CDItems.SKILLET.asStack());
 		return this;
 	}
 

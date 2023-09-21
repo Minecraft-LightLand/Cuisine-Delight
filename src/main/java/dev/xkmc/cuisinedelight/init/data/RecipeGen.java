@@ -118,6 +118,24 @@ public class RecipeGen {
 					.addAtLeast(new FoodTypeIngredient(FoodType.VEG), 0.35, 1, 0.1)
 					.save(pvd);
 		}
+
+		// misc
+		{
+
+			unlock(pvd, new PlateCuisineBuilder(PlateFood.FRIED_MEAT_AND_MELON.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+					.addAtLeast(new FoodTypeIngredient(FoodType.MEAT), 0.4, 1, 0.1)
+					.addAtLeast(Ingredient.of(Items.MELON_SLICE), 0.2, 2, 0.1)
+					.save(pvd);
+
+			unlock(pvd, new PlateCuisineBuilder(PlateFood.FRIED_MUSHROOM.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+					.addAtLeast(Ingredient.of(Tags.Items.MUSHROOMS), 0.75, 1, 0.1)
+					.save(pvd);
+
+			unlock(pvd, new PlateCuisineBuilder(PlateFood.SCRAMBLED_EGG_AND_TOMATO.item.get(), 0, 0)::unlockedBy, CDItems.SKILLET.get())
+					.addAtLeast(Ingredient.of(Tags.Items.EGGS), 0.3, 1, 0.1)
+					.addAtLeast(Ingredient.of(ModItems.TOMATO.get()), 0.3, 2, 0.1)
+					.save(pvd);
+		}
 	}
 
 	public static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, InventoryChangeTrigger.TriggerInstance, T> func, Item item) {
