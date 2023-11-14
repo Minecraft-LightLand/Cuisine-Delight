@@ -2,6 +2,8 @@ package dev.xkmc.cuisinedelight.init.data;
 
 import cn.foggyhillside.ends_delight.EndsDelight;
 import cn.foggyhillside.ends_delight.registry.ItemRegistry;
+import com.scouter.oceansdelight.OceansDelight;
+import com.scouter.oceansdelight.items.ODItems;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
@@ -18,6 +20,8 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModList;
 import twilightforest.TwilightForestMod;
 import twilightforest.init.TFItems;
+import umpaz.nethersdelight.NethersDelight;
+import umpaz.nethersdelight.common.registry.NDItems;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -202,6 +206,41 @@ public class CDConfigGen extends ConfigDataProvider {
 			));
 		}
 
+		// nether delight
+		if (ModList.get().isLoaded(NethersDelight.MODID)) {
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(NethersDelight.MODID, "all"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(NDItems.HOGLIN_LOIN.get()), FoodType.MEAT,
+							180, 300, 80, 1, 0.5f, 3, 12),
+					IngredientConfig.get(Ingredient.of(NDItems.HOGLIN_EAR.get()), FoodType.MEAT,
+							120, 300, 80, 1, 0.5f, 1, 10),
+					IngredientConfig.get(Ingredient.of(NDItems.STRIDER_SLICE.get()), FoodType.MEAT,
+							180, 300, 80, 1, 0.5f, 3, 10,
+							new IngredientConfig.EffectEntry(MobEffects.FIRE_RESISTANCE, 0, 400)),
+					IngredientConfig.get(Ingredient.of(NDItems.GROUND_STRIDER.get()), FoodType.MEAT,
+							120, 300, 80, 1, 0.5f, 2, 10,
+							new IngredientConfig.EffectEntry(MobEffects.FIRE_RESISTANCE, 0, 300)),
+					IngredientConfig.get(Ingredient.of(NDItems.PROPELPEARL.get()), FoodType.VEG,
+							0, 300, 80, 0, 0, 1, 6)
+			));
+		}
+
+		// ocean delight
+		if (ModList.get().isLoaded(OceansDelight.MODID)) {
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(OceansDelight.MODID, "all"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(ODItems.TENTACLES.get()), FoodType.SEAFOOD,
+							60, 120, 40, 0.3f, 0.3f, 2, 12),
+					IngredientConfig.get(Ingredient.of(ODItems.CUT_TENTACLES.get()), FoodType.SEAFOOD,
+							60, 120, 40, 0.3f, 0.3f, 1, 12),
+					IngredientConfig.get(Ingredient.of(ODItems.GUARDIAN_TAIL.get()), FoodType.SEAFOOD,
+							90, 150, 40, 0.3f, 0.3f, 2, 15),
+					IngredientConfig.get(Ingredient.of(ODItems.ELDER_GUARDIAN_SLAB.get()), FoodType.SEAFOOD,
+							90, 150, 60, 0.3f, 0.3f, 9, 20),
+					IngredientConfig.get(Ingredient.of(ODItems.ELDER_GUARDIAN_SLICE.get()), FoodType.SEAFOOD,
+							60, 120, 40, 0.3f, 0.3f, 1, 20),
+					IngredientConfig.get(Ingredient.of(ODItems.FUGU_SLICE.get()), FoodType.SEAFOOD,
+							60, 120, 40, 0.3f, 0.3f, 1, 15)
+			));
+		}
 	}
 
 }

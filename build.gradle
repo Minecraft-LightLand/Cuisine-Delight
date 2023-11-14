@@ -144,7 +144,7 @@ dependencies {
         implementation("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
     }
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     if (rootMod.toBoolean()) {
         jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
     }
@@ -204,11 +204,15 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:wthit-forge-455982:4596739")
     runtimeOnly fg.deobf("curse.maven:attributefix-280510:4588114")
     runtimeOnly fg.deobf("curse.maven:bookshelf-228525:4581675")
+    runtimeOnly fg.deobf("curse.maven:create-328085:4762216")
     runtimeOnly fg.deobf("curse.maven:enchantment-descriptions-250419:4587429")
 
     implementation fg.deobf("curse.maven:ends-delight-662675:4643639")
-    implementation fg.deobf("curse.maven:spice-of-life-carrot-edition-277616:4650707")
-    implementation fg.deobf("curse.maven:spice-of-life-apple-pie-edition-704584:4596285")
-    implementation fg.deobf("curse.maven:diet-443570:4634780")
+    implementation fg.deobf("curse.maven:nethers-delight-496394:4736227")
+    implementation fg.deobf("curse.maven:oceans-delight-841262:4652060")
+
+    compileOnly fg.deobf("curse.maven:spice-of-life-carrot-edition-277616:4650707")
+    compileOnly fg.deobf("curse.maven:spice-of-life-apple-pie-edition-704584:4596285")
+    compileOnly fg.deobf("curse.maven:diet-443570:4634780")
 
 }
