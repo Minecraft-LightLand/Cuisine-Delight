@@ -15,7 +15,7 @@
       "bonus": 0.1,
       "ingredient": {
         "type": "cuisinedelight:food_type",
-        "foodType": "SEAFOOD"
+        "foodType": "VEG"
       },
       "max": 1.7,
       "min": 0.3,
