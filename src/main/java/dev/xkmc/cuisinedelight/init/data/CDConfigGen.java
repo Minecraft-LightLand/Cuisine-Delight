@@ -2,6 +2,8 @@ package dev.xkmc.cuisinedelight.init.data;
 
 import cn.foggyhillside.endsdelight.EndsDelight;
 import cn.foggyhillside.endsdelight.registry.ItemRegistry;
+import com.scouter.oceansdelight.OceansDelight;
+import com.scouter.oceansdelight.items.ODItems;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
@@ -208,7 +210,7 @@ public class CDConfigGen extends ConfigDataProvider {
 
 		// nether delight
 		if (ModList.get().isLoaded(NethersDelight.MODID)) {
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(NethersDelight.MODID, "all"), IngredientConfig.build(
+			map.put(NethersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/all", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(NDItems.HOGLIN_LOIN.get()), FoodType.MEAT,
 							180, 300, 80, 1, 0.5f, 3, 12),
 					IngredientConfig.get(Ingredient.of(NDItems.HOGLIN_EAR.get()), FoodType.MEAT,
@@ -226,7 +228,7 @@ public class CDConfigGen extends ConfigDataProvider {
 
 		// ocean delight
 		if (ModList.get().isLoaded(OceansDelight.MODID)) {
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(OceansDelight.MODID, "all"), IngredientConfig.build(
+			map.put(OceansDelight.MODID + "/cuisinedelight_config/" + NetworkManager.INGREDIENT.getID() + "/all", IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(ODItems.TENTACLES.get()), FoodType.SEAFOOD,
 							60, 120, 40, 0.3f, 0.3f, 2, 12),
 					IngredientConfig.get(Ingredient.of(ODItems.CUT_TENTACLES.get()), FoodType.SEAFOOD,

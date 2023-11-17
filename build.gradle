@@ -154,9 +154,12 @@ dependencies {
     runtimeOnly fg.deobf('curse.maven:badpackets-615134:3903799')
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-76")
 
-    implementation fg.deobf("curse.maven:spice-of-life-apple-pie-edition-704584:4596169")
-    implementation fg.deobf("curse.maven:spice-of-life-carrot-edition-277616:3974155")
-    implementation fg.deobf("curse.maven:diet-443570:4634770")
+    implementation fg.deobf("curse.maven:nethers-delight-496394:4731072")
+    implementation fg.deobf("curse.maven:oceans-delight-841262:4652058")
+
+    compileOnly fg.deobf("curse.maven:spice-of-life-apple-pie-edition-704584:4596169")
+    compileOnly fg.deobf("curse.maven:spice-of-life-carrot-edition-277616:3974155")
+    compileOnly fg.deobf("curse.maven:diet-443570:4634770")
 
 }
 
