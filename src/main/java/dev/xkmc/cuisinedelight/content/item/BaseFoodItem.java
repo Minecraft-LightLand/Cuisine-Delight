@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.Nullable;
+import vectorwing.farmersdelight.common.Configuration;
 
 import java.util.List;
 
@@ -210,18 +211,19 @@ public class BaseFoodItem extends Item {
 			}
 		}
 
-
-		for (var e : prop.getEffects()) {
-			MobEffectInstance mobeffectinstance = e.getFirst();
-			MutableComponent mutablecomponent = Component.translatable(mobeffectinstance.getDescriptionId());
-			MobEffect mobeffect = mobeffectinstance.getEffect();
-			if (mobeffectinstance.getAmplifier() > 0) {
-				mutablecomponent = Component.translatable("potion.withAmplifier", mutablecomponent, Component.translatable("potion.potency." + mobeffectinstance.getAmplifier()));
+		if (Configuration.FOOD_EFFECT_TOOLTIP.get()) {
+			for (var e : prop.getEffects()) {
+				MobEffectInstance mobeffectinstance = e.getFirst();
+				MutableComponent mutablecomponent = Component.translatable(mobeffectinstance.getDescriptionId());
+				MobEffect mobeffect = mobeffectinstance.getEffect();
+				if (mobeffectinstance.getAmplifier() > 0) {
+					mutablecomponent = Component.translatable("potion.withAmplifier", mutablecomponent, Component.translatable("potion.potency." + mobeffectinstance.getAmplifier()));
+				}
+				if (mobeffectinstance.getDuration() > 20) {
+					mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(mobeffectinstance, 1));
+				}
+				list.add(mutablecomponent.withStyle(mobeffect.getCategory().getTooltipFormatting()));
 			}
-			if (mobeffectinstance.getDuration() > 20) {
-				mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(mobeffectinstance, 1));
-			}
-			list.add(mutablecomponent.withStyle(mobeffect.getCategory().getTooltipFormatting()));
 		}
 	}
 

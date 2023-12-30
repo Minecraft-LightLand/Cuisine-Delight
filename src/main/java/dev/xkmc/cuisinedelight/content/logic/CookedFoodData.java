@@ -1,5 +1,7 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
+import dev.xkmc.cuisinedelight.content.logic.transform.ItemStageTransform;
+import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.util.Mth;
@@ -105,6 +107,19 @@ public class CookedFoodData {
 					return new EffectData(e.level(), ans);
 				});
 			}
+		}
+
+		public ItemStack getEatenStack() {
+			var handler = CookTransformConfig.get(stack);
+			if (handler instanceof ItemStageTransform t) {
+				if (t.stage() != Stage.RAW) {
+					ItemStack ans = t.next().getDefaultInstance();
+					ans.setCount(stack.getCount());
+					ans.setTag(stack.getTag());
+					return ans;
+				}
+			}
+			return stack;
 		}
 
 	}

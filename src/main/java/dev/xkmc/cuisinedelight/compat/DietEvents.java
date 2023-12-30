@@ -13,7 +13,7 @@ public class DietEvents {
 		if (cap.isEmpty()) return;
 		FoodProperties prop = event.data.toFoodData();
 		for (var ent : event.data.entries) {
-			cap.get().consume(ent.stack(), prop.getNutrition(), prop.getSaturationModifier());
+			cap.get().consume(ent.getEatenStack(), prop.getNutrition(), prop.getSaturationModifier());
 		}
 	}
 

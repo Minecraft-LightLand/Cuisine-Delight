@@ -12,7 +12,7 @@ public class SolApplePieEvents {
 		var cap = FoodList.get(event.player);
 		boolean shouldUpdate = false;
 		for (var ent : event.data.entries) {
-			cap.addFood(ent.stack().getItem());
+			cap.addFood(ent.getEatenStack().getItem());
 		}
 		SOLSweetPotatoAPI.syncFoodList(event.player);
 	}
