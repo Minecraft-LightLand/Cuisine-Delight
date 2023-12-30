@@ -11,20 +11,25 @@ import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.TagGen;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 @MethodsReturnNonnullByDefault
 public class CDItems {
 
-	public static final RegistryEntry<CreativeModeTab> TAB =
-			CuisineDelight.REGISTRATE.buildModCreativeTab("cuisine", "Cuisine Delight",
-					e -> e.icon(CDItems.SKILLET::asStack));
+	public static final ItemEntry<Item> FRIED_EGG;
+
+	public static final RegistryEntry<CreativeModeTab> TAB;
 
 	public static final ItemEntry<CuisineSkilletItem> SKILLET;
 	public static final ItemEntry<SpatulaItem> SPATULA;
 	public static final ItemEntry<PlateItem> PLATE;
 
 	static {
+		FRIED_EGG = CuisineDelight.REGISTRATE.item("fried_egg", Item::new).register();
+
+		TAB = CuisineDelight.REGISTRATE.buildModCreativeTab("cuisine", "Cuisine Delight",
+				e -> e.icon(CDItems.SKILLET::asStack));
 
 		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(CDBlocks.SKILLET.get(), p.stacksTo(1)))
 				.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")))

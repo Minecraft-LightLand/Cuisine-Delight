@@ -1,4 +1,5 @@
 {
+  "fluidTransform": {},
   "itemTransform": {
     "minecraft:beef": {
       "next": "minecraft:cooked_beef",
@@ -28,6 +29,5 @@
       "next": "minecraft:cooked_salmon",
       "stage": "COOKED"
     }
-  },
-  "modelTransform": {}
+  }
 }

@@ -1,5 +1,10 @@
 {
+  "fluidTransform": {},
   "itemTransform": {
+    "minecraft:egg": {
+      "next": "cuisinedelight:fried_egg",
+      "stage": "RAW"
+    },
     "minecraft:kelp": {
       "next": "minecraft:dried_kelp",
       "stage": "COOKED"
@@ -8,6 +13,5 @@
       "next": "minecraft:baked_potato",
       "stage": "COOKED"
     }
-  },
-  "modelTransform": {}
+  }
 }

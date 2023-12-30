@@ -1,4 +1,5 @@
 {
+  "fluidTransform": {},
   "itemTransform": {
     "farmersdelight:bacon": {
       "next": "farmersdelight:cooked_bacon",
@@ -28,6 +29,5 @@
       "next": "farmersdelight:cooked_salmon_slice",
       "stage": "COOKED"
     }
-  },
-  "modelTransform": {}
+  }
 }

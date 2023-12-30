@@ -9,6 +9,7 @@ import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import dev.xkmc.twilightdelight.init.TwilightDelight;
 import dev.xkmc.twilightdelight.init.registrate.TDEffects;
@@ -105,6 +106,11 @@ public class CDConfigGen extends ConfigDataProvider {
 			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "other"), new CookTransformConfig()
 					.item(Items.POTATO, Items.BAKED_POTATO, Stage.COOKED)
 					.item(Items.KELP, Items.DRIED_KELP, Stage.COOKED)
+					.item(Items.EGG, CDItems.FRIED_EGG.get(), Stage.RAW)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "fluids"), new CookTransformConfig()
+					.fluid(Items.HONEY_BOTTLE, 0xFFFED32E)
 			);
 		}
 		// farmer's delight
@@ -141,6 +147,10 @@ public class CDConfigGen extends ConfigDataProvider {
 					.item(ModItems.MINCED_BEEF.get(), ModItems.BEEF_PATTY.get(), Stage.COOKED)
 					.item(ModItems.MUTTON_CHOPS.get(), ModItems.COOKED_MUTTON_CHOPS.get(), Stage.COOKED)
 					.item(ModItems.HAM.get(), ModItems.SMOKED_HAM.get(), Stage.COOKED)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(FarmersDelight.MODID, "fluids"), new CookTransformConfig()
+					.fluid(ModItems.MILK_BOTTLE.get(), 0xFFFFFFFF)
 			);
 
 		}
@@ -220,6 +230,11 @@ public class CDConfigGen extends ConfigDataProvider {
 					.item(DelightFood.RAW_MEEF_SLICE.item.get(), DelightFood.COOKED_MEEF_SLICE.item.get(), Stage.COOKED)
 					.item(DelightFood.RAW_VENISON_RIB.item.get(), DelightFood.COOKED_VENISON_RIB.item.get(), Stage.COOKED)
 					.item(DelightFood.RAW_TOMAHAWK_SMEAK.item.get(), DelightFood.COOKED_TOMAHAWK_SMEAK.item.get(), Stage.COOKED)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(TwilightDelight.MODID, "fluids"), new CookTransformConfig()
+					.fluid(TFItems.FIERY_BLOOD.get(), 0xFF5C0A0B)
+					.fluid(TFItems.FIERY_TEARS.get(), 0xFF5C0A0B)
 			);
 		}
 

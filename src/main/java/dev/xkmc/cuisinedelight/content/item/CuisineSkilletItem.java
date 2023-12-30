@@ -111,7 +111,11 @@ public class CuisineSkilletItem extends SkilletItem {
 					if (speed == 1) {
 						data.setSpeed(0.5f);
 					}
-					data.addItem(otherStack.split(amount), time);
+					ItemStack toAdd = otherStack.split(amount);
+					data.addItem(toAdd, time);
+					ItemStack remain = toAdd.getCraftingRemainingItem();
+					remain.setCount(toAdd.getCount());
+					player.getInventory().placeItemBackInInventory(remain);
 					setData(skilletStack, data);
 				} else {
 					playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());

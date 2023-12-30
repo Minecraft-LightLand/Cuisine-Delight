@@ -71,8 +71,9 @@ public class CookingOverlay implements IGuiOverlay {
 		for (var entry : data.contents) {
 			ItemStack food = entry.getItem();
 			var handle = CookTransformConfig.get(food);
-			g.renderItem(handle.renderStack(food), x, y + 2);
-			g.renderItemDecorations(font, handle.renderStack(food), x, y + 2);
+			ItemStack render = handle.renderStack(entry.getStage(data), food);
+			g.renderItem(render, x, y + 2);
+			g.renderItemDecorations(font, render, x, y + 2);
 			y += 20;
 		}
 		x += 20;

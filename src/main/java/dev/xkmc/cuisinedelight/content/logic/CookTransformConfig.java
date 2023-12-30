@@ -24,15 +24,15 @@ public class CookTransformConfig extends BaseConfig {
 
 	@ConfigCollect(CollectType.MAP_OVERWRITE)
 	@SerialClass.SerialField
-	public final LinkedHashMap<Item, ModelStageTransform> modelTransform = new LinkedHashMap<>();
+	public final LinkedHashMap<Item, FluidTransform> fluidTransform = new LinkedHashMap<>();
 
 	public CookTransform getTransform(ItemStack stack) {
 		Item item = stack.getItem();
 		if (itemTransform.containsKey(item)) {
 			return itemTransform.get(item);
 		}
-		if (modelTransform.containsKey(item)) {
-			return modelTransform.get(item);
+		if (fluidTransform.containsKey(item)) {
+			return fluidTransform.get(item);
 		}
 		return new NoTransform();
 	}
@@ -41,4 +41,10 @@ public class CookTransformConfig extends BaseConfig {
 		itemTransform.put(raw, new ItemStageTransform(stage, cooked));
 		return this;
 	}
+
+	public CookTransformConfig fluid(Item item, int color) {
+		fluidTransform.put(item, new FluidTransform(color));
+		return this;
+	}
+
 }

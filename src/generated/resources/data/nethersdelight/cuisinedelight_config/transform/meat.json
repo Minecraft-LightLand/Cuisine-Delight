@@ -1,9 +1,9 @@
 {
+  "fluidTransform": {},
   "itemTransform": {
     "nethersdelight:hoglin_loin": {
       "next": "nethersdelight:hoglin_sirloin",
       "stage": "COOKED"
     }
-  },
-  "modelTransform": {}
+  }
 }

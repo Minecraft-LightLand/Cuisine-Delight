@@ -1,4 +1,5 @@
 {
+  "fluidTransform": {},
   "itemTransform": {
     "twilightdelight:raw_insect": {
       "next": "twilightdelight:cooked_insect",
@@ -16,6 +17,5 @@
       "next": "twilightdelight:cooked_venison_rib",
       "stage": "COOKED"
     }
-  },
-  "modelTransform": {}
+  }
 }

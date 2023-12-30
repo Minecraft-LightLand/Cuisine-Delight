@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
+import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -98,6 +99,15 @@ public class CookingData {
 
 		public long seed() {
 			return new Random(startTime).nextLong();
+		}
+
+		public Stage getStage(CookingData data) {
+			var config = IngredientConfig.get().getEntry(getItem());
+			assert config!=null;
+			float time = getDuration(data,0);
+			if (time< config.min_time)return Stage.RAW;
+			if (time < config.max_time)return Stage.COOKED;
+			return Stage.OVERCOOKED;
 		}
 	}
 

@@ -1,4 +1,5 @@
 {
+  "fluidTransform": {},
   "itemTransform": {
     "ends_delight:dragon_leg": {
       "next": "ends_delight:smoked_dragon_leg",
@@ -28,6 +29,5 @@
       "next": "ends_delight:roasted_shulker_meat_slice",
       "stage": "COOKED"
     }
-  },
-  "modelTransform": {}
+  }
 }

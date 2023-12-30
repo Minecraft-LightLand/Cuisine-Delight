@@ -4,7 +4,11 @@ import net.minecraft.world.item.ItemStack;
 
 public interface CookTransform {
 
-	ItemStack renderStack(ItemStack stack);
+	ItemStack renderStack(Stage stage, ItemStack stack);
+
+	default boolean isFluid() {
+		return false;
+	}
 
 	default int lightAdjust(int itemLight, boolean overcooked, boolean burnt) {
 		if (burnt) itemLight = half(itemLight);
