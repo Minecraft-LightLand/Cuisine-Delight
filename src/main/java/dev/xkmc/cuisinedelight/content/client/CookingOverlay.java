@@ -2,6 +2,7 @@ package dev.xkmc.cuisinedelight.content.client;
 
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
@@ -58,9 +59,9 @@ public class CookingOverlay implements IGuiOverlay {
 	public void render(ForgeGui gui, GuiGraphics g, float partialTick, int screenWidth, int screenHeight) {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
-		if (data == null || data.contents.size() == 0) return;
+		if (data == null || data.contents.isEmpty()) return;
 		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
-		screenHeight /= scale;
+		screenHeight = Math.round(screenHeight / scale);
 		g.pose().pushPose();
 		g.pose().scale(scale, scale, scale);
 		data.update(Minecraft.getInstance().level.getGameTime());
@@ -69,8 +70,9 @@ public class CookingOverlay implements IGuiOverlay {
 		Font font = Minecraft.getInstance().font;
 		for (var entry : data.contents) {
 			ItemStack food = entry.getItem();
-			g.renderItem(food, x, y + 2);
-			g.renderItemDecorations(font, food, x, y + 2);
+			var handle = CookTransformConfig.get(food);
+			g.renderItem(handle.renderStack(food), x, y + 2);
+			g.renderItemDecorations(font, handle.renderStack(food), x, y + 2);
 			y += 20;
 		}
 		x += 20;

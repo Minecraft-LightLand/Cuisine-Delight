@@ -4,8 +4,10 @@ import cn.foggyhillside.ends_delight.EndsDelight;
 import cn.foggyhillside.ends_delight.registry.ItemRegistry;
 import com.scouter.oceansdelight.OceansDelight;
 import com.scouter.oceansdelight.items.ODItems;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
+import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import dev.xkmc.twilightdelight.init.TwilightDelight;
@@ -89,6 +91,21 @@ public class CDConfigGen extends ConfigDataProvider {
 					IngredientConfig.get(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE), FoodType.NONE,
 							0, 300, 80, 0, 0, 1, 1)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "meat"), new CookTransformConfig()
+					.item(Items.MUTTON, Items.COOKED_MUTTON, Stage.COOKED)
+					.item(Items.BEEF, Items.COOKED_BEEF, Stage.COOKED)
+					.item(Items.PORKCHOP, Items.COOKED_PORKCHOP, Stage.COOKED)
+					.item(Items.CHICKEN, Items.COOKED_CHICKEN, Stage.COOKED)
+					.item(Items.RABBIT, Items.COOKED_RABBIT, Stage.COOKED)
+					.item(Items.COD, Items.COOKED_COD, Stage.COOKED)
+					.item(Items.SALMON, Items.COOKED_SALMON, Stage.COOKED)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "other"), new CookTransformConfig()
+					.item(Items.POTATO, Items.BAKED_POTATO, Stage.COOKED)
+					.item(Items.KELP, Items.DRIED_KELP, Stage.COOKED)
+			);
 		}
 		// farmer's delight
 		{
@@ -115,6 +132,17 @@ public class CDConfigGen extends ConfigDataProvider {
 					IngredientConfig.get(Ingredient.of(ModItems.COD_SLICE.get(), ModItems.SALMON_SLICE.get()), FoodType.SEAFOOD,
 							60, 120, 40, 0.5f, 0.5f, 1, 12)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(FarmersDelight.MODID, "meat"), new CookTransformConfig()
+					.item(ModItems.BACON.get(), ModItems.COOKED_BACON.get(), Stage.COOKED)
+					.item(ModItems.CHICKEN_CUTS.get(), ModItems.COOKED_CHICKEN_CUTS.get(), Stage.COOKED)
+					.item(ModItems.COD_SLICE.get(), ModItems.COOKED_COD_SLICE.get(), Stage.COOKED)
+					.item(ModItems.SALMON_SLICE.get(), ModItems.COOKED_SALMON_SLICE.get(), Stage.COOKED)
+					.item(ModItems.MINCED_BEEF.get(), ModItems.BEEF_PATTY.get(), Stage.COOKED)
+					.item(ModItems.MUTTON_CHOPS.get(), ModItems.COOKED_MUTTON_CHOPS.get(), Stage.COOKED)
+					.item(ModItems.HAM.get(), ModItems.SMOKED_HAM.get(), Stage.COOKED)
+			);
+
 		}
 
 		// twilight forest
@@ -138,6 +166,12 @@ public class CDConfigGen extends ConfigDataProvider {
 							300, 360, 40, 0.5f, 0.5f, 1, 1,
 							new IngredientConfig.EffectEntry(MobEffects.DAMAGE_RESISTANCE, 0, 1200))
 			));
+
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(TwilightForestMod.ID, "meat"), new CookTransformConfig()
+					.item(TFItems.RAW_MEEF.get(), TFItems.COOKED_MEEF.get(), Stage.COOKED)
+					.item(TFItems.RAW_VENISON.get(), TFItems.COOKED_VENISON.get(), Stage.COOKED)
+			);
 
 		}
 
@@ -180,6 +214,13 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 360, 80, 0.5f, 0.5f, 1, 1,
 							new IngredientConfig.EffectEntry(TDEffects.FIRE_RANGE.get(), 0, 1200))
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(TwilightDelight.MODID, "meat"), new CookTransformConfig()
+					.item(DelightFood.RAW_INSECT.item.get(), DelightFood.COOKED_INSECT.item.get(), Stage.COOKED)
+					.item(DelightFood.RAW_MEEF_SLICE.item.get(), DelightFood.COOKED_MEEF_SLICE.item.get(), Stage.COOKED)
+					.item(DelightFood.RAW_VENISON_RIB.item.get(), DelightFood.COOKED_VENISON_RIB.item.get(), Stage.COOKED)
+					.item(DelightFood.RAW_TOMAHAWK_SMEAK.item.get(), DelightFood.COOKED_TOMAHAWK_SMEAK.item.get(), Stage.COOKED)
+			);
 		}
 
 		// ends delight
@@ -204,6 +245,17 @@ public class CDConfigGen extends ConfigDataProvider {
 					IngredientConfig.get(Ingredient.of(ItemRegistry.ChorusFruitGrain.get()), FoodType.VEG,
 							0, 120, 60, 0.3f, 0.3f, 1, 2)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(EndsDelight.MODID, "meat"), new CookTransformConfig()
+					.item(ItemRegistry.RawDragonMeatCuts.get(), ItemRegistry.RoastedDragonMeatCuts.get(), Stage.COOKED)
+					.item(ItemRegistry.RawDragonMeat.get(), ItemRegistry.RoastedDragonMeat.get(), Stage.COOKED)
+					.item(ItemRegistry.DragonLeg.get(), ItemRegistry.SmokedDragonLeg.get(), Stage.COOKED)
+					.item(ItemRegistry.RawEnderMiteMeat.get(), ItemRegistry.DriedEnderMiteMeat.get(), Stage.COOKED)
+					.item(ItemRegistry.ShulkerMeat.get(), ItemRegistry.RoastedShulkerMeat.get(), Stage.COOKED)
+					.item(ItemRegistry.ShulkerMeatSlice.get(), ItemRegistry.RoastedShulkerMeatSlice.get(), Stage.COOKED)
+					.item(ItemRegistry.LiquidDragonEgg.get(), ItemRegistry.FriedDragonEgg.get(), Stage.COOKED)
+			);
+
 		}
 
 		// nether delight
@@ -222,6 +274,10 @@ public class CDConfigGen extends ConfigDataProvider {
 					IngredientConfig.get(Ingredient.of(NDItems.PROPELPEARL.get()), FoodType.VEG,
 							0, 300, 80, 0, 0, 1, 6)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(NethersDelight.MODID, "meat"), new CookTransformConfig()
+					.item(NDItems.HOGLIN_LOIN.get(), NDItems.HOGLIN_SIRLOIN.get(), Stage.COOKED)
+			);
 		}
 
 		// ocean delight
@@ -240,6 +296,11 @@ public class CDConfigGen extends ConfigDataProvider {
 					IngredientConfig.get(Ingredient.of(ODItems.FUGU_SLICE.get()), FoodType.SEAFOOD,
 							60, 120, 40, 0.3f, 0.3f, 1, 15)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(OceansDelight.MODID, "meat"), new CookTransformConfig()
+					.item(ODItems.ELDER_GUARDIAN_SLICE.get(), ODItems.COOKED_ELDER_GUARDIAN_SLICE.get(), Stage.COOKED)
+					.item(ODItems.GUARDIAN_TAIL.get(), ODItems.COOKED_GUARDIAN_TAIL.get(), Stage.COOKED)
+			);
 		}
 	}
 

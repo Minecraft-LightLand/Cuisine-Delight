@@ -3,7 +3,9 @@ package dev.xkmc.cuisinedelight.content.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
+import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,6 +13,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.Random;
 
@@ -29,7 +32,16 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 			poseStack.mulPose(Axis.ZP.rotationDegrees(time * 360));
 			poseStack.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360f));
 			poseStack.mulPose(Axis.XP.rotationDegrees(90));
-			renderer.renderStatic(entry.getItem(), ItemDisplayContext.GROUND, light, overlay, poseStack, buffer, Minecraft.getInstance().level, i++);
+			int itemLight = light;
+			ItemStack food = entry.getItem();
+			var config = IngredientConfig.get().getEntry(food);
+			assert config != null;
+			boolean overcooked = entry.getDuration(data, 0) > config.max_time;
+			boolean burnt = entry.getMaxStirTime(data) > config.stir_time;
+			var handle = CookTransformConfig.get(food);
+			itemLight = handle.lightAdjust(itemLight, overcooked, burnt);
+			renderer.renderStatic(handle.renderStack(food), ItemDisplayContext.GROUND, itemLight,
+					overlay, poseStack, buffer, Minecraft.getInstance().level, i++);
 			poseStack.popPose();
 		}
 	}
@@ -40,7 +52,7 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 	@Override
 	public void render(CuisineSkilletBlockEntity be, float pTick, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
 		CookingData data = be.cookingData;
-		if (data.contents.size() > 0) {
+		if (!data.contents.isEmpty()) {
 			data.update(Proxy.getClientWorld().getGameTime());
 			poseStack.pushPose();
 			poseStack.translate(0.5, 0.5, 0.5);

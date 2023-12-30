@@ -6,6 +6,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.cuisinedelight.compat.DietEvents;
 import dev.xkmc.cuisinedelight.compat.SolApplePieEvents;
 import dev.xkmc.cuisinedelight.compat.SolCarrotEvents;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
@@ -49,6 +50,8 @@ public class CuisineDelight {
 
 	public static final ConfigTypeEntry<IngredientConfig> INGREDIENT =
 			new ConfigTypeEntry<>(HANDLER, "ingredient", IngredientConfig.class);
+	public static final ConfigTypeEntry<CookTransformConfig> TRANSFORM =
+			new ConfigTypeEntry<>(HANDLER, "transform", CookTransformConfig.class);
 
 	public CuisineDelight() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

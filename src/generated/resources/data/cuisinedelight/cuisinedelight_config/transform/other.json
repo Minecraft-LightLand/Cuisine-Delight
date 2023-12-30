@@ -1,0 +1,13 @@
+{
+  "itemTransform": {
+    "minecraft:kelp": {
+      "next": "minecraft:dried_kelp",
+      "stage": "COOKED"
+    },
+    "minecraft:potato": {
+      "next": "minecraft:baked_potato",
+      "stage": "COOKED"
+    }
+  },
+  "modelTransform": {}
+}
