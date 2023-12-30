@@ -1,11 +1,11 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
 import dev.xkmc.cuisinedelight.content.logic.transform.*;
-import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.l2library.serial.config.BaseConfig;
+import dev.xkmc.cuisinedelight.init.data.NetworkManager;
+import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2library.serial.network.BaseConfig;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -15,7 +15,8 @@ import java.util.LinkedHashMap;
 public class CookTransformConfig extends BaseConfig {
 
 	public static CookTransform get(ItemStack stack) {
-		return CuisineDelight.TRANSFORM.getMerged().getTransform(stack);
+		CookTransformConfig config = NetworkManager.TRANSFORM.getMerged();
+		return config.getTransform(stack);
 	}
 
 	@ConfigCollect(CollectType.MAP_OVERWRITE)

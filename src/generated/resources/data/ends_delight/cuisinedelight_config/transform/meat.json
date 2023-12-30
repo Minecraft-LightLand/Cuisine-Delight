@@ -1,4 +1,5 @@
 {
+  "_class": "dev.xkmc.cuisinedelight.content.logic.CookTransformConfig",
   "fluidTransform": {},
   "itemTransform": {
     "ends_delight:dragon_leg": {

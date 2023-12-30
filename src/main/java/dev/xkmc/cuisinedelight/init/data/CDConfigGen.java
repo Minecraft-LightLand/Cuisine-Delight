@@ -9,6 +9,7 @@ import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.ConfigDataProvider;
 import dev.xkmc.twilightdelight.init.TwilightDelight;
@@ -93,7 +94,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 300, 80, 0, 0, 1, 1)
 			));
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "meat"), new CookTransformConfig()
+			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(Items.MUTTON, Items.COOKED_MUTTON, Stage.COOKED)
 					.item(Items.BEEF, Items.COOKED_BEEF, Stage.COOKED)
 					.item(Items.PORKCHOP, Items.COOKED_PORKCHOP, Stage.COOKED)
@@ -103,13 +104,13 @@ public class CDConfigGen extends ConfigDataProvider {
 					.item(Items.SALMON, Items.COOKED_SALMON, Stage.COOKED)
 			);
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "other"), new CookTransformConfig()
+			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/other", new CookTransformConfig()
 					.item(Items.POTATO, Items.BAKED_POTATO, Stage.COOKED)
 					.item(Items.KELP, Items.DRIED_KELP, Stage.COOKED)
 					.item(Items.EGG, CDItems.FRIED_EGG.get(), Stage.RAW)
 			);
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "fluids"), new CookTransformConfig()
+			map.put(CuisineDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/fluids", new CookTransformConfig()
 					.fluid(Items.HONEY_BOTTLE, 0xFFFED32E)
 			);
 		}
@@ -140,7 +141,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							60, 120, 40, 0.5f, 0.5f, 1, 12)
 			));
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(FarmersDelight.MODID, "meat"), new CookTransformConfig()
+			map.put(FarmersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(ModItems.BACON.get(), ModItems.COOKED_BACON.get(), Stage.COOKED)
 					.item(ModItems.CHICKEN_CUTS.get(), ModItems.COOKED_CHICKEN_CUTS.get(), Stage.COOKED)
 					.item(ModItems.COD_SLICE.get(), ModItems.COOKED_COD_SLICE.get(), Stage.COOKED)
@@ -150,7 +151,8 @@ public class CDConfigGen extends ConfigDataProvider {
 					.item(ModItems.HAM.get(), ModItems.SMOKED_HAM.get(), Stage.COOKED)
 			);
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(FarmersDelight.MODID, "fluids"), new CookTransformConfig()
+
+			map.put(FarmersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/fluids", new CookTransformConfig()
 					.fluid(ModItems.MILK_BOTTLE.get(), 0xFFFFFFFF)
 			);
 
@@ -179,7 +181,7 @@ public class CDConfigGen extends ConfigDataProvider {
 			));
 
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(TwilightForestMod.ID, "meat"), new CookTransformConfig()
+			map.put(TwilightForestMod.ID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(TFItems.RAW_MEEF.get(), TFItems.COOKED_MEEF.get(), Stage.COOKED)
 					.item(TFItems.RAW_VENISON.get(), TFItems.COOKED_VENISON.get(), Stage.COOKED)
 			);
@@ -226,14 +228,14 @@ public class CDConfigGen extends ConfigDataProvider {
 							new IngredientConfig.EffectEntry(TDEffects.FIRE_RANGE.get(), 0, 1200))
 			));
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(TwilightDelight.MODID, "meat"), new CookTransformConfig()
+			map.put(TwilightDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(DelightFood.RAW_INSECT.item.get(), DelightFood.COOKED_INSECT.item.get(), Stage.COOKED)
 					.item(DelightFood.RAW_MEEF_SLICE.item.get(), DelightFood.COOKED_MEEF_SLICE.item.get(), Stage.COOKED)
 					.item(DelightFood.RAW_VENISON_RIB.item.get(), DelightFood.COOKED_VENISON_RIB.item.get(), Stage.COOKED)
 					.item(DelightFood.RAW_TOMAHAWK_SMEAK.item.get(), DelightFood.COOKED_TOMAHAWK_SMEAK.item.get(), Stage.COOKED)
 			);
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(TwilightDelight.MODID, "fluids"), new CookTransformConfig()
+			map.put(TwilightDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/fluids", new CookTransformConfig()
 					.fluid(TFItems.FIERY_BLOOD.get(), 0xFF5C0A0B)
 					.fluid(TFItems.FIERY_TEARS.get(), 0xFF5C0A0B)
 			);
@@ -262,7 +264,8 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 120, 60, 0.3f, 0.3f, 1, 2)
 			));
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(EndsDelight.MODID, "meat"), new CookTransformConfig()
+
+			map.put(EndsDelight.MOD_ID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(ItemRegistry.RawDragonMeatCuts.get(), ItemRegistry.RoastedDragonMeatCuts.get(), Stage.COOKED)
 					.item(ItemRegistry.RawDragonMeat.get(), ItemRegistry.RoastedDragonMeat.get(), Stage.COOKED)
 					.item(ItemRegistry.DragonLeg.get(), ItemRegistry.SmokedDragonLeg.get(), Stage.COOKED)
@@ -291,7 +294,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 300, 80, 0, 0, 1, 6)
 			));
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(NethersDelight.MODID, "meat"), new CookTransformConfig()
+			map.put(NethersDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(NDItems.HOGLIN_LOIN.get(), NDItems.HOGLIN_SIRLOIN.get(), Stage.COOKED)
 			);
 		}
@@ -313,7 +316,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							60, 120, 40, 0.3f, 0.3f, 1, 15)
 			));
 
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(OceansDelight.MODID, "meat"), new CookTransformConfig()
+			map.put(OceansDelight.MODID + "/cuisinedelight_config/" + NetworkManager.TRANSFORM.getID() + "/meat", new CookTransformConfig()
 					.item(ODItems.ELDER_GUARDIAN_SLICE.get(), ODItems.COOKED_ELDER_GUARDIAN_SLICE.get(), Stage.COOKED)
 					.item(ODItems.GUARDIAN_TAIL.get(), ODItems.COOKED_GUARDIAN_TAIL.get(), Stage.COOKED)
 			);

@@ -34,7 +34,11 @@ public class CDItems {
 		}
 	}
 
+
+	public static final ItemEntry<Item> FRIED_EGG;
+
 	static {
+		FRIED_EGG = CuisineDelight.REGISTRATE.item("fried_egg", Item::new).register();
 		CuisineDelight.REGISTRATE.creativeModeTab(() -> new Tab("cuisine", CDItems.SKILLET::get));
 	}
 
@@ -43,10 +47,6 @@ public class CDItems {
 	public static final ItemEntry<PlateItem> PLATE;
 
 	static {
-		FRIED_EGG = CuisineDelight.REGISTRATE.item("fried_egg", Item::new).register();
-
-		TAB = CuisineDelight.REGISTRATE.buildModCreativeTab("cuisine", "Cuisine Delight",
-				e -> e.icon(CDItems.SKILLET::asStack));
 
 		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(CDBlocks.SKILLET.get(), p.stacksTo(1)))
 				.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")))
