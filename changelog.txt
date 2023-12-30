@@ -1,3 +1,9 @@
+1.1.12 / 1.0.8
+    - Use cooked texture for meat, add datapack support
+    - Render fluids
+    - Return container when adding ingredients, not when taking them out
+    - SoL use cooked stack instead of raw
+
 1.1.11 / 1.0.7
     - Fix Vege Pasta recipe
     - Add Nether Delight compat

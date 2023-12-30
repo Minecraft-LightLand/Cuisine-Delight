@@ -12,7 +12,7 @@ public class SolCarrotEvents {
 		var cap = FoodList.get(event.player);
 		boolean shouldUpdate = false;
 		for (var ent : event.data.entries) {
-			shouldUpdate |= cap.addFood(ent.stack().getItem());
+			shouldUpdate |= cap.addFood(ent.getEatenStack().getItem());
 		}
 		if (shouldUpdate) {
 			SOLCarrotAPI.syncFoodList(event.player);
