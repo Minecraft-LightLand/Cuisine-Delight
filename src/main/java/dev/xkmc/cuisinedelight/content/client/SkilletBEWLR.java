@@ -54,7 +54,7 @@ public class SkilletBEWLR extends BlockEntityWithoutLevelRenderer {
 		BakedModel model = Minecraft.getInstance().getModelManager().getModel(CuisineDelightClient.SKILLET_MODEL);
 		renderer.render(stack, type, false, poseStack, bufferSource, light, overlay, model);
 		CookingData data = CuisineSkilletItem.getData(stack);
-		if (data != null && data.contents.size() > 0) {
+		if (data != null && !data.contents.isEmpty()) {
 			data.update(Proxy.getClientWorld().getGameTime());
 			poseStack.pushPose();
 			model.applyTransform(type, poseStack, false);

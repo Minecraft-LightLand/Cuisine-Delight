@@ -1,0 +1,33 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "farmersdelight:bacon": {
+      "next": "farmersdelight:cooked_bacon",
+      "stage": "COOKED"
+    },
+    "farmersdelight:chicken_cuts": {
+      "next": "farmersdelight:cooked_chicken_cuts",
+      "stage": "COOKED"
+    },
+    "farmersdelight:cod_slice": {
+      "next": "farmersdelight:cooked_cod_slice",
+      "stage": "COOKED"
+    },
+    "farmersdelight:ham": {
+      "next": "farmersdelight:smoked_ham",
+      "stage": "COOKED"
+    },
+    "farmersdelight:minced_beef": {
+      "next": "farmersdelight:beef_patty",
+      "stage": "COOKED"
+    },
+    "farmersdelight:mutton_chops": {
+      "next": "farmersdelight:cooked_mutton_chops",
+      "stage": "COOKED"
+    },
+    "farmersdelight:salmon_slice": {
+      "next": "farmersdelight:cooked_salmon_slice",
+      "stage": "COOKED"
+    }
+  }
+}

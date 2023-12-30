@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
@@ -59,9 +60,9 @@ public class CookingOverlay implements IGuiOverlay {
 	public void render(ForgeGui gui, PoseStack g, float partialTick, int screenWidth, int screenHeight) {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
-		if (data == null || data.contents.size() == 0) return;
+		if (data == null || data.contents.isEmpty()) return;
 		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
-		screenHeight /= scale;
+		screenHeight = Math.round(screenHeight / scale);
 		PoseStack pose = RenderSystem.getModelViewStack();
 		pose.pushPose();
 		pose.scale(scale, scale, scale);
@@ -72,8 +73,10 @@ public class CookingOverlay implements IGuiOverlay {
 		Font font = Minecraft.getInstance().font;
 		for (var entry : data.contents) {
 			ItemStack food = entry.getItem();
-			gui.getMinecraft().getItemRenderer().renderAndDecorateItem(food, x, y + 2);
-			gui.getMinecraft().getItemRenderer().renderGuiItemDecorations(font, food, x, y + 2);
+			var handle = CookTransformConfig.get(food);
+			ItemStack render = handle.renderStack(entry.getStage(data), food);
+			gui.getMinecraft().getItemRenderer().renderAndDecorateItem(render, x, y + 2);
+			gui.getMinecraft().getItemRenderer().renderGuiItemDecorations(font, render, x, y + 2);
 			y += 20;
 		}
 		x += 20;

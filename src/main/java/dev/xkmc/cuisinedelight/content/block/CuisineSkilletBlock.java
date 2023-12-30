@@ -60,6 +60,9 @@ public class CuisineSkilletBlock extends SkilletBlock {
 					}
 					ItemStack add = heldStack.split(count);
 					be.cookingData.addItem(add, level.getGameTime());
+					ItemStack remain = add.getCraftingRemainingItem();
+					remain.setCount(add.getCount());
+					player.getInventory().placeItemBackInInventory(remain);
 					be.sync();
 				} else {
 					CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());

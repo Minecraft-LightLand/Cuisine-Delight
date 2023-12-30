@@ -99,6 +99,15 @@ public class CookingData {
 		public long seed() {
 			return new Random(startTime).nextLong();
 		}
+
+		public Stage getStage(CookingData data) {
+			var config = IngredientConfig.get().getEntry(getItem());
+			assert config!=null;
+			float time = getDuration(data,0);
+			if (time< config.min_time)return Stage.RAW;
+			if (time < config.max_time)return Stage.COOKED;
+			return Stage.OVERCOOKED;
+		}
 	}
 
 }

@@ -1,0 +1,13 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "twilightforest:raw_meef": {
+      "next": "twilightforest:cooked_meef",
+      "stage": "COOKED"
+    },
+    "twilightforest:raw_venison": {
+      "next": "twilightforest:cooked_venison",
+      "stage": "COOKED"
+    }
+  }
+}
