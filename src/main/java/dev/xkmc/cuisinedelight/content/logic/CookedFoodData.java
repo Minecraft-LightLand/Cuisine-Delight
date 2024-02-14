@@ -60,18 +60,19 @@ public class CookedFoodData {
 		this.score = Math.round(goodness * 100);
 		this.size = size;
 		this.total = size;
-		double mult = 1 + (types.size() - 1) * CDConfig.COMMON.varietyBonus.get();
-		if (penalty == 0) {
-			mult += CDConfig.COMMON.perfectionBonus.get();
-		}
-		this.nutrition = size == 0 ? 0 : (int) Math.round(mult * goodness * nutrition / size);
+
+		this.nutrition = size == 0 ? 0 : Math.round(goodness * nutrition / size);
 		this.glowstone = data.glowstone;
 		this.redstone = data.redstone;
 	}
 
 	public FoodProperties toFoodData() {
 		if (score < 60 || total == 0) return BAD;
-		var ans = new FoodProperties.Builder().nutrition(4).saturationMod(nutrition * 0.1f);
+		double mult = 1 + (types.size() - 1) * CDConfig.COMMON.varietyBonus.get();
+		if (score == 100) {
+			mult += CDConfig.COMMON.perfectionBonus.get();
+		}
+		var ans = new FoodProperties.Builder().nutrition((int) (mult * 4)).saturationMod(nutrition * 0.1f);
 		if (score == 100) {
 			ans.fast().alwaysEat();
 		}
