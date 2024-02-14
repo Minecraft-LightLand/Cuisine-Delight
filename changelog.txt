@@ -1,3 +1,6 @@
+1.1.13 / 1.0.9
+    - Tweak food bonus. now perfectly cooked food has nutrition bonus as well
+
 1.1.12 / 1.0.8
     - Use cooked texture for meat, add datapack support
     - Render fluids
