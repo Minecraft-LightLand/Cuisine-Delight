@@ -1,0 +1,21 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "alexsmobs:kangaroo_meat": {
+      "next": "alexsmobs:cooked_kangaroo_meat",
+      "stage": "COOKED"
+    },
+    "alexsmobs:lobster_tail": {
+      "next": "alexsmobs:cooked_lobster_tail",
+      "stage": "COOKED"
+    },
+    "alexsmobs:moose_ribs": {
+      "next": "alexsmobs:cooked_moose_ribs",
+      "stage": "COOKED"
+    },
+    "alexsmobs:raw_catfish": {
+      "next": "alexsmobs:cooked_catfish",
+      "stage": "COOKED"
+    }
+  }
+}

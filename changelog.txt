@@ -1,3 +1,6 @@
+1.1.14 / 1.0.10
+    - Add miner's delight, croptopia, Alex's Mobs, Alex's Delight compat
+
 1.1.13 / 1.0.9
     - Tweak food bonus. now perfectly cooked food has nutrition bonus as well
 

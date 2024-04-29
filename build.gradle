@@ -211,9 +211,18 @@ dependencies {
     implementation fg.deobf("curse.maven:ends-delight-662675:4643639")
     implementation fg.deobf("curse.maven:nethers-delight-496394:4736227")
     implementation fg.deobf("curse.maven:oceans-delight-841262:4652060")
+    implementation fg.deobf("curse.maven:miners-delight-plus-689630:5038950")
+    implementation fg.deobf("curse.maven:alexs-delight-556448:5028450")
+    implementation fg.deobf("curse.maven:alexs-mobs-426558:5160697")
+    implementation fg.deobf("curse.maven:citadel-331936:5143956")
+    implementation fg.deobf("curse.maven:epherolib-885449:4889101")
+    implementation fg.deobf("curse.maven:croptopia-415438:4997459")
+
 
     compileOnly fg.deobf("curse.maven:spice-of-life-carrot-edition-277616:4650707")
     compileOnly fg.deobf("curse.maven:spice-of-life-apple-pie-edition-704584:4596285")
     compileOnly fg.deobf("curse.maven:diet-443570:4634780")
+
+
 
 }

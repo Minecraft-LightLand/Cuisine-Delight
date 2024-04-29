@@ -1,0 +1,29 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "alexsdelight:bison_mince": {
+      "next": "alexsdelight:bison_patty",
+      "stage": "COOKED"
+    },
+    "alexsdelight:kangaroo_shank": {
+      "next": "alexsdelight:cooked_kangaroo_shank",
+      "stage": "COOKED"
+    },
+    "alexsdelight:loose_moose_rib": {
+      "next": "alexsdelight:cooked_loose_moose_rib",
+      "stage": "COOKED"
+    },
+    "alexsdelight:raw_bison": {
+      "next": "alexsdelight:cooked_bison",
+      "stage": "COOKED"
+    },
+    "alexsdelight:raw_bunfungus": {
+      "next": "alexsdelight:cooked_bunfungus",
+      "stage": "COOKED"
+    },
+    "alexsdelight:raw_bunfungus_drumstick": {
+      "next": "alexsdelight:cooked_bunfungus_drumstick",
+      "stage": "COOKED"
+    }
+  }
+}
