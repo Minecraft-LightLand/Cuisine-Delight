@@ -7,16 +7,15 @@ import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.client.CuisineSkilletRenderer;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.CopySkilletFunction;
-import dev.xkmc.l2library.util.data.LootTableTemplate;
-import net.minecraft.resources.ResourceLocation;
+import dev.xkmc.l2core.serial.loot.LootTableTemplate;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import vectorwing.farmersdelight.common.block.SkilletBlock;
 
 public class CDBlocks {
@@ -32,8 +31,8 @@ public class CDBlocks {
 				.blockstate((ctx, pvd) -> pvd.getVariantBuilder(ctx.getEntry()).forAllStates(e ->
 						ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(
 										e.getValue(SkilletBlock.SUPPORT) ?
-												new ResourceLocation(CuisineDelight.MODID, "block/cuisine_skillet_tray") :
-												new ResourceLocation(CuisineDelight.MODID, "block/cuisine_skillet"))
+												CuisineDelight.loc("block/cuisine_skillet_tray") :
+												CuisineDelight.loc("block/cuisine_skillet"))
 								).rotationY(((int) e.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
 								.build()))
 				.loot((loot, block) -> loot.add(block,

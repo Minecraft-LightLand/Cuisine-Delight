@@ -3,7 +3,6 @@ package dev.xkmc.cuisinedelight.init.data;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
@@ -25,7 +24,7 @@ public class TagGen {
 	}
 
 	private static TagKey<Item> createItemTag(String id) {
-		return ItemTags.create(new ResourceLocation(CuisineDelight.MODID, id));
+		return ItemTags.create(CuisineDelight.loc(id));
 	}
 
 }

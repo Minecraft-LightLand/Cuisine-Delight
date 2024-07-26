@@ -10,11 +10,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = CuisineDelight.MODID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, modid = CuisineDelight.MODID)
 public class EventListeners {
 
 	@SubscribeEvent
@@ -34,9 +34,10 @@ public class EventListeners {
 			for (var e : config.effects) {
 				MobEffectInstance mobeffectinstance = new MobEffectInstance(e.effect(), e.time());
 				MutableComponent mutablecomponent = Component.translatable(mobeffectinstance.getDescriptionId());
-				MobEffect mobeffect = mobeffectinstance.getEffect();
+				MobEffect mobeffect = mobeffectinstance.getEffect().value();
 				if (mobeffectinstance.getDuration() > 20) {
-					mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(mobeffectinstance, 1));
+					mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent,
+							MobEffectUtil.formatDuration(mobeffectinstance, 1, 20));
 				}
 				event.getToolTip().add(mutablecomponent.withStyle(mobeffect.getCategory().getTooltipFormatting()));
 			}

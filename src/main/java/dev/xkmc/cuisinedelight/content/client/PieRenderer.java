@@ -18,7 +18,7 @@ public record PieRenderer(GuiGraphics g, int x, int y) {
 		PIE_GREEN, PIE_YELLOW, PIE_RED, NEEDLE_RED, NEEDLE_BLACK, COOK, FLIP;
 
 		public ResourceLocation getID() {
-			return new ResourceLocation(CuisineDelight.MODID, "textures/gui/overlay/" + name().toLowerCase(Locale.ROOT) + ".png");
+			return CuisineDelight.loc("textures/gui/overlay/" + name().toLowerCase(Locale.ROOT) + ".png");
 		}
 	}
 
@@ -31,9 +31,8 @@ public record PieRenderer(GuiGraphics g, int x, int y) {
 		RenderSystem.setShaderTexture(0, type.getID());
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		Matrix4f matrix4f = g.pose().last().pose();
-		BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
-		bufferbuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f, x, y, Z).uv(0.5f, 0.5f).endVertex();
+		BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_TEX);
+		bufferbuilder.addVertex(matrix4f, x, y, Z).setUv(0.5f, 0.5f);
 		for (int i = Mth.ceil(a1 * 4 + 0.5f); i >= Mth.floor(a0 * 4 + 0.5f); i--) {
 			double a = Mth.clamp(i * 0.25f - 0.125f, a0, a1) * 2 * Math.PI;
 			float cos = (float) Math.cos(a);
@@ -44,9 +43,10 @@ public record PieRenderer(GuiGraphics g, int x, int y) {
 			} else {
 				r = Math.abs(0.5f / sin);
 			}
-			bufferbuilder.vertex(matrix4f, x + 16 * r * cos, y + 16 * r * sin, Z).uv(0.5f + r * cos, 0.5f + r * sin).endVertex();
+			bufferbuilder.addVertex(matrix4f, x + 16 * r * cos, y + 16 * r * sin, Z).setUv(0.5f + r * cos, 0.5f + r * sin);
 		}
-		BufferUploader.drawWithShader(bufferbuilder.end());
+		var ans = bufferbuilder.build();
+		if (ans != null) BufferUploader.drawWithShader(ans);
 	}
 
 	public void drawNeedle(Texture needle, float a) {

@@ -1,14 +1,13 @@
 package dev.xkmc.cuisinedelight.content.recipe;
 
 import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
-import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.resources.ResourceLocation;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
 
 @SerialClass
 public class PlateCuisineRecipe extends BaseCuisineRecipe<PlateCuisineRecipe> {
 
-	public PlateCuisineRecipe(ResourceLocation id) {
-		super(id, CDMisc.PLATE_CUISINE.get());
+	public PlateCuisineRecipe() {
+		super(CDMisc.PLATE_CUISINE.get());
 	}
 
 }

@@ -3,27 +3,30 @@ package dev.xkmc.cuisinedelight.init.data;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.l2library.serial.config.ConfigDataProvider;
+import dev.xkmc.l2core.serial.config.ConfigDataProvider;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
+import java.util.concurrent.CompletableFuture;
+
 public class CDConfigGen extends ConfigDataProvider {
 
-	public CDConfigGen(DataGenerator generator) {
-		super(generator, "Cuisine Delight Config");
+	public CDConfigGen(DataGenerator generator, CompletableFuture<HolderLookup.Provider> pvd) {
+		super(generator, pvd, "Cuisine Delight Config");
 	}
 
 	@Override
 	public void add(Collector map) {
 		// vanilla
 		{
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "meat"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, CuisineDelight.loc("meat"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.MUTTON, Items.PORKCHOP, Items.BEEF), FoodType.MEAT,
 							180, 240, 80, 0.5f, 0.5f, 3, 10),
 					IngredientConfig.get(Ingredient.of(Items.PORKCHOP), FoodType.MEAT,
@@ -42,7 +45,7 @@ public class CDConfigGen extends ConfigDataProvider {
 					)
 			));
 
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "vege"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, CuisineDelight.loc("vege"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.POTATO), FoodType.CARB,
 							180, 360, 60, 0.5f, 0.3f, 1, 8),
 					IngredientConfig.get(Ingredient.of(Items.BEETROOT, Items.CARROT), FoodType.VEG,
@@ -70,7 +73,7 @@ public class CDConfigGen extends ConfigDataProvider {
 			));
 
 
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "misc"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, CuisineDelight.loc("misc"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.DANDELION), FoodType.NONE,
 							60, 80, 40, 0, 0, 0, 0,
 							new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 7)),
@@ -80,7 +83,7 @@ public class CDConfigGen extends ConfigDataProvider {
 		}
 		// farmer's delight
 		{
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(FarmersDelight.MODID, "vege"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "vege"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(ModItems.RICE.get(), ModItems.RAW_PASTA.get(), ModItems.WHEAT_DOUGH.get()), FoodType.CARB,
 							300, 360, 80, 0.7f, 0.5f, 2, 8),
 					IngredientConfig.get(Ingredient.of(ModItems.TOMATO.get(), ModItems.CABBAGE.get(), ModItems.ONION.get(), ModItems.PUMPKIN_SLICE.get()), FoodType.VEG,
@@ -91,7 +94,7 @@ public class CDConfigGen extends ConfigDataProvider {
 							0, 360, 60, 0, 0, 1, 1)
 			));
 
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(FarmersDelight.MODID, "meat"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "meat"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(ModItems.HAM.get()), FoodType.MEAT,
 							240, 360, 80, 0.5f, 0.5f, 3, 10),
 					IngredientConfig.get(Ingredient.of(ModItems.MINCED_BEEF.get(), ModItems.MUTTON_CHOPS.get()), FoodType.MEAT,

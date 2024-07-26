@@ -37,7 +37,7 @@
       "type": "VEG",
       "effects": [],
       "ingredient": {
-        "tag": "forge:mushrooms"
+        "tag": "c:mushrooms"
       },
       "max_time": 360,
       "min_time": 60,

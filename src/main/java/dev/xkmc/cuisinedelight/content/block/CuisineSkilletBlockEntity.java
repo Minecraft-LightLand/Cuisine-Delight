@@ -3,9 +3,11 @@ package dev.xkmc.cuisinedelight.content.block;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.item.SpatulaItem;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
+import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
-import dev.xkmc.l2library.base.tile.BaseBlockEntity;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2core.base.tile.BaseBlockEntity;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -20,14 +22,14 @@ import javax.annotation.Nonnull;
 @SerialClass
 public class CuisineSkilletBlockEntity extends BaseBlockEntity implements HeatableBlockEntity {
 
-	@SerialClass.SerialField(toClient = true)
+	@SerialField
 	public ItemStack baseItem = CDItems.SKILLET.asStack();
 
 	@Nonnull
-	@SerialClass.SerialField(toClient = true)
+	@SerialField
 	public CookingData cookingData = new CookingData();
 
-	@SerialClass.SerialField(toClient = true)
+	@SerialField
 	private int stirTimer = 0;
 
 	public CuisineSkilletBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -41,7 +43,7 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 	}
 
 	public boolean isCooking() {
-		return cookingData.contents.size() > 0;
+		return !cookingData.contents.isEmpty();
 	}
 
 	public NonNullList<ItemStack> getItems() {
@@ -60,15 +62,15 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 
 	public ItemStack toItemStack() {
 		ItemStack ans = baseItem.copy();
-		if (cookingData.contents.size() > 0) {
+		if (!cookingData.contents.isEmpty()) {
 			CuisineSkilletItem.setData(ans, cookingData);
 		}
 		return ans;
 	}
 
 	public boolean canCook() {
-		return baseItem.getEnchantmentLevel(Enchantments.FIRE_ASPECT) > 0 ||
-				this.level != null && this.isHeated(this.level, this.getBlockPos());
+		return this.level != null && this.isHeated(this.level, this.getBlockPos()) ||
+				EnchHelper.getEnchLevel(baseItem, Enchantments.FIRE_ASPECT) > 0;
 	}
 
 	public float getStirPercent(float pTick) {

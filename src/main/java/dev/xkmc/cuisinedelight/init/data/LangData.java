@@ -14,6 +14,7 @@ public enum LangData {
 	SERVE_SIZE("tooltip.size", "Serve size: %s", 1, ChatFormatting.GRAY),
 	SCORE("tooltip.score", "Quality: %s%%", 1, ChatFormatting.AQUA),
 	BAD_FOOD("tooltip.bad", "Inedible", 0, ChatFormatting.RED),
+	CREATIVE("tooltip.creative", "For display only", 0, ChatFormatting.GRAY),
 	SHIFT("tooltip.shift", "Press Shift for culinary details", 0, ChatFormatting.GRAY),
 	BAD_BURNT("tooltip.burnt", "Ingredient %s is burnt", 1, ChatFormatting.DARK_RED),
 	BAD_RAW("tooltip.raw", "Ingredient %s is a bit raw", 1, ChatFormatting.DARK_RED),

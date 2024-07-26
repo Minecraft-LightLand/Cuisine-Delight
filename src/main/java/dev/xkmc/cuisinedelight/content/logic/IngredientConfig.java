@@ -1,10 +1,12 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.l2library.serial.config.BaseConfig;
-import dev.xkmc.l2library.serial.config.CollectType;
-import dev.xkmc.l2library.serial.config.ConfigCollect;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2core.serial.config.BaseConfig;
+import dev.xkmc.l2core.serial.config.CollectType;
+import dev.xkmc.l2core.serial.config.ConfigCollect;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +22,7 @@ public class IngredientConfig extends BaseConfig {
 		return CuisineDelight.INGREDIENT.getMerged();
 	}
 
-	@SerialClass.SerialField
+	@SerialField
 	@ConfigCollect(CollectType.COLLECT)
 	public ArrayList<IngredientEntry> entries = new ArrayList<>();
 
@@ -29,7 +31,7 @@ public class IngredientConfig extends BaseConfig {
 
 	@Nullable
 	public IngredientEntry getEntry(ItemStack stack) {
-		if (stack.getTag() == null) {
+		if (stack.isComponentsPatchEmpty()) {
 			if (empty.contains(stack.getItem())) {
 				return null;
 			}
@@ -39,13 +41,13 @@ public class IngredientConfig extends BaseConfig {
 		}
 		for (var e : entries) {
 			if (e.ingredient.test(stack)) {
-				if (stack.getTag() == null) {
+				if (stack.isComponentsPatchEmpty()) {
 					cache.put(stack.getItem(), e);
 				}
 				return e;
 			}
 		}
-		if (stack.getTag() == null) {
+		if (stack.isComponentsPatchEmpty()) {
 			empty.add(stack.getItem());
 		}
 		return null;
@@ -54,22 +56,22 @@ public class IngredientConfig extends BaseConfig {
 	@SerialClass
 	public static class IngredientEntry {
 
-		@SerialClass.SerialField
+		@SerialField
 		public Ingredient ingredient;
-		@SerialClass.SerialField
+		@SerialField
 		public FoodType type;
-		@SerialClass.SerialField
+		@SerialField
 		public int min_time, max_time, stir_time;
-		@SerialClass.SerialField
+		@SerialField
 		public float raw_penalty, overcook_penalty;
-		@SerialClass.SerialField
+		@SerialField
 		public int size, nutrition;
-		@SerialClass.SerialField
+		@SerialField
 		public ArrayList<EffectEntry> effects = new ArrayList<>();
 
 	}
 
-	public record EffectEntry(MobEffect effect, int level, int time) {
+	public record EffectEntry(Holder<MobEffect> effect, int level, int time) {
 	}
 
 	public static IngredientEntry get(Ingredient ingredient, FoodType type, int min_time, int max_time, int stir_time, float raw_penalty, float overcook_penalty, int size, int nutrition, EffectEntry... effects) {

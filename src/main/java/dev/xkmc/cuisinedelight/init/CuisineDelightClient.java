@@ -5,19 +5,18 @@ import dev.xkmc.cuisinedelight.content.client.FoodItemDecorationRenderer;
 import dev.xkmc.cuisinedelight.content.client.SkilletBEWLR;
 import dev.xkmc.cuisinedelight.init.registrate.PlateFood;
 import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = CuisineDelight.MODID)
+@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD, modid = CuisineDelight.MODID)
 public class CuisineDelightClient {
 
 	public static final ModelResourceLocation SKILLET_MODEL = new ModelResourceLocation(
-			new ResourceLocation(CuisineDelight.MODID, "cuisine_skillet_base"), "inventory");
+			CuisineDelight.loc("cuisine_skillet_base"), "inventory");
 
 	@SubscribeEvent
 	public static void onParticleRegistryEvent(RegisterParticleProvidersEvent event) {
@@ -41,8 +40,8 @@ public class CuisineDelightClient {
 	}
 
 	@SubscribeEvent
-	public static void onOverlayRegister(RegisterGuiOverlaysEvent event) {
-		event.registerAbove(VanillaGuiOverlay.CROSSHAIR.id(), "cooking", new CookingOverlay());
+	public static void onOverlayRegister(RegisterGuiLayersEvent event) {
+		event.registerAbove(VanillaGuiLayers.CROSSHAIR, CuisineDelight.loc("cooking"), new CookingOverlay());
 	}
 
 

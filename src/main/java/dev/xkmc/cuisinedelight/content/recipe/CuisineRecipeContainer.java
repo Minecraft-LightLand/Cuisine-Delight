@@ -1,17 +1,17 @@
 package dev.xkmc.cuisinedelight.content.recipe;
 
 import dev.xkmc.cuisinedelight.content.logic.CookedFoodData;
-import dev.xkmc.l2library.serial.recipe.BaseRecipe;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeInput;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CuisineRecipeContainer extends SimpleContainer implements BaseRecipe.RecInv<BaseCuisineRecipe<?>> {
+public class CuisineRecipeContainer extends SimpleContainer implements RecipeInput {
 
 	public final List<ItemStack> list = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class CuisineRecipeContainer extends SimpleContainer implements BaseRecip
 		Map<Item, Integer> map = new LinkedHashMap<>();
 		List<ItemStack> special = new ArrayList<>();
 		for (var ent : foodData.entries) {
-			if (!ent.stack().hasTag()) {
+			if (ent.stack().isComponentsPatchEmpty()) {
 				map.compute(ent.stack().getItem(), (x, old) -> (old == null ? 0 : old) + ent.itemSize());
 			} else {
 				ItemStack copy = ent.stack().copy();
@@ -31,4 +31,9 @@ public class CuisineRecipeContainer extends SimpleContainer implements BaseRecip
 		list.addAll(special);
 	}
 
+	@Override
+	public int size() {
+		return list.size();
+	}
+	
 }

@@ -3,10 +3,10 @@ package dev.xkmc.cuisinedelight.content.recipe;
 import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
 import dev.xkmc.cuisinedelight.content.logic.CookedFoodData;
 import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
-import dev.xkmc.l2library.serial.recipe.BaseRecipe;
-import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
+import dev.xkmc.l2core.serial.recipe.BaseRecipe;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -22,31 +22,31 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 		BaseCuisineRecipe<?> ans = null;
 		double score = -1;
 		for (var r : list) {
-			double s = r.getScore(inv);
+			double s = r.value().getScore(inv);
 			if (s > score) {
 				score = s;
-				ans = r;
+				ans = r.value();
 			}
 		}
 		assert ans != null;
 		score -= ans.getScoreOffset();
 		ItemStack result = ans.assemble(inv, level.registryAccess());
-		food.nutrition *= 1 + ans.saturationBonusModifier * score;
+		food.nutrition = (int) (food.nutrition * (1 + ans.saturationBonusModifier * score));
 		BaseFoodItem.setData(result, food);
 		return result;
 	}
 
-	@SerialClass.SerialField
+	@SerialField
 	public final ArrayList<CuisineRecipeMatch> list = new ArrayList<>();
 
-	@SerialClass.SerialField
+	@SerialField
 	public double saturationBonus, saturationBonusModifier;
 
-	@SerialClass.SerialField
+	@SerialField
 	public Item holderItem;
 
-	public BaseCuisineRecipe(ResourceLocation id, RecType<R, BaseCuisineRecipe<?>, CuisineRecipeContainer> fac) {
-		super(id, fac);
+	public BaseCuisineRecipe(RecType<R, BaseCuisineRecipe<?>, CuisineRecipeContainer> fac) {
+		super(fac);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 	}
 
 	@Override
-	public ItemStack assemble(CuisineRecipeContainer cont, RegistryAccess access) {
+	public ItemStack assemble(CuisineRecipeContainer cont, HolderLookup.Provider access) {
 		return holderItem.getDefaultInstance();
 	}
 
@@ -80,7 +80,7 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 	}
 
 	@Override
-	public ItemStack getResultItem(RegistryAccess access) {
+	public ItemStack getResultItem(HolderLookup.Provider access) {
 		if (holderItem instanceof BaseFoodItem food) {
 			return food.displayStack(this);
 		}

@@ -17,10 +17,10 @@ public class CommonDecoUtil {
 		float f1 = (float) FastColor.ARGB32.green(col) / 255.0F;
 		float f2 = (float) FastColor.ARGB32.blue(col) / 255.0F;
 		VertexConsumer vertexconsumer = g.bufferSource().getBuffer(RenderType.gui());
-		vertexconsumer.vertex(matrix4f, x, y, Z).color(f, f1, f2, f3).endVertex();
-		vertexconsumer.vertex(matrix4f, x, y + h, Z).color(f, f1, f2, f3).endVertex();
-		vertexconsumer.vertex(matrix4f, x + w, y + h, Z).color(f, f1, f2, f3).endVertex();
-		vertexconsumer.vertex(matrix4f, x + w, y, Z).color(f, f1, f2, f3).endVertex();
+		vertexconsumer.addVertex(matrix4f, x, y, Z).setColor(f, f1, f2, f3);
+		vertexconsumer.addVertex(matrix4f, x, y + h, Z).setColor(f, f1, f2, f3);
+		vertexconsumer.addVertex(matrix4f, x + w, y + h, Z).setColor(f, f1, f2, f3);
+		vertexconsumer.addVertex(matrix4f, x + w, y, Z).setColor(f, f1, f2, f3);
 		g.flush();
 	}
 

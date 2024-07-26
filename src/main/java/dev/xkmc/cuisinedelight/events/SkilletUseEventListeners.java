@@ -2,18 +2,18 @@ package dev.xkmc.cuisinedelight.events;
 
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
-import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.TagGen;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.util.TriState;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = CuisineDelight.MODID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, modid = CuisineDelight.MODID)
 public class SkilletUseEventListeners {
 
 	private static boolean noBlockUse(Player player) {
@@ -45,7 +45,7 @@ public class SkilletUseEventListeners {
 	@SubscribeEvent
 	public static void onBlockRightClick(PlayerInteractEvent.RightClickBlock event) {
 		if (noBlockUse(event.getEntity())) {
-			event.setUseBlock(Event.Result.DENY);
+			event.setUseBlock(TriState.FALSE);
 			if (useOffHand(event.getEntity())) {
 				event.setCanceled(true);
 			}

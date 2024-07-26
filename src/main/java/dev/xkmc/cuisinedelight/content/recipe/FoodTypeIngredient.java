@@ -3,38 +3,32 @@ package dev.xkmc.cuisinedelight.content.recipe;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.l2library.serial.ingredients.BaseIngredient;
-import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.resources.ResourceLocation;
+import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.crafting.ICustomIngredient;
+import net.neoforged.neoforge.common.crafting.IngredientType;
 
-@SerialClass
-public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
+import java.util.stream.Stream;
 
-	public static final Serializer<FoodTypeIngredient> INSTANCE =
-			new Serializer<>(FoodTypeIngredient.class, new ResourceLocation(CuisineDelight.MODID, "food_type"));
+public record FoodTypeIngredient(FoodType foodType) implements ICustomIngredient {
 
-	@SerialClass.SerialField
-	private FoodType foodType;
-
-	/**
-	 * @deprecated
-	 */
-	@Deprecated
-	public FoodTypeIngredient() {
+	public static Ingredient of(FoodType type){
+		return new FoodTypeIngredient(type).toVanilla();
 	}
 
-	public FoodTypeIngredient(FoodType foodType) {
-		super(foodType.getDisplay());
-		this.foodType = foodType;
+	public Stream<ItemStack> getItems() {
+		return Stream.of(foodType.getDisplay());
 	}
 
-	@Override
-	protected FoodTypeIngredient validate() {
-		return new FoodTypeIngredient(foodType);
+	public boolean isSimple() {
+		return false;
 	}
 
-	@Override
+	public IngredientType<?> getType() {
+		return CDMisc.ING_FOOD_TYPE.get();
+	}
+
 	public boolean test(ItemStack stack) {
 		IngredientConfig config = CuisineDelight.INGREDIENT.getMerged();
 		var entry = config.getEntry(stack);
@@ -42,8 +36,4 @@ public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
 		return entry.type == foodType;
 	}
 
-	@Override
-	public Serializer<FoodTypeIngredient> getSerializer() {
-		return INSTANCE;
-	}
 }

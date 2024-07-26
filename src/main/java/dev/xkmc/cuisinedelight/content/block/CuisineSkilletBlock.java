@@ -1,6 +1,7 @@
 package dev.xkmc.cuisinedelight.content.block;
 
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
+import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
@@ -13,12 +14,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -35,36 +36,35 @@ public class CuisineSkilletBlock extends SkilletBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		BlockEntity tileEntity = level.getBlockEntity(pos);
 		if (tileEntity instanceof CuisineSkilletBlockEntity be) {
-			ItemStack heldStack = player.getItemInHand(hand);
-			var config = IngredientConfig.get().getEntry(heldStack);
+			var config = IngredientConfig.get().getEntry(stack);
 			if (config != null) {
 				if (!be.canCook()) {
 					if (player instanceof ServerPlayer serverPlayer) {
 						serverPlayer.sendSystemMessage(LangData.MSG_NO_HEAT.get(), true);
 					}
-					return InteractionResult.FAIL;
+					return ItemInteractionResult.FAIL;
 				}
-				if (be.cookingData.contents.size() >= CDConfig.COMMON.maxIngredient.get()) {
+				if (be.cookingData.contents.size() >= CDConfig.SERVER.maxIngredient.get()) {
 					if (!level.isClientSide()) {
 						((ServerPlayer) player).sendSystemMessage(LangData.MSG_FULL.get(), true);
 					}
-					return InteractionResult.FAIL;
+					return ItemInteractionResult.FAIL;
 				}
 				if (!level.isClientSide) {
-					int count = 1 + be.baseItem.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY);
-					ItemStack add = heldStack.split(count);
+					int count = 1 + EnchHelper.getEnchLevel(be.baseItem, Enchantments.EFFICIENCY);
+					ItemStack add = stack.split(count);
 					be.cookingData.addItem(add, level.getGameTime());
 					be.sync();
 				} else {
 					CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());
 				}
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class CuisineSkilletBlock extends SkilletBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		if (level.getBlockEntity(pos) instanceof CuisineSkilletBlockEntity be) {
 			return be.toItemStack();
 		}

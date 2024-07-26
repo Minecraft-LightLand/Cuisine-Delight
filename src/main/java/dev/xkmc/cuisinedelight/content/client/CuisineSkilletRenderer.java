@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
-import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -40,8 +39,8 @@ public class CuisineSkilletRenderer implements BlockEntityRenderer<CuisineSkille
 	@Override
 	public void render(CuisineSkilletBlockEntity be, float pTick, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
 		CookingData data = be.cookingData;
-		if (data.contents.size() > 0) {
-			data.update(Proxy.getClientWorld().getGameTime());
+		if (!data.contents.isEmpty()) {
+			data.update(Minecraft.getInstance().level.getGameTime());
 			poseStack.pushPose();
 			poseStack.translate(0.5, 0.5, 0.5);
 			float time = be.getStirPercent(pTick);

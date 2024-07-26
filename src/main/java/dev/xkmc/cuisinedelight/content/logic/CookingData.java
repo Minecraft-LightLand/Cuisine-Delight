@@ -1,6 +1,7 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -9,13 +10,13 @@ import java.util.ArrayList;
 @SerialClass
 public class CookingData {
 
-	@SerialClass.SerialField
+	@SerialField
 	public long lastActionTime;
 
-	@SerialClass.SerialField
+	@SerialField
 	public int glowstone, redstone;
 
-	@SerialClass.SerialField
+	@SerialField
 	public ArrayList<CookingEntry> contents = new ArrayList<>();
 
 	public void update(long time) {
@@ -43,16 +44,16 @@ public class CookingData {
 	@SerialClass
 	public static class CookingEntry {
 
-		@SerialClass.SerialField
+		@SerialField
 		public ItemStack item;
 
-		@SerialClass.SerialField
+		@SerialField
 		public long startTime;
 
-		@SerialClass.SerialField
+		@SerialField
 		public long lastStirTime;
 
-		@SerialClass.SerialField
+		@SerialField
 		public int maxStirTime;
 
 		@Deprecated

@@ -1,167 +1,122 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
-    }
-    dependencies {
-        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
-}
-
 plugins {
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.0.153'
 }
 
-apply plugin: 'maven-publish'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+version = mod_version
+group = 'dev.kxmc'
 
-version = "${ll_version}"
-group = "dev.kxmc.${modid}"
-archivesBaseName = "${modid}"
-
-if (lljij.toBoolean()) jarJar.enable()
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-minecraft {
-    //mappings channel: 'parchment', version: '1.19.3-2023.03.12-1.19.4'
-    mappings channel: 'official', version: "${minecraft_version}"
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'info'
-            mods {
-                "${modid}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'info'
-            mods {
-                "${modid}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'info'
-
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                "${modid}" {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
+repositories {
+    mavenLocal()
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-mixin {
-    add sourceSets.main, "${modid}.refmap.json"
-    config "${modid}.mixins.json"
-}
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "${modid}",
-                "Specification-Vendor"    : "xkmc",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "xkmc",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'MixinConfigs'            : "${modid}.mixins.json"
-        ])
-    }
+base {
+    archivesName = mod_id
 }
 
 java {
     withSourcesJar()
 }
 
-jar.finalizedBy('reobfJar')
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
+minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+
+runs {
+    configureEach {
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+        modSource project.sourceSets.main
+    }
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        programArgument '--nogui'
+    }
+    gameTestServer {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+    data {
+        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+
+dependencies {
+    implementation "net.neoforged:neoforge:${neo_version}"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neo_version         : neo_version, neo_version_range: neo_version_range,
+            loader_version_range: loader_version_range,
+            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors         : mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+// Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact jar
+        register('mavenJava', MavenPublication) {
+            from components.java
         }
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url "file://${project.projectDir}/repo"
         }
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
-if (lljij.toBoolean()) {
-
-    reobf {
-        jarJar {}
-    }
-
-    tasks.jarJar.finalizedBy('reobfJarJar')
-
-    tasks.jarJar.configure {
-        archiveClassifier.set('')
-    }
-
-    jar {
-        archiveClassifier.set('slim')
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "${mod_id}",
+                "Specification-Vendor"    : "xkmc",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "xkmc",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs'            : "${mod_id}.mixins.json"
+        ])
     }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
-    if (rootMod.toBoolean()) {
-        implementation(jarJar("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")) {
-            transitive = false
-            jarJar.ranged(it, "[${mixin_extras_version},)")
-        }
-    } else {
-        implementation("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
-    }
-    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-    if (rootMod.toBoolean()) {
-        jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
-    }
+    //annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    //compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 }
+
+// project specific
 
 repositories {
     flatDir {
         dirs 'libs'
     }
-    maven { url 'https://jitpack.io' }
-    maven {
-        // Location of the maven that hosts JEI files (and TiC)
-        name 'Progwml6 maven'
-        url 'https://dvs1.progwml6.com/files/maven'
-    }
     maven { // Registrate
         url "https://maven.tterrag.com/"
+    }
+    maven {
+        url = "https://maven.theillusivec4.top/"
     }
     maven {
         // Location of the maven for vazkii's mods
@@ -175,29 +130,37 @@ repositories {
         }
     }
     maven {
-        url = "https://maven.theillusivec4.top/"
+        // Location of the maven that hosts JEI files (and TiC)
+        name 'Progwml6 maven'
+        url 'https://dvs1.progwml6.com/files/maven'
     }
+
+    maven {
+        name = "OctoStudios"
+        url = uri("https://maven.octo-studios.com/releases")
+    }
+    mavenLocal();
+}
+
+if (lljij.toBoolean()) {
+
+    tasks.jarJar.configure {
+        archiveClassifier.set('')
+    }
+
+    jar {
+        archiveClassifier.set('slim')
+    }
+
 }
 
 dependencies {
+    implementation jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[${registrate_version},)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2serial', version: "[${l2serial_ver},)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2modularblocks', version: "[${l2modularblocks_ver},)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[${l2core_ver},)")
 
-    for (File f : new File("./libs").listFiles()) {
-        String str = f.getName();
-        String[] strs = str.substring(0, str.length() - 4).split("-");
-        String artifact = "dev.xkmc.${strs[0]}:${strs[0]}:${strs[1]}";
-        if(strs.length == 3) artifact += "-"+strs[2];
-        implementation fg.deobf(artifact);
-    }
+    implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
 
-    implementation fg.deobf("curse.maven:farmers-delight-398521:4638874")
-
-    implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-
-    runtimeOnly fg.deobf("curse.maven:badpackets-615134:4438956")
-    runtimeOnly fg.deobf("curse.maven:wthit-forge-455982:4596739")
-    runtimeOnly fg.deobf("curse.maven:attributefix-280510:4588114")
-    runtimeOnly fg.deobf("curse.maven:bookshelf-228525:4581675")
-    runtimeOnly fg.deobf("curse.maven:enchantment-descriptions-250419:4587429")
-
+    implementation "curse.maven:farmers-delight-398521:5566383"
 }

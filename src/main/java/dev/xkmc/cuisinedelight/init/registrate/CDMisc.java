@@ -1,42 +1,41 @@
 package dev.xkmc.cuisinedelight.init.registrate;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.cuisinedelight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeContainer;
+import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.content.recipe.PlateCuisineRecipe;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.CopySkilletFunction;
-import dev.xkmc.l2library.serial.recipe.BaseRecipe;
+import dev.xkmc.l2core.init.reg.simple.IngReg;
+import dev.xkmc.l2core.init.reg.simple.IngVal;
+import dev.xkmc.l2core.init.reg.simple.SR;
+import dev.xkmc.l2core.init.reg.simple.Val;
+import dev.xkmc.l2core.serial.recipe.BaseRecipe;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class CDMisc {
 
-	public static DeferredRegister<LootItemFunctionType> REGISTER_LOOT_ITEM_FUNC =
-			DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, CuisineDelight.MODID);
+	private static final IngReg ING_REG = IngReg.of(CuisineDelight.REG);
+	public static final IngVal<FoodTypeIngredient> ING_FOOD_TYPE = ING_REG.reg("food_type", FoodTypeIngredient.class);
 
-	public static RegistryObject<LootItemFunctionType> LFT_COPY_SKILLET = REGISTER_LOOT_ITEM_FUNC
-			.register("copy_skillet", () -> new LootItemFunctionType(new CopySkilletFunction.Serializer()));
+	private static final SR<LootItemFunctionType<?>> LIF = SR.of(CuisineDelight.REG, Registries.LOOT_FUNCTION_TYPE);
+	public static Val<LootItemFunctionType<CopySkilletFunction>> LFT_COPY_SKILLET = LIF
+			.reg("copy_skillet", () -> new LootItemFunctionType<>(CopySkilletFunction.CODEC));
 
-	public static RegistryEntry<RecipeType<BaseCuisineRecipe<?>>> RT_CUISINE = CuisineDelight.REGISTRATE
-			.recipe("cuisine");
 
-	public static RegistryEntry<BaseRecipe.RecType<PlateCuisineRecipe, BaseCuisineRecipe<?>, CuisineRecipeContainer>> PLATE_CUISINE =
-			reg("plate_cuisine", () -> new BaseRecipe.RecType<>(PlateCuisineRecipe.class, RT_CUISINE));
+	private static final SR<RecipeType<?>> RT = SR.of(CuisineDelight.REG, BuiltInRegistries.RECIPE_TYPE);
+	private static final SR<RecipeSerializer<?>> RS = SR.of(CuisineDelight.REG, BuiltInRegistries.RECIPE_SERIALIZER);
 
-	private static <A extends RecipeSerializer<?>> RegistryEntry<A> reg(String id, NonNullSupplier<A> sup) {
-		return CuisineDelight.REGISTRATE.simple(id, ForgeRegistries.Keys.RECIPE_SERIALIZERS, sup);
-	}
+	public static Val<RecipeType<BaseCuisineRecipe<?>>> RT_CUISINE = RT.reg("cuisine", RecipeType::simple);
 
-	public static void register(IEventBus bus) {
-		REGISTER_LOOT_ITEM_FUNC.register(bus);
+	public static final Val<BaseRecipe.RecType<PlateCuisineRecipe, BaseCuisineRecipe<?>, CuisineRecipeContainer>> PLATE_CUISINE =
+			RS.reg("plate_cuisine", () -> new BaseRecipe.RecType<>(PlateCuisineRecipe.class, RT_CUISINE));
+
+	public static void register() {
 	}
 
 }

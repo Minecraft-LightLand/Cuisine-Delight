@@ -2,14 +2,13 @@ package dev.xkmc.cuisinedelight.content.recipe;
 
 import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
 import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
-import dev.xkmc.l2library.serial.recipe.BaseRecipeBuilder;
-import net.minecraft.data.recipes.FinishedRecipe;
+import dev.xkmc.l2core.serial.recipe.BaseRecipeBuilder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 
 public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, PlateCuisineRecipe, BaseCuisineRecipe<?>, CuisineRecipeContainer> {
 
@@ -17,7 +16,7 @@ public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, 
 	private double scoreBonus = 0;
 
 	public PlateCuisineBuilder(BaseFoodItem result, double minBonus, double maxBonus) {
-		super(CDMisc.PLATE_CUISINE.get());
+		super(CDMisc.PLATE_CUISINE.get(), result);
 		recipe.holderItem = result;
 		recipe.saturationBonus = minBonus;
 		this.maxBonus = maxBonus;
@@ -34,15 +33,15 @@ public class PlateCuisineBuilder extends BaseRecipeBuilder<PlateCuisineBuilder, 
 	}
 
 	@Override
-	public void save(Consumer<FinishedRecipe> pvd, ResourceLocation id) {
+	public void save(RecipeOutput pvd, ResourceLocation id) {
 		if (scoreBonus > 0) {
 			recipe.saturationBonusModifier = maxBonus / scoreBonus;
 		}
 		super.save(pvd, id);
 	}
 
-	public void save(Consumer<FinishedRecipe> pvd) {
-		save(pvd, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(recipe.holderItem)));
+	public void save(RecipeOutput pvd) {
+		save(pvd, Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(recipe.holderItem)));
 	}
 
 }

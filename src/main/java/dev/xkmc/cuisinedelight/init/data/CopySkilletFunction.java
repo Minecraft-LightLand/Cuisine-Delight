@@ -1,7 +1,7 @@
 package dev.xkmc.cuisinedelight.init.data;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
 import net.minecraft.world.item.ItemStack;
@@ -12,9 +12,14 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
+import java.util.List;
+
 public class CopySkilletFunction extends LootItemConditionalFunction {
 
-	public CopySkilletFunction(LootItemCondition[] conditions) {
+	public static final MapCodec<CopySkilletFunction> CODEC = RecordCodecBuilder.mapCodec(i ->
+			commonFields(i).apply(i, CopySkilletFunction::new));
+
+	public CopySkilletFunction(List<LootItemCondition> conditions) {
 		super(conditions);
 	}
 
@@ -31,17 +36,8 @@ public class CopySkilletFunction extends LootItemConditionalFunction {
 		return stack;
 	}
 
-	public LootItemFunctionType getType() {
+	public LootItemFunctionType<CopySkilletFunction> getType() {
 		return CDMisc.LFT_COPY_SKILLET.get();
-	}
-
-	public static class Serializer extends LootItemConditionalFunction.Serializer<CopySkilletFunction> {
-		public Serializer() {
-		}
-
-		public CopySkilletFunction deserialize(JsonObject json, JsonDeserializationContext context, LootItemCondition[] conditions) {
-			return new CopySkilletFunction(conditions);
-		}
 	}
 
 }

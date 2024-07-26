@@ -1,7 +1,9 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.Holder;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,15 +19,15 @@ import java.util.Map;
 @SerialClass
 public class CookedFoodData {
 
-	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationMod(0).build();
+	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationModifier(0).build();
 
-	@SerialClass.SerialField
+	@SerialField
 	public int total, size, nutrition, score, glowstone, redstone;
 
-	@SerialClass.SerialField
+	@SerialField
 	public HashSet<FoodType> types = new HashSet<>();
 
-	@SerialClass.SerialField
+	@SerialField
 	public ArrayList<Entry> entries = new ArrayList<>();
 
 	@Deprecated
@@ -58,9 +60,9 @@ public class CookedFoodData {
 		this.score = Math.round(goodness * 100);
 		this.size = size;
 		this.total = size;
-		double mult = 1 + (types.size() - 1) * CDConfig.COMMON.varietyBonus.get();
+		double mult = 1 + (types.size() - 1) * CDConfig.SERVER.varietyBonus.get();
 		if (penalty == 0) {
-			mult += CDConfig.COMMON.perfectionBonus.get();
+			mult += CDConfig.SERVER.perfectionBonus.get();
 		}
 		this.nutrition = size == 0 ? 0 : (int) Math.round(mult * goodness * nutrition / size);
 		this.glowstone = data.glowstone;
@@ -69,22 +71,19 @@ public class CookedFoodData {
 
 	public FoodProperties toFoodData() {
 		if (score < 60 || total == 0) return BAD;
-		var ans = new FoodProperties.Builder().nutrition(4).saturationMod(nutrition * 0.1f);
+		var ans = new FoodProperties.Builder().nutrition(4).saturationModifier(nutrition * 0.1f);
 		if (score == 100) {
-			ans.fast().alwaysEat();
-		}
-		if (types.contains(FoodType.MEAT)) {
-			ans.meat();
+			ans.fast().alwaysEdible();
 		}
 		Map<MobEffect, EffectData> map = new LinkedHashMap<>();
 		for (var e : entries) {
 			e.addMobEffects(map, total);
 		}
 		if (score == 100 && types.size() > 1) {
-			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(),
-					CDConfig.COMMON.nourishmentDuration.get() * types.size()), 1);
+			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT,
+					CDConfig.SERVER.nourishmentDuration.get() * types.size()), 1);
 		}
-		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(k, Math.round(v.duration), v.level()), 1));
+		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(v.holder, Math.round(v.duration), v.level()), 1));
 		return ans.build();
 	}
 
@@ -95,21 +94,21 @@ public class CookedFoodData {
 			if (config == null) return;
 			if (burnt || raw || overcooked) return;
 			for (var e : config.effects) {
-				map.compute(e.effect(), (k, v) -> {
+				map.compute(e.effect().value(), (k, v) -> {
 					float ans = 1.0f * e.time() * stack.getCount() / divisor;
 					if (v != null) {
 						if (v.level > e.level()) return v;
 						if (v.level == e.level())
-							return new EffectData(v.level, v.duration + ans);
+							return new EffectData(e.effect(), v.level, v.duration + ans);
 					}
-					return new EffectData(e.level(), ans);
+					return new EffectData(e.effect(), e.level(), ans);
 				});
 			}
 		}
 
 	}
 
-	private record EffectData(int level, float duration) {
+	public record EffectData(Holder<MobEffect> holder, int level, float duration) {
 
 	}
 
