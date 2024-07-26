@@ -1,9 +1,14 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.gradle.userdev' version '7.0.153'
+    id 'net.darkhax.curseforgegradle' version '[1.1.24,)'
+    id "at.stnwtr.gradle-secrets-plugin" version "1.0.1"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 version = mod_version
@@ -163,4 +168,47 @@ dependencies {
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
 
     implementation "curse.maven:farmers-delight-398521:5566383"
+}
+
+tasks.register('publishCurseForge', TaskPublishCurseForge) {
+    apiToken = secrets.get("curseforge_token")
+    def mainFile = upload(project.curseforge_project, new File("./build/libs/${mod_id}-${mod_version}.jar"))
+    mainFile.changelog = new File('./changelog.txt')
+    mainFile.addEnvironment("Client", "Server")
+    mainFile.addGameVersion("1.21")
+    mainFile.addModLoader("NeoForge")
+    mainFile.addRequirement("farmers-delight")
+    mainFile.addOptional(
+            "alexs-delight",
+            "alexs-mobs",
+            "croptopia",
+            "ends-delight",
+            "miners-delight-plus",
+            "nethers-delight",
+            "oceans-delight",
+            "the-twilight-forest",
+            "twilights-flavors-delight")
+    mainFile.releaseType = "release"
+    disableVersionDetection()
+}
+
+modrinth {
+    token = secrets.get("modrinth_token")
+    projectId = project.modrinth_project
+    versionName = "Cuisine Delight ${project.mod_version}"
+    versionNumber = project.mod_version
+    versionType = "release"
+    uploadFile = new File("./build/libs/${mod_id}-${mod_version}.jar")
+    gameVersions = ["1.21"]
+    loaders = ["neoforge"]
+    changelog = new File('./changelog.txt').text.split("\n\n")[0]
+    dependencies {
+        required.project "farmers-delight"
+        optional.project "alexs-mobs"
+        optional.project "ends-delight"
+        optional.project "miners-delight"
+        optional.project "nethers-delight"
+        optional.project "oceans-delight"
+        optional.project "twilight-delight"
+    }
 }
