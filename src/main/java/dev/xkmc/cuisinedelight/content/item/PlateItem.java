@@ -61,7 +61,7 @@ public class PlateItem extends Item {
 
 	private void giveBack(ItemStack foodStack, CookedFoodData food, ReturnTarget target) {
 		target.addItem(foodStack);
-		target.addExp(food.score * food.size / 100);
+		target.addExp(food.score() * food.size() / 100);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class PlateItem extends Item {
 		if (!level.isClientSide()) {
 			CuisineSkilletItem.setData(skilletStack, null);
 			data.stir(level.getGameTime(), 0);
-			CookedFoodData food = new CookedFoodData(data);
+			CookedFoodData food = CookedFoodData.of(data);
 			ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 			plateStack.shrink(1);
 			giveBack(foodStack, food, new PlayerTarget(player));
@@ -98,7 +98,7 @@ public class PlateItem extends Item {
 			if (!level.isClientSide()) {
 				CookingData data = be.cookingData;
 				data.stir(level.getGameTime(), 0);
-				CookedFoodData food = new CookedFoodData(data);
+				CookedFoodData food = CookedFoodData.of(data);
 				ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 				ctx.getItemInHand().shrink(1);
 				if (player != null) {

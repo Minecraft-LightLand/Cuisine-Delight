@@ -16,7 +16,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 public class CuisineDelightClient {
 
 	public static final ModelResourceLocation SKILLET_MODEL = new ModelResourceLocation(
-			CuisineDelight.loc("cuisine_skillet_base"), "standalone");
+			CuisineDelight.loc("item/cuisine_skillet_base"), "standalone");
 
 	@SubscribeEvent
 	public static void onParticleRegistryEvent(RegisterParticleProvidersEvent event) {

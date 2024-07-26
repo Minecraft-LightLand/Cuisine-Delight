@@ -39,12 +39,13 @@ public class CuisineSkilletItem extends SkilletItem {
 
 	@Nullable
 	public static CookingData getData(ItemStack stack) {
-		return CDItems.COOKING.get(stack);
+		var ans = CDItems.COOKING.get(stack);
+		return ans == null ? null : ans.mutable();
 	}
 
 	public static void setData(ItemStack stack, @Nullable CookingData data) {
 		if (data == null) stack.remove(CDItems.COOKING.get());
-		else CDItems.COOKING.set(stack, data);
+		else CDItems.COOKING.set(stack, data.immutable());
 	}
 
 	public static boolean canUse(ItemStack stack, Player player, Level level) {

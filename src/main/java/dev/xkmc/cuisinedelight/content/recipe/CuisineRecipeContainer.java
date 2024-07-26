@@ -18,7 +18,7 @@ public class CuisineRecipeContainer extends SimpleContainer implements RecipeInp
 	public CuisineRecipeContainer(CookedFoodData foodData) {
 		Map<Item, Integer> map = new LinkedHashMap<>();
 		List<ItemStack> special = new ArrayList<>();
-		for (var ent : foodData.entries) {
+		for (var ent : foodData.entries()) {
 			if (ent.stack().isComponentsPatchEmpty()) {
 				map.compute(ent.stack().getItem(), (x, old) -> (old == null ? 0 : old) + ent.itemSize());
 			} else {
@@ -35,5 +35,5 @@ public class CuisineRecipeContainer extends SimpleContainer implements RecipeInp
 	public int size() {
 		return list.size();
 	}
-	
+
 }

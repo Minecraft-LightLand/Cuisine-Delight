@@ -34,7 +34,7 @@ public class CDItems {
 	public static final ItemEntry<PlateItem> PLATE;
 
 	private static final DCReg DC = DCReg.of(CuisineDelight.REG);
-	public static final DCVal<CookingData> COOKING = DC.reg("cooking", CookingData.class, true);
+	public static final DCVal<CookingData.Record> COOKING = DC.reg("cooking", CookingData.Record.class, true);
 	public static final DCVal<CookedFoodData> COOKED = DC.reg("cooked", CookedFoodData.class, true);
 	public static final DCVal<JEIDisplayInfo> DISPLAY = DC.reg("display", JEIDisplayInfo.class, true);
 	public static final DCVal<Unit> INGREDIENT = DC.unit("ingredient");
@@ -48,12 +48,13 @@ public class CDItems {
 		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(CDBlocks.SKILLET.get(), p.stacksTo(1)))
 				.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")))
 				.clientExtension(() -> () -> SkilletBEWLR.EXTENSIONS)
-				.tag(ItemTags.MINING_ENCHANTABLE, ItemTags.WEAPON_ENCHANTABLE)
+				.tag(ItemTags.MINING_ENCHANTABLE, ItemTags.FIRE_ASPECT_ENCHANTABLE)
 				.setData(ProviderType.LANG, NonNullBiConsumer.noop()).register();
 
 		SPATULA = CuisineDelight.REGISTRATE.item("spatula", p -> new SpatulaItem(p.stacksTo(1)))
 				.tag(TagGen.UTENSILS, ItemTags.MINING_LOOT_ENCHANTABLE)
 				.model((ctx, pvd) -> pvd.handheld(ctx)).defaultLang().register();
+
 		PLATE = CuisineDelight.REGISTRATE.item("plate", PlateItem::new)
 				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();
 		PlateFood.register();

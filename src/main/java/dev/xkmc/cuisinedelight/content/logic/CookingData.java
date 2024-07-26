@@ -4,7 +4,6 @@ import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,9 +16,6 @@ public class CookingData {
 
 	@SerialField
 	private float speed = 1;
-
-	@SerialField
-	public int glowstone, redstone;
 
 	@SerialField
 	public ArrayList<CookingEntry> contents = new ArrayList<>();
@@ -40,12 +36,6 @@ public class CookingData {
 	}
 
 	public void addItem(ItemStack item, long time) {
-		if (item.is(Items.GLOWSTONE_DUST)) {
-			glowstone++;
-		}
-		if (item.is(Items.REDSTONE)) {
-			redstone++;
-		}
 		update(time);
 		contents.add(new CookingEntry(item, time));
 	}
@@ -110,6 +100,43 @@ public class CookingData {
 			if (time < config.max_time) return Stage.COOKED;
 			return Stage.OVERCOOKED;
 		}
+
+		public Immutable immutable() {
+			return new Immutable(item, startTime, lastStirTime, maxStirTime);
+		}
+
+		public record Immutable(ItemStack item, long startTime, long lastStirTime, int maxStirTime) {
+
+			public CookingEntry mutable() {
+				var ans = new CookingEntry();
+				ans.item = item;
+				ans.startTime = startTime;
+				ans.lastStirTime = lastStirTime;
+				ans.maxStirTime = maxStirTime;
+				return ans;
+			}
+
+		}
+
+	}
+
+	public Record immutable() {
+		ArrayList<CookingEntry.Immutable> list = new ArrayList<>();
+		for (var e : contents) list.add(e.immutable());
+		return new Record(lastActionTime, speed, list);
+	}
+
+	public record Record(long lastActionTime, float speed, ArrayList<CookingEntry.Immutable> contents) {
+
+		public CookingData mutable() {
+			var ans = new CookingData();
+			ans.lastActionTime = lastActionTime;
+			ans.speed = speed;
+			for (var e : contents)
+				ans.contents.add(e.mutable());
+			return ans;
+		}
+
 	}
 
 }

@@ -21,6 +21,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -74,6 +75,11 @@ public class BaseFoodItem extends Item {
 	}
 
 	@Override
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.EAT;
+	}
+
+	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
 		CookedFoodData food = getData(stack);
 		super.finishUsingItem(stack, level, entity);
@@ -81,8 +87,8 @@ public class BaseFoodItem extends Item {
 			NeoForge.EVENT_BUS.post(new FoodEatenEvent(player, food));
 		}
 		if (food == null) return getCraftingRemainingItem(stack);
-		food.size--;
-		if (food.size <= 0) return getCraftingRemainingItem(stack);
+		food = food.shrink();
+		if (food.size() <= 0) return getCraftingRemainingItem(stack);
 		stack.setCount(1);
 		setData(stack, food);
 		return stack;
@@ -91,7 +97,7 @@ public class BaseFoodItem extends Item {
 	@Override
 	public int getUseDuration(ItemStack stack, LivingEntity entity) {
 		var data = getData(stack);
-		if (data == null || data.score < 60) {
+		if (data == null || data.score() < 60) {
 			return 72000;
 		}
 		return super.getUseDuration(stack, entity);
@@ -107,9 +113,9 @@ public class BaseFoodItem extends Item {
 			if (level < ComposterBlock.MAX_LEVEL) {
 				if (!ctx.getLevel().isClientSide()) {
 					var data = getData(stack);
-					if (data != null && data.size > 0) {
+					if (data != null && data.size() > 0) {
 						if (ctx.getPlayer() == null || !ctx.getPlayer().getAbilities().instabuild) {
-							data.size--;
+							data = data.shrink();
 							setData(stack, data);
 						}
 						if (ctx.getLevel().getRandom().nextDouble() < 0.3f) {
@@ -123,7 +129,7 @@ public class BaseFoodItem extends Item {
 						} else {
 							ctx.getLevel().levelEvent(LevelEvent.COMPOSTER_FILL, pos, 0);
 						}
-						if (data.size == 0) {
+						if (data.size() == 0) {
 							ItemStack remain = getCraftingRemainingItem(stack);
 							stack.shrink(1);
 							if (ctx.getPlayer() != null) {
@@ -156,11 +162,11 @@ public class BaseFoodItem extends Item {
 		if (prop == CookedFoodData.BAD) {
 			list.add(LangData.BAD_FOOD.get());
 		} else {
-			list.add(LangData.SERVE_SIZE.get(data.size));
-			list.add(LangData.SCORE.get(data.score));
+			list.add(LangData.SERVE_SIZE.get(data.size()));
+			list.add(LangData.SCORE.get(data.score()));
 		}
 		if (Screen.hasShiftDown()) {
-			for (var e : data.entries) {
+			for (var e : data.entries()) {
 				ItemStack ingredient = e.stack();
 				if (e.burnt()) {
 					list.add(LangData.BAD_BURNT.get(ingredient.getHoverName()));
@@ -180,7 +186,7 @@ public class BaseFoodItem extends Item {
 			CuisineRecipeContainer cont = new CuisineRecipeContainer(data);
 			for (var e : cont.list) {
 				if (e.isEmpty()) continue;
-				double perc = Math.round(1000d * e.getCount() / data.total) / 10d;
+				double perc = Math.round(1000d * e.getCount() / data.total()) / 10d;
 				list.add(e.getHoverName().copy().append(": " + perc + "%"));
 			}
 		}

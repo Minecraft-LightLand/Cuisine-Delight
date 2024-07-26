@@ -4,7 +4,6 @@ import dev.xkmc.cuisinedelight.content.logic.transform.ItemStageTransform;
 import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
-import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.core.Holder;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
@@ -14,30 +13,19 @@ import net.minecraft.world.item.ItemStack;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 @SerialClass
-public class CookedFoodData {
+public record CookedFoodData(int total, int size, int nutrition, int score,
+							 LinkedHashSet<FoodType> types, ArrayList<Entry> entries) {
 
 	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationModifier(0).build();
 
-	@SerialField
-	public int total, size, nutrition, score, glowstone, redstone;
-
-	@SerialField
-	public HashSet<FoodType> types = new HashSet<>();
-
-	@SerialField
-	public ArrayList<Entry> entries = new ArrayList<>();
-
-	@Deprecated
-	public CookedFoodData() {
-
-	}
-
-	public CookedFoodData(CookingData data) {
+	public static CookedFoodData of(CookingData data) {
+		LinkedHashSet<FoodType> types = new LinkedHashSet<>();
+		ArrayList<Entry> entries = new ArrayList<>();
 		int size = 0;
 		int nutrition = 0;
 		float penalty = 0;
@@ -59,13 +47,10 @@ public class CookedFoodData {
 				types.add(config.type);
 		}
 		float goodness = size == 0 ? 0 : Mth.clamp(1 - penalty / size, 0, 1);
-		this.score = Math.round(goodness * 100);
-		this.size = size;
-		this.total = size;
-
-		this.nutrition = size == 0 ? 0 : Math.round(goodness * nutrition / size);
-		this.glowstone = data.glowstone;
-		this.redstone = data.redstone;
+		return new CookedFoodData(size, size,
+				size == 0 ? 0 : Math.round(goodness * nutrition / size),
+				Math.round(goodness * 100),
+				types, entries);
 	}
 
 	public FoodProperties toFoodData() {
@@ -74,7 +59,8 @@ public class CookedFoodData {
 		if (score == 100) {
 			mult += CDConfig.SERVER.perfectionBonus.get();
 		}
-		var ans = new FoodProperties.Builder().nutrition((int) (mult * 4)).saturationModifier(nutrition * 0.1f);
+		var ans = new FoodProperties.Builder().nutrition((int) (mult * CDConfig.SERVER.baseServe.get()))
+				.saturationModifier((float) (nutrition * CDConfig.SERVER.baseNutrition.get()));
 		if (score == 100) {
 			ans.fast().alwaysEdible();
 		}
@@ -88,6 +74,14 @@ public class CookedFoodData {
 		}
 		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(v.holder, Math.round(v.duration), v.level()), 1));
 		return ans.build();
+	}
+
+	public CookedFoodData saturationBonus(double v) {
+		return new CookedFoodData(total, size, (int) (nutrition * v), score, types, entries);
+	}
+
+	public CookedFoodData shrink() {
+		return new CookedFoodData(total, size - 1, nutrition, score, types, entries);
 	}
 
 	public record Entry(ItemStack stack, int itemSize, boolean burnt, boolean raw, boolean overcooked) {

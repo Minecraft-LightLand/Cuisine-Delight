@@ -31,7 +31,7 @@ public class BaseCuisineRecipe<R extends BaseCuisineRecipe<R>> extends BaseRecip
 		assert ans != null;
 		score -= ans.getScoreOffset();
 		ItemStack result = ans.assemble(inv, level.registryAccess());
-		food.nutrition = (int) (food.nutrition * (1 + ans.saturationBonusModifier * score));
+		food = food.saturationBonus( (1 + ans.saturationBonusModifier * score));
 		BaseFoodItem.setData(result, food);
 		return result;
 	}
