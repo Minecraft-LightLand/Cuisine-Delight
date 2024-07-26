@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
@@ -105,3 +106,4 @@ public class FoodTwilight {
 
 	}
 }
+*/

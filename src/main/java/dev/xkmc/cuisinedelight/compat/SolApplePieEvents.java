@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import com.tarinoita.solsweetpotato.api.SOLSweetPotatoAPI;
 import com.tarinoita.solsweetpotato.tracking.FoodList;
 import dev.xkmc.cuisinedelight.events.FoodEatenEvent;
@@ -18,3 +19,4 @@ public class SolApplePieEvents {
 	}
 
 }
+*/

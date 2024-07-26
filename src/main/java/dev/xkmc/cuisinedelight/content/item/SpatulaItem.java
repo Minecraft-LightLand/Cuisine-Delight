@@ -2,6 +2,7 @@ package dev.xkmc.cuisinedelight.content.item;
 
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
+import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import net.minecraft.client.gui.screens.Screen;
@@ -54,7 +55,7 @@ public class SpatulaItem extends Item {
 	}
 
 	private static int getReduction(ItemStack stack) {
-		return stack.getEnchantmentLevel(Enchantments.SILK_TOUCH) > 0 ? 20 : 0;
+		return EnchHelper.getEnchLevel(stack,Enchantments.SILK_TOUCH) > 0 ? 20 : 0;
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class SpatulaItem extends Item {
 		Level level = ctx.getLevel();
 		Player player = ctx.getPlayer();
 		if (level.getBlockEntity(ctx.getClickedPos()) instanceof CuisineSkilletBlockEntity be) {
-			if (be.cookingData.contents.size() > 0) {
+			if (!be.cookingData.contents.isEmpty()) {
 				if (!level.isClientSide()) {
 					be.stir(level.getGameTime(), getReduction(ctx.getItemInHand()));
 					if (player != null) {
@@ -77,15 +78,7 @@ public class SpatulaItem extends Item {
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		if (enchantment == Enchantments.SILK_TOUCH) {
-			return true;
-		}
-		return super.canApplyAtEnchantingTable(stack, enchantment);
-	}
-
-	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		if (Screen.hasShiftDown()) {
 			list.add(LangData.ENCH_SILK.get());
 		} else {

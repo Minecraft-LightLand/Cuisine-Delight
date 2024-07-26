@@ -3,7 +3,9 @@ package dev.xkmc.cuisinedelight.content.logic;
 import dev.xkmc.cuisinedelight.content.logic.transform.ItemStageTransform;
 import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.Holder;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -19,15 +21,15 @@ import java.util.Map;
 @SerialClass
 public class CookedFoodData {
 
-	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationMod(0).build();
+	public static final FoodProperties BAD = new FoodProperties.Builder().nutrition(0).saturationModifier(0).build();
 
-	@SerialClass.SerialField
+	@SerialField
 	public int total, size, nutrition, score, glowstone, redstone;
 
-	@SerialClass.SerialField
+	@SerialField
 	public HashSet<FoodType> types = new HashSet<>();
 
-	@SerialClass.SerialField
+	@SerialField
 	public ArrayList<Entry> entries = new ArrayList<>();
 
 	@Deprecated
@@ -68,44 +70,41 @@ public class CookedFoodData {
 
 	public FoodProperties toFoodData() {
 		if (score < 60 || total == 0) return BAD;
-		double mult = 1 + (types.size() - 1) * CDConfig.COMMON.varietyBonus.get();
+		double mult = 1 + (types.size() - 1) * CDConfig.SERVER.varietyBonus.get();
 		if (score == 100) {
-			mult += CDConfig.COMMON.perfectionBonus.get();
+			mult += CDConfig.SERVER.perfectionBonus.get();
 		}
-		var ans = new FoodProperties.Builder().nutrition((int) (mult * 4)).saturationMod(nutrition * 0.1f);
+		var ans = new FoodProperties.Builder().nutrition((int) (mult * 4)).saturationModifier(nutrition * 0.1f);
 		if (score == 100) {
-			ans.fast().alwaysEat();
-		}
-		if (types.contains(FoodType.MEAT)) {
-			ans.meat();
+			ans.fast().alwaysEdible();
 		}
 		Map<MobEffect, EffectData> map = new LinkedHashMap<>();
 		for (var e : entries) {
 			e.addMobEffects(map, total);
 		}
 		if (score == 100 && types.size() > 1) {
-			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(),
-					CDConfig.COMMON.nourishmentDuration.get() * types.size()), 1);
+			ans.effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT,
+					CDConfig.SERVER.nourishmentDuration.get() * types.size()), 1);
 		}
-		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(k, Math.round(v.duration), v.level()), 1));
+		map.forEach((k, v) -> ans.effect(() -> new MobEffectInstance(v.holder, Math.round(v.duration), v.level()), 1));
 		return ans.build();
 	}
 
 	public record Entry(ItemStack stack, int itemSize, boolean burnt, boolean raw, boolean overcooked) {
 
-		public void addMobEffects(Map<MobEffect, EffectData> map, int divisor) {
+		private void addMobEffects(Map<MobEffect, EffectData> map, int divisor) {
 			var config = IngredientConfig.get().getEntry(stack);
 			if (config == null) return;
 			if (burnt || raw || overcooked) return;
 			for (var e : config.effects) {
-				map.compute(e.effect(), (k, v) -> {
+				map.compute(e.effect().value(), (k, v) -> {
 					float ans = 1.0f * e.time() * stack.getCount() / divisor;
 					if (v != null) {
 						if (v.level > e.level()) return v;
 						if (v.level == e.level())
-							return new EffectData(v.level, v.duration + ans);
+							return new EffectData(e.effect(), v.level, v.duration + ans);
 					}
-					return new EffectData(e.level(), ans);
+					return new EffectData(e.effect(), e.level(), ans);
 				});
 			}
 		}
@@ -116,7 +115,7 @@ public class CookedFoodData {
 				if (t.stage() != Stage.RAW) {
 					ItemStack ans = t.next().getDefaultInstance();
 					ans.setCount(stack.getCount());
-					ans.setTag(stack.getTag());
+					ans.applyComponents(stack.getComponentsPatch());
 					return ans;
 				}
 			}
@@ -125,7 +124,7 @@ public class CookedFoodData {
 
 	}
 
-	private record EffectData(int level, float duration) {
+	private record EffectData(Holder<MobEffect> holder, int level, float duration) {
 
 	}
 

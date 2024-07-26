@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import cn.foggyhillside.ends_delight.EndsDelight;
 import cn.foggyhillside.ends_delight.registry.ItemRegistry;
 import com.sammy.minersdelight.MinersDelightMod;
@@ -135,3 +136,4 @@ public class FoodDelight {
 
 	}
 }
+*/

@@ -74,7 +74,7 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 	}
 
 	public boolean slowCook() {
-		return baseItem.getEnchantmentLevel(Enchantments.FIRE_ASPECT) == 1 &&
+		return EnchHelper.getEnchLevel(baseItem, Enchantments.FIRE_ASPECT) == 1 &&
 				this.level != null && !this.isHeated(this.level, this.getBlockPos());
 	}
 

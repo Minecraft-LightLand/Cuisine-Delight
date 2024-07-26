@@ -1,18 +1,18 @@
 package dev.xkmc.cuisinedelight.content.item;
 
 import dev.xkmc.cuisinedelight.content.logic.CookedFoodData;
+import dev.xkmc.cuisinedelight.content.logic.JEIDisplayInfo;
 import dev.xkmc.cuisinedelight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeContainer;
 import dev.xkmc.cuisinedelight.events.FoodEatenEvent;
 import dev.xkmc.cuisinedelight.init.data.LangData;
-import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.util.Unit;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import org.jetbrains.annotations.Nullable;
 import vectorwing.farmersdelight.common.Configuration;
 
@@ -37,38 +37,29 @@ import java.util.List;
 
 public class BaseFoodItem extends Item {
 
-	private static final String KEY_ROOT = "CookedFoodData";
-	private static final String KEY_DISPLAY = "Display";
-
 	public static ItemStack setResultDisplay(BaseCuisineRecipe<?> recipe, ItemStack stack) {
-		CompoundTag tag = new CompoundTag();
-		tag.putDouble("min", recipe.getMinSaturationBonus());
-		tag.putDouble("max", recipe.getMaxSaturationBonus());
-		stack.getOrCreateTag().put(KEY_DISPLAY, tag);
-		return stack;
+		return CDItems.DISPLAY.set(stack,
+				new JEIDisplayInfo(recipe.getMinSaturationBonus(), recipe.getMaxSaturationBonus()));
 	}
 
 	public static ItemStack setIngredientDisplay(ItemStack stack) {
-		stack.getOrCreateTag().putBoolean("cuisinedelight:display", true);
-		return stack;
+		return CDItems.INGREDIENT.set(stack, Unit.INSTANCE);
+	}
+
+
+	public ItemStack displayStack(BaseCuisineRecipe<?> recipe) {
+		return CDItems.DISPLAY.set(getDefaultInstance(),
+				new JEIDisplayInfo(recipe.getMinSaturationBonus(), recipe.getMaxSaturationBonus()));
 	}
 
 	@Nullable
 	public static CookedFoodData getData(ItemStack stack) {
-		var tag = stack.getTagElement(KEY_ROOT);
-		if (tag == null) return null;
-		return TagCodec.fromTag(tag, CookedFoodData.class);
+		return CDItems.COOKED.get(stack);
 	}
 
 	public static void setData(ItemStack stack, @Nullable CookedFoodData data) {
-		if (data == null) {
-			stack.getOrCreateTag().remove(KEY_ROOT);
-			return;
-		}
-		var tag = TagCodec.valueToTag(data);
-		if (tag != null) {
-			stack.getOrCreateTag().put(KEY_ROOT, tag);
-		}
+		if (data == null) stack.remove(CDItems.COOKED.get());
+		else CDItems.COOKED.set(stack, data);
 	}
 
 	public BaseFoodItem(Properties properties) {
@@ -76,21 +67,10 @@ public class BaseFoodItem extends Item {
 	}
 
 	@Override
-	public boolean isEdible() {
-		return true;
-	}
-
-	@Override
 	public FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
 		CookedFoodData data = getData(stack);
-		if (data == null) return CookedFoodData.BAD;
+		if (data == null) return null;
 		return data.toFoodData();
-	}
-
-	@Nullable
-	@Override
-	public FoodProperties getFoodProperties() {
-		return CookedFoodData.BAD;
 	}
 
 	@Override
@@ -98,7 +78,7 @@ public class BaseFoodItem extends Item {
 		CookedFoodData food = getData(stack);
 		super.finishUsingItem(stack, level, entity);
 		if (entity instanceof Player player && food != null) {
-			MinecraftForge.EVENT_BUS.post(new FoodEatenEvent(player, food));
+			NeoForge.EVENT_BUS.post(new FoodEatenEvent(player, food));
 		}
 		if (food == null) return getCraftingRemainingItem(stack);
 		food.size--;
@@ -109,12 +89,12 @@ public class BaseFoodItem extends Item {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack stack) {
+	public int getUseDuration(ItemStack stack, LivingEntity entity) {
 		var data = getData(stack);
 		if (data == null || data.score < 60) {
 			return 72000;
 		}
-		return super.getUseDuration(stack);
+		return super.getUseDuration(stack, entity);
 	}
 
 	@Override
@@ -161,21 +141,15 @@ public class BaseFoodItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-		if (stack.hasTag()) {
-			var tag = stack.getTagElement(KEY_DISPLAY);
-			if (tag != null) {
-				double min = tag.getDouble("min");
-				double max = tag.getDouble("max");
-				if (max > 0) {
-					list.add(LangData.INFO_DISPLAY.get(min, max));
-				}
-				return;
-			}
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
+		var disp = CDItems.DISPLAY.get(stack);
+		if (disp != null) {
+			list.add(LangData.INFO_DISPLAY.get(disp.min(), disp.max()));
+			return;
 		}
 		CookedFoodData data = getData(stack);
 		if (data == null) {
-			list.add(LangData.BAD_FOOD.get());
+			list.add(LangData.CREATIVE.get());
 			return;
 		}
 		FoodProperties prop = data.toFoodData();
@@ -212,26 +186,19 @@ public class BaseFoodItem extends Item {
 		}
 
 		if (Configuration.FOOD_EFFECT_TOOLTIP.get()) {
-			for (var e : prop.getEffects()) {
-				MobEffectInstance mobeffectinstance = e.getFirst();
+			for (var e : prop.effects()) {
+				MobEffectInstance mobeffectinstance = e.effect();
 				MutableComponent mutablecomponent = Component.translatable(mobeffectinstance.getDescriptionId());
-				MobEffect mobeffect = mobeffectinstance.getEffect();
+				var mobeffect = mobeffectinstance.getEffect();
 				if (mobeffectinstance.getAmplifier() > 0) {
 					mutablecomponent = Component.translatable("potion.withAmplifier", mutablecomponent, Component.translatable("potion.potency." + mobeffectinstance.getAmplifier()));
 				}
 				if (mobeffectinstance.getDuration() > 20) {
-					mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(mobeffectinstance, 1));
+					mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(mobeffectinstance, 1, 20));
 				}
-				list.add(mutablecomponent.withStyle(mobeffect.getCategory().getTooltipFormatting()));
+				list.add(mutablecomponent.withStyle(mobeffect.value().getCategory().getTooltipFormatting()));
 			}
 		}
 	}
 
-	public ItemStack displayStack(BaseCuisineRecipe<?> recipe) {
-		ItemStack ans = getDefaultInstance();
-		var ctag = ans.getOrCreateTagElement(KEY_DISPLAY);
-		ctag.putDouble("min", recipe.getMinSaturationBonus());
-		ctag.putDouble("max", recipe.getMaxSaturationBonus());
-		return ans;
-	}
 }

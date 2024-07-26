@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import com.cazsius.solcarrot.api.SOLCarrotAPI;
 import com.cazsius.solcarrot.tracking.FoodList;
 import dev.xkmc.cuisinedelight.events.FoodEatenEvent;
@@ -20,3 +21,4 @@ public class SolCarrotEvents {
 	}
 
 }
+*/

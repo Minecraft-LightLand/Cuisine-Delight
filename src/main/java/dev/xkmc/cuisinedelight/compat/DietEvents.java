@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import com.illusivesoulworks.diet.platform.Services;
 import dev.xkmc.cuisinedelight.events.FoodEatenEvent;
 import net.minecraft.world.food.FoodProperties;
@@ -18,3 +19,4 @@ public class DietEvents {
 	}
 
 }
+*/

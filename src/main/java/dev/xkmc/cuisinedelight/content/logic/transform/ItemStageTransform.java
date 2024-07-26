@@ -10,7 +10,7 @@ public record ItemStageTransform(Stage stage, Item next) implements CookTransfor
 		if (stage.ordinal() < this.stage.ordinal()) return stack;
 		ItemStack ans = next.getDefaultInstance();
 		ans.setCount(stack.getCount());
-		ans.setTag(stack.getTag());
+		ans.applyComponents(stack.getComponentsPatch());
 		return ans;
 	}
 

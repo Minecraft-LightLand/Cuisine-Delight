@@ -17,9 +17,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
 
 public class FluidRenderer {
 
@@ -164,7 +164,7 @@ public class FluidRenderer {
 		int r = color >> 16 & 255;
 		int g = color >> 8 & 255;
 		int b = color & 255;
-		builder.vertex(peek.pose(), x, y, z).color(r, g, b, a).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(peek.normal(), (float) normal.getX(), (float) normal.getY(), (float) normal.getZ()).endVertex();
+		builder.addVertex(peek.pose(), x, y, z).setColor(r, g, b, a).setUv(u, v).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(peek, (float) normal.getX(), (float) normal.getY(), (float) normal.getZ());
 	}
 
 

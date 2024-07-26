@@ -7,7 +7,7 @@ import dev.xkmc.cuisinedelight.content.recipe.FoodTypeIngredient;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
-import dev.xkmc.l2library.serial.recipe.BaseRecipeCategory;
+import dev.xkmc.l2core.compat.jei.BaseRecipeCategory;
 import dev.xkmc.l2serial.util.Wrappers;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -25,7 +25,7 @@ import java.util.List;
 public class CuisineRecipeCategory extends BaseRecipeCategory<BaseCuisineRecipe<?>, CuisineRecipeCategory> {
 
 	public CuisineRecipeCategory() {
-		super(new ResourceLocation(CuisineDelight.MODID, "cuisine"), Wrappers.cast(BaseCuisineRecipe.class));
+		super(CuisineDelight.loc("cuisine"), Wrappers.cast(BaseCuisineRecipe.class));
 	}
 
 	public CuisineRecipeCategory init(IGuiHelper guiHelper) {
@@ -55,8 +55,8 @@ public class CuisineRecipeCategory extends BaseRecipeCategory<BaseCuisineRecipe<
 	}
 
 	private void ingredientTooltip(CuisineRecipeMatch ingredient, IRecipeSlotView view, List<Component> list) {
-		if (ingredient.ingredient() instanceof FoodTypeIngredient type) {
-			list.add(LangData.JEI_FOOD_TYPE.get(type.foodType.get().withStyle(ChatFormatting.GOLD)));
+		if (ingredient.ingredient().getCustomIngredient() instanceof FoodTypeIngredient type) {
+			list.add(LangData.JEI_FOOD_TYPE.get(type.foodType().get().withStyle(ChatFormatting.GOLD)));
 		}
 		int min = (int) Math.round(ingredient.min() * 100);
 		int max = (int) Math.round(Math.min(ingredient.max(), 1) * 100);

@@ -1,7 +1,8 @@
 package dev.xkmc.cuisinedelight.content.logic;
 
 import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -11,16 +12,16 @@ import java.util.Random;
 @SerialClass
 public class CookingData {
 
-	@SerialClass.SerialField
+	@SerialField
 	private long lastActionTime;
 
-	@SerialClass.SerialField
+	@SerialField
 	private float speed = 1;
 
-	@SerialClass.SerialField
+	@SerialField
 	public int glowstone, redstone;
 
-	@SerialClass.SerialField
+	@SerialField
 	public ArrayList<CookingEntry> contents = new ArrayList<>();
 
 	public void update(long time) {
@@ -52,16 +53,16 @@ public class CookingData {
 	@SerialClass
 	public static class CookingEntry {
 
-		@SerialClass.SerialField
+		@SerialField
 		private ItemStack item;
 
-		@SerialClass.SerialField
+		@SerialField
 		private long startTime;
 
-		@SerialClass.SerialField
+		@SerialField
 		private long lastStirTime;
 
-		@SerialClass.SerialField
+		@SerialField
 		private int maxStirTime;
 
 		@Deprecated
@@ -103,10 +104,10 @@ public class CookingData {
 
 		public Stage getStage(CookingData data) {
 			var config = IngredientConfig.get().getEntry(getItem());
-			assert config!=null;
-			float time = getDuration(data,0);
-			if (time< config.min_time)return Stage.RAW;
-			if (time < config.max_time)return Stage.COOKED;
+			assert config != null;
+			float time = getDuration(data, 0);
+			if (time < config.min_time) return Stage.RAW;
+			if (time < config.max_time) return Stage.COOKED;
 			return Stage.OVERCOOKED;
 		}
 	}

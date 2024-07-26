@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import com.epherical.croptopia.register.Content;
 import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
@@ -59,3 +60,4 @@ public class FoodCroptopia {
 
 	}
 }
+*/

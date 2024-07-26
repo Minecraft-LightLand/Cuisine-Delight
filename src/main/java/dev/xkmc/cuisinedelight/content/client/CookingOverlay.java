@@ -7,21 +7,21 @@ import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2core.util.Proxy;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingOverlay implements IGuiOverlay {
+public class CookingOverlay implements LayeredDraw.Layer {
 
 	private static final float MAX_TIME = 400, STIR_TIME = 100, R = 9;
 
@@ -42,7 +42,7 @@ public class CookingOverlay implements IGuiOverlay {
 		HitResult result = Minecraft.getInstance().hitResult;
 		if (result == null || result.getType() != HitResult.Type.BLOCK) return null;
 		BlockPos pos = ((BlockHitResult) result).getBlockPos();
-		if (Proxy.getClientWorld().getBlockEntity(pos) instanceof CuisineSkilletBlockEntity be) {
+		if (Minecraft.getInstance().level.getBlockEntity(pos) instanceof CuisineSkilletBlockEntity be) {
 			return be.cookingData;
 		}
 		return null;
@@ -56,14 +56,15 @@ public class CookingOverlay implements IGuiOverlay {
 	}
 
 	@Override
-	public void render(ForgeGui gui, GuiGraphics g, float partialTick, int screenWidth, int screenHeight) {
+	public void render(GuiGraphics g, DeltaTracker delta) {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
 		if (data == null || data.contents.isEmpty()) return;
 		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
-		screenHeight = Math.round(screenHeight / scale);
 		g.pose().pushPose();
 		g.pose().scale(scale, scale, scale);
+		int screenHeight = (int) (g.guiHeight() / scale);
+		float partialTick = delta.getGameTimeDeltaTicks();
 		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;
 		int x = 8;
@@ -107,6 +108,5 @@ public class CookingOverlay implements IGuiOverlay {
 			y += 20;
 		}
 		g.pose().popPose();
-		;
 	}
 }

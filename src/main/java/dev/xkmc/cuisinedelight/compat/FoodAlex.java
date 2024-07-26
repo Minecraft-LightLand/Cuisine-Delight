@@ -1,5 +1,6 @@
 package dev.xkmc.cuisinedelight.compat;
 
+/*
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import com.ncpbails.alexsdelight.AlexsDelight;
@@ -80,3 +81,4 @@ public class FoodAlex {
 	}
 
 }
+*/
