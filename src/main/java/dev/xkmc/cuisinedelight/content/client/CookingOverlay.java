@@ -60,7 +60,7 @@ public class CookingOverlay implements LayeredDraw.Layer {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
 		if (data == null || data.contents.isEmpty()) return;
-		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
+		float scale = (float) (double) CDConfig.CLIENT.uiScale.get() * g.guiHeight() / 240;
 		g.pose().pushPose();
 		g.pose().scale(scale, scale, scale);
 		int screenHeight = (int) (g.guiHeight() / scale);

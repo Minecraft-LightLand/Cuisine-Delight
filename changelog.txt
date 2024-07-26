@@ -1,32 +1,25 @@
+1.2.1
+- Make cooking overlay rendered to ratio of the screen by default
+
 1.2.0
-    - port to 1.21
+- port to 1.21
 
 1.1.14
-    - Add miner's delight, croptopia, Alex's Mobs, Alex's Delight compat
-
-1.1.13 / 1.0.9
-    - Tweak food bonus. now perfectly cooked food has nutrition bonus as well
-
-1.1.12 / 1.0.8
-    - Use cooked texture for meat, add datapack support
-    - Render fluids
-    - Return container when adding ingredients, not when taking them out
-    - SoL use cooked stack instead of raw
-
-1.1.11 / 1.0.5
-    - Fix Vege Pasta recipe
-    - Add Nether Delight compat
-    - Add Ocean Delight compat
-
-1.1.10 / 1.0.4
-    - Add JEI recipe
-    - Add dummy food property to fix potential incompatibility with Autumnity
-    - Support Diet, Spice of Life: carrot, and Spice of Life: apple pie
-    - Add 3 plates
-    - Fix food percentage change after being eaten
-
-1.1.9 / 1.0.2
-    - add enchantment description
-    - add Silk Touch tricks
-    - Fire Aspect I double cook time
-    - Add gui scale config
+- Add miner's delight, croptopia, Alex's Mobs, Alex's Delight compat
+- Tweak food bonus. now perfectly cooked food has nutrition bonus as well
+- Use cooked texture for meat, add datapack support
+- Render fluids
+- Return container when adding ingredients, not when taking them out
+- SoL use cooked stack instead of raw
+- Fix Vege Pasta recipe
+- Add Nether Delight compat
+- Add Ocean Delight compat
+- Add JEI recipe
+- Add dummy food property to fix potential incompatibility with Autumnity
+- Support Diet, Spice of Life: carrot, and Spice of Life: apple pie
+- Add 3 plates
+- Fix food percentage change after being eaten
+- add enchantment description
+- add Silk Touch tricks
+- Fire Aspect I double cook time
+- Add gui scale config
