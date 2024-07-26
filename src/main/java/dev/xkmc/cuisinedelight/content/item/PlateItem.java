@@ -61,13 +61,6 @@ public class PlateItem extends Item {
 
 	private void giveBack(ItemStack foodStack, CookedFoodData food, ReturnTarget target) {
 		target.addItem(foodStack);
-		for (var e : food.entries) {
-			if (e.stack().hasCraftingRemainingItem()) {
-				ItemStack remain = e.stack().getCraftingRemainingItem();
-				remain.setCount(remain.getCount() * e.stack().getCount());
-				target.addItem(remain);
-			}
-		}
 		target.addExp(food.score * food.size / 100);
 	}
 
@@ -85,7 +78,7 @@ public class PlateItem extends Item {
 		}
 		if (!level.isClientSide()) {
 			CuisineSkilletItem.setData(skilletStack, null);
-			data.stir(level.getGameTime());
+			data.stir(level.getGameTime(), 0);
 			CookedFoodData food = new CookedFoodData(data);
 			ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 			plateStack.shrink(1);
@@ -99,12 +92,12 @@ public class PlateItem extends Item {
 		Level level = ctx.getLevel();
 		Player player = ctx.getPlayer();
 		if (level.getBlockEntity(ctx.getClickedPos()) instanceof CuisineSkilletBlockEntity be) {
-			if (be.cookingData.contents.size() == 0) {
+			if (be.cookingData.contents.isEmpty()) {
 				return InteractionResult.PASS;
 			}
 			if (!level.isClientSide()) {
 				CookingData data = be.cookingData;
-				data.stir(level.getGameTime());
+				data.stir(level.getGameTime(), 0);
 				CookedFoodData food = new CookedFoodData(data);
 				ItemStack foodStack = BaseCuisineRecipe.findBestMatch(level, food);
 				ctx.getItemInHand().shrink(1);

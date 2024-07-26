@@ -1,0 +1,29 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "miners_delight:arthropod": {
+      "next": "miners_delight:cooked_arthropod",
+      "stage": "COOKED"
+    },
+    "miners_delight:bat_wing": {
+      "next": "miners_delight:smoked_bat_wing",
+      "stage": "COOKED"
+    },
+    "miners_delight:cave_carrot": {
+      "next": "miners_delight:baked_cave_carrot",
+      "stage": "COOKED"
+    },
+    "miners_delight:glow_squid": {
+      "next": "miners_delight:baked_squid",
+      "stage": "COOKED"
+    },
+    "miners_delight:squid": {
+      "next": "miners_delight:baked_squid",
+      "stage": "COOKED"
+    },
+    "miners_delight:tentacles": {
+      "next": "miners_delight:baked_tentacles",
+      "stage": "COOKED"
+    }
+  }
+}

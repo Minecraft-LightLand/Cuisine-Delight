@@ -1,32 +1,37 @@
 package dev.xkmc.cuisinedelight.init.data;
 
+import dev.xkmc.cuisinedelight.compat.FoodAlex;
+import dev.xkmc.cuisinedelight.compat.FoodCroptopia;
+import dev.xkmc.cuisinedelight.compat.FoodDelight;
+import dev.xkmc.cuisinedelight.compat.FoodTwilight;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
+import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.l2core.serial.config.ConfigDataProvider;
-import net.minecraft.core.HolderLookup;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
+import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraftforge.common.Tags;
 import vectorwing.farmersdelight.FarmersDelight;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
-import java.util.concurrent.CompletableFuture;
+import static vectorwing.farmersdelight.common.registry.ModItems.*;
 
 public class CDConfigGen extends ConfigDataProvider {
 
-	public CDConfigGen(DataGenerator generator, CompletableFuture<HolderLookup.Provider> pvd) {
-		super(generator, pvd, "Cuisine Delight Config");
+	public CDConfigGen(DataGenerator generator) {
+		super(generator, "Cuisine Delight Config");
 	}
 
 	@Override
 	public void add(Collector map) {
 		// vanilla
 		{
-			map.add(CuisineDelight.INGREDIENT, CuisineDelight.loc("meat"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "meat"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.MUTTON, Items.PORKCHOP, Items.BEEF), FoodType.MEAT,
 							180, 240, 80, 0.5f, 0.5f, 3, 10),
 					IngredientConfig.get(Ingredient.of(Items.PORKCHOP), FoodType.MEAT,
@@ -45,7 +50,7 @@ public class CDConfigGen extends ConfigDataProvider {
 					)
 			));
 
-			map.add(CuisineDelight.INGREDIENT, CuisineDelight.loc("vege"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "vege"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.POTATO), FoodType.CARB,
 							180, 360, 60, 0.5f, 0.3f, 1, 8),
 					IngredientConfig.get(Ingredient.of(Items.BEETROOT, Items.CARROT), FoodType.VEG,
@@ -73,40 +78,80 @@ public class CDConfigGen extends ConfigDataProvider {
 			));
 
 
-			map.add(CuisineDelight.INGREDIENT, CuisineDelight.loc("misc"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(CuisineDelight.MODID, "misc"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(Items.DANDELION), FoodType.NONE,
 							60, 80, 40, 0, 0, 0, 0,
 							new IngredientConfig.EffectEntry(MobEffects.SATURATION, 0, 7)),
 					IngredientConfig.get(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE), FoodType.NONE,
 							0, 300, 80, 0, 0, 1, 1)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "meat"), new CookTransformConfig()
+					.item(Items.MUTTON, Items.COOKED_MUTTON, Stage.COOKED)
+					.item(Items.BEEF, Items.COOKED_BEEF, Stage.COOKED)
+					.item(Items.PORKCHOP, Items.COOKED_PORKCHOP, Stage.COOKED)
+					.item(Items.CHICKEN, Items.COOKED_CHICKEN, Stage.COOKED)
+					.item(Items.RABBIT, Items.COOKED_RABBIT, Stage.COOKED)
+					.item(Items.COD, Items.COOKED_COD, Stage.COOKED)
+					.item(Items.SALMON, Items.COOKED_SALMON, Stage.COOKED)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "other"), new CookTransformConfig()
+					.item(Items.POTATO, Items.BAKED_POTATO, Stage.COOKED)
+					.item(Items.KELP, Items.DRIED_KELP, Stage.COOKED)
+					.item(Items.EGG, CDItems.FRIED_EGG.get(), Stage.RAW)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(CuisineDelight.MODID, "fluids"), new CookTransformConfig()
+					.fluid(Items.HONEY_BOTTLE, 0xFFFED32E)
+			);
 		}
 		// farmer's delight
 		{
-			map.add(CuisineDelight.INGREDIENT, ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "vege"), IngredientConfig.build(
-					IngredientConfig.get(Ingredient.of(ModItems.RICE.get(), ModItems.RAW_PASTA.get(), ModItems.WHEAT_DOUGH.get()), FoodType.CARB,
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(FarmersDelight.MODID, "vege"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(RICE.get(), RAW_PASTA.get(), WHEAT_DOUGH.get()), FoodType.CARB,
 							300, 360, 80, 0.7f, 0.5f, 2, 8),
-					IngredientConfig.get(Ingredient.of(ModItems.TOMATO.get(), ModItems.CABBAGE.get(), ModItems.ONION.get(), ModItems.PUMPKIN_SLICE.get()), FoodType.VEG,
+					IngredientConfig.get(Ingredient.of(TOMATO.get(), CABBAGE.get(), ONION.get(), PUMPKIN_SLICE.get()), FoodType.VEG,
 							0, 360, 60, 0, 0.2f, 2, 5),
-					IngredientConfig.get(Ingredient.of(ModItems.CABBAGE_LEAF.get()), FoodType.VEG,
+					IngredientConfig.get(Ingredient.of(CABBAGE_LEAF.get()), FoodType.VEG,
 							0, 240, 60, 0, 0.2f, 1, 5),
-					IngredientConfig.get(Ingredient.of(ModItems.MILK_BOTTLE.get()), FoodType.NONE,
+					IngredientConfig.get(Ingredient.of(MILK_BOTTLE.get()), FoodType.NONE,
 							0, 360, 60, 0, 0, 1, 1)
 			));
 
-			map.add(CuisineDelight.INGREDIENT, ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "meat"), IngredientConfig.build(
-					IngredientConfig.get(Ingredient.of(ModItems.HAM.get()), FoodType.MEAT,
+			map.add(CuisineDelight.INGREDIENT, new ResourceLocation(FarmersDelight.MODID, "meat"), IngredientConfig.build(
+					IngredientConfig.get(Ingredient.of(HAM.get()), FoodType.MEAT,
 							240, 360, 80, 0.5f, 0.5f, 3, 10),
-					IngredientConfig.get(Ingredient.of(ModItems.MINCED_BEEF.get(), ModItems.MUTTON_CHOPS.get()), FoodType.MEAT,
+					IngredientConfig.get(Ingredient.of(MINCED_BEEF.get(), MUTTON_CHOPS.get()), FoodType.MEAT,
 							120, 240, 80, 0.5f, 0.5f, 2, 10),
-					IngredientConfig.get(Ingredient.of(ModItems.BACON.get()), FoodType.MEAT,
+					IngredientConfig.get(Ingredient.of(BACON.get()), FoodType.MEAT,
 							120, 240, 80, 1f, 0.5f, 2, 10),
-					IngredientConfig.get(Ingredient.of(ModItems.CHICKEN_CUTS.get()), FoodType.MEAT,
+					IngredientConfig.get(Ingredient.of(CHICKEN_CUTS.get()), FoodType.MEAT,
 							120, 240, 80, 1f, 0.5f, 1, 8),
-					IngredientConfig.get(Ingredient.of(ModItems.COD_SLICE.get(), ModItems.SALMON_SLICE.get()), FoodType.SEAFOOD,
+					IngredientConfig.get(Ingredient.of(COD_SLICE.get(), SALMON_SLICE.get()), FoodType.SEAFOOD,
 							60, 120, 40, 0.5f, 0.5f, 1, 12)
 			));
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(FarmersDelight.MODID, "meat"), new CookTransformConfig()
+					.item(BACON.get(), COOKED_BACON.get(), Stage.COOKED)
+					.item(CHICKEN_CUTS.get(), COOKED_CHICKEN_CUTS.get(), Stage.COOKED)
+					.item(COD_SLICE.get(), COOKED_COD_SLICE.get(), Stage.COOKED)
+					.item(SALMON_SLICE.get(), COOKED_SALMON_SLICE.get(), Stage.COOKED)
+					.item(MINCED_BEEF.get(), BEEF_PATTY.get(), Stage.COOKED)
+					.item(MUTTON_CHOPS.get(), COOKED_MUTTON_CHOPS.get(), Stage.COOKED)
+					.item(HAM.get(), SMOKED_HAM.get(), Stage.COOKED)
+			);
+
+			map.add(CuisineDelight.TRANSFORM, new ResourceLocation(FarmersDelight.MODID, "fluids"), new CookTransformConfig()
+					.fluid(MILK_BOTTLE.get(), 0xFFFFFFFF)
+			);
+
 		}
+
+		FoodTwilight.add(map);
+		FoodAlex.add(map);
+		FoodDelight.add(map);
+		FoodCroptopia.add(map);
 	}
 
 }

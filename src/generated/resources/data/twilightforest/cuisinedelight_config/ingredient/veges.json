@@ -1,0 +1,44 @@
+{
+  "entries": [
+    {
+      "type": "VEG",
+      "effects": [
+        {
+          "effect": "minecraft:glowing",
+          "level": 0,
+          "time": 1200
+        }
+      ],
+      "ingredient": {
+        "item": "twilightforest:torchberries"
+      },
+      "max_time": 60,
+      "min_time": 0,
+      "nutrition": 4,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 40
+    },
+    {
+      "type": "VEG",
+      "effects": [
+        {
+          "effect": "minecraft:resistance",
+          "level": 0,
+          "time": 1200
+        }
+      ],
+      "ingredient": {
+        "item": "twilightforest:liveroot"
+      },
+      "max_time": 360,
+      "min_time": 300,
+      "nutrition": 1,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.5,
+      "size": 1,
+      "stir_time": 40
+    }
+  ]
+}

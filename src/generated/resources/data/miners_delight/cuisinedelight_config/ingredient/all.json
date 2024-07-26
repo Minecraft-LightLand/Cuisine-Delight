@@ -1,0 +1,107 @@
+{
+  "entries": [
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "miners_delight:silverfish_eggs"
+      },
+      "max_time": 180,
+      "min_time": 60,
+      "nutrition": 5,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.8,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "miners_delight:bat_wing"
+      },
+      "max_time": 300,
+      "min_time": 180,
+      "nutrition": 5,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.8,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "MEAT",
+      "effects": [],
+      "ingredient": {
+        "item": "miners_delight:arthropod"
+      },
+      "max_time": 120,
+      "min_time": 60,
+      "nutrition": 5,
+      "overcook_penalty": 0.3,
+      "raw_penalty": 0.8,
+      "size": 2,
+      "stir_time": 60
+    },
+    {
+      "type": "SEAFOOD",
+      "effects": [],
+      "ingredient": [
+        {
+          "item": "miners_delight:squid"
+        },
+        {
+          "item": "miners_delight:glow_squid"
+        }
+      ],
+      "max_time": 180,
+      "min_time": 120,
+      "nutrition": 12,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.3,
+      "size": 3,
+      "stir_time": 40
+    },
+    {
+      "type": "SEAFOOD",
+      "effects": [],
+      "ingredient": {
+        "item": "miners_delight:tentacles"
+      },
+      "max_time": 120,
+      "min_time": 60,
+      "nutrition": 12,
+      "overcook_penalty": 0.5,
+      "raw_penalty": 0.3,
+      "size": 2,
+      "stir_time": 40
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": {
+        "item": "miners_delight:cave_carrot"
+      },
+      "max_time": 360,
+      "min_time": 240,
+      "nutrition": 8,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.2,
+      "size": 1,
+      "stir_time": 60
+    },
+    {
+      "type": "VEG",
+      "effects": [],
+      "ingredient": {
+        "item": "miners_delight:moss"
+      },
+      "max_time": 120,
+      "min_time": 60,
+      "nutrition": 3,
+      "overcook_penalty": 0.2,
+      "raw_penalty": 0.2,
+      "size": 1,
+      "stir_time": 60
+    }
+  ]
+}

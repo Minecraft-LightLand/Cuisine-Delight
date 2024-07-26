@@ -2,16 +2,25 @@ package dev.xkmc.cuisinedelight.content.item;
 
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
+import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import vectorwing.farmersdelight.common.registry.ModSounds;
+
+import java.util.List;
 
 public class SpatulaItem extends Item {
 
@@ -32,7 +41,7 @@ public class SpatulaItem extends Item {
 		CookingData data = CuisineSkilletItem.getData(skilletStack);
 		if (data != null) {
 			if (!level.isClientSide()) {
-				data.stir(level.getGameTime());
+				data.stir(level.getGameTime(), SpatulaItem.getReduction(spatulaStack));
 				CuisineSkilletItem.setData(skilletStack, data);
 				player.getCooldowns().addCooldown(this, ANIM_TIME);
 				player.getCooldowns().addCooldown(CDItems.SKILLET.get(), ANIM_TIME);
@@ -44,6 +53,10 @@ public class SpatulaItem extends Item {
 		return InteractionResultHolder.fail(spatulaStack);
 	}
 
+	private static int getReduction(ItemStack stack) {
+		return stack.getEnchantmentLevel(Enchantments.SILK_TOUCH) > 0 ? 20 : 0;
+	}
+
 	@Override
 	public InteractionResult useOn(UseOnContext ctx) {
 		Level level = ctx.getLevel();
@@ -51,7 +64,7 @@ public class SpatulaItem extends Item {
 		if (level.getBlockEntity(ctx.getClickedPos()) instanceof CuisineSkilletBlockEntity be) {
 			if (be.cookingData.contents.size() > 0) {
 				if (!level.isClientSide()) {
-					be.stir(level.getGameTime());
+					be.stir(level.getGameTime(), getReduction(ctx.getItemInHand()));
 					if (player != null) {
 						player.getCooldowns().addCooldown(CDItems.SPATULA.get(), ANIM_TIME);
 					}
@@ -61,6 +74,23 @@ public class SpatulaItem extends Item {
 			}
 		}
 		return InteractionResult.PASS;
+	}
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if (enchantment == Enchantments.SILK_TOUCH) {
+			return true;
+		}
+		return super.canApplyAtEnchantingTable(stack, enchantment);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		if (Screen.hasShiftDown()) {
+			list.add(LangData.ENCH_SILK.get());
+		} else {
+			list.add(LangData.ENCH_SHIFT.get());
+		}
 	}
 
 }

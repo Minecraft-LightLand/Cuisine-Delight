@@ -2,31 +2,32 @@ package dev.xkmc.cuisinedelight.content.client;
 
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
+import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
+import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
-import dev.xkmc.l2core.util.Proxy;
-import net.minecraft.client.DeltaTracker;
+import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingOverlay implements LayeredDraw.Layer {
+public class CookingOverlay implements IGuiOverlay {
 
 	private static final float MAX_TIME = 400, STIR_TIME = 100, R = 9;
 
 	@Nullable
 	private static CookingData getHandData() {
 		LocalPlayer player = Proxy.getClientPlayer();
-		if (player == null) return null;
 		ItemStack mainStack = player.getMainHandItem();
 		ItemStack offStack = player.getOffhandItem();
 		ItemStack stack;
@@ -41,7 +42,7 @@ public class CookingOverlay implements LayeredDraw.Layer {
 		HitResult result = Minecraft.getInstance().hitResult;
 		if (result == null || result.getType() != HitResult.Type.BLOCK) return null;
 		BlockPos pos = ((BlockHitResult) result).getBlockPos();
-		if (Minecraft.getInstance().level.getBlockEntity(pos) instanceof CuisineSkilletBlockEntity be) {
+		if (Proxy.getClientWorld().getBlockEntity(pos) instanceof CuisineSkilletBlockEntity be) {
 			return be.cookingData;
 		}
 		return null;
@@ -55,26 +56,30 @@ public class CookingOverlay implements LayeredDraw.Layer {
 	}
 
 	@Override
-	public void render(GuiGraphics g, DeltaTracker deltaTracker) {
+	public void render(ForgeGui gui, GuiGraphics g, float partialTick, int screenWidth, int screenHeight) {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
 		if (data == null || data.contents.isEmpty()) return;
-		int screenHeight = g.guiHeight();
-		float partialTick = deltaTracker.getGameTimeDeltaTicks();
+		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
+		screenHeight = Math.round(screenHeight / scale);
+		g.pose().pushPose();
+		g.pose().scale(scale, scale, scale);
 		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;
 		int x = 8;
 		Font font = Minecraft.getInstance().font;
 		for (var entry : data.contents) {
-			ItemStack food = entry.item;
-			g.renderItem(food, x, y + 2);
-			g.renderItemDecorations(font, food, x, y + 2);
+			ItemStack food = entry.getItem();
+			var handle = CookTransformConfig.get(food);
+			ItemStack render = handle.renderStack(entry.getStage(data), food);
+			g.renderItem(render, x, y + 2);
+			g.renderItemDecorations(font, render, x, y + 2);
 			y += 20;
 		}
 		x += 20;
 		y = screenHeight / 2 - data.contents.size() * 10;
 		for (var entry : data.contents) {
-			ItemStack food = entry.item;
+			ItemStack food = entry.getItem();
 			var config = IngredientConfig.get().getEntry(food);
 			if (config != null) {
 				PieRenderer cook = new PieRenderer(g, x + 8, y + 12);
@@ -84,7 +89,7 @@ public class CookingOverlay implements LayeredDraw.Layer {
 				cook.fillPie(min, max, PieRenderer.Texture.PIE_YELLOW);
 				cook.fillPie(max, 1, PieRenderer.Texture.PIE_RED);
 
-				float cook_needle = Mth.clamp(((int) (data.lastActionTime - entry.startTime) + partialTick) / MAX_TIME, 0f, 1f);
+				float cook_needle = Mth.clamp(entry.getDuration(data, partialTick) / MAX_TIME, 0f, 1f);
 				cook.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, cook_needle);
 				cook.drawIcon(PieRenderer.Texture.COOK);
 
@@ -93,13 +98,15 @@ public class CookingOverlay implements LayeredDraw.Layer {
 				flip.fillPie(0, thr, PieRenderer.Texture.PIE_GREEN);
 				flip.fillPie(thr, 1, PieRenderer.Texture.PIE_RED);
 
-				float stir_current = Mth.clamp(((int) (data.lastActionTime - entry.lastStirTime) + partialTick) / STIR_TIME, 0f, 1f);
-				float stir_max = Mth.clamp(Math.max(stir_current, entry.maxStirTime / STIR_TIME), 0f, 1f);
+				float stir_current = Mth.clamp(entry.timeSinceStir(data, partialTick) / STIR_TIME, 0f, 1f);
+				float stir_max = Mth.clamp(Math.max(stir_current, entry.getMaxStirTime(data) / STIR_TIME), 0f, 1f);
 				flip.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, stir_current);
 				flip.drawNeedle(PieRenderer.Texture.NEEDLE_RED, stir_max + 0.5f);
 				flip.drawIcon(PieRenderer.Texture.FLIP);
 			}
 			y += 20;
 		}
+		g.pose().popPose();
+		;
 	}
 }

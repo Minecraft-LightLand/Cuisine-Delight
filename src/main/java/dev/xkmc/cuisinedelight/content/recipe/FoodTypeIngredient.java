@@ -3,37 +3,53 @@ package dev.xkmc.cuisinedelight.content.recipe;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.cuisinedelight.init.registrate.CDMisc;
+import dev.xkmc.l2library.serial.ingredients.BaseIngredient;
+import dev.xkmc.l2serial.serialization.SerialClass;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.common.crafting.ICustomIngredient;
-import net.neoforged.neoforge.common.crafting.IngredientType;
 
-import java.util.stream.Stream;
+@SerialClass
+public class FoodTypeIngredient extends BaseIngredient<FoodTypeIngredient> {
 
-public record FoodTypeIngredient(FoodType foodType) implements ICustomIngredient {
+	public static final Serializer<FoodTypeIngredient> INSTANCE =
+			new Serializer<>(FoodTypeIngredient.class, new ResourceLocation(CuisineDelight.MODID, "food_type"));
 
-	public static Ingredient of(FoodType type){
-		return new FoodTypeIngredient(type).toVanilla();
+	@SerialClass.SerialField
+	public FoodType foodType;
+
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
+	public FoodTypeIngredient() {
 	}
 
-	public Stream<ItemStack> getItems() {
-		return Stream.of(foodType.getDisplay());
+	public FoodTypeIngredient(FoodType foodType) {
+		super(foodType.getDisplay());
+		this.foodType = foodType;
 	}
 
-	public boolean isSimple() {
-		return false;
+	@Override
+	protected FoodTypeIngredient validate() {
+		return new FoodTypeIngredient(foodType);
 	}
 
-	public IngredientType<?> getType() {
-		return CDMisc.ING_FOOD_TYPE.get();
-	}
-
+	@Override
 	public boolean test(ItemStack stack) {
 		IngredientConfig config = CuisineDelight.INGREDIENT.getMerged();
 		var entry = config.getEntry(stack);
 		if (entry == null) return false;
 		return entry.type == foodType;
+	}
+
+	@Override
+	public Serializer<FoodTypeIngredient> getSerializer() {
+		return INSTANCE;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return IngredientConfig.get().getAll(foodType);
 	}
 
 }

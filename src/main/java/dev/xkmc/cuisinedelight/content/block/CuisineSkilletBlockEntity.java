@@ -73,12 +73,17 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 				EnchHelper.getEnchLevel(baseItem, Enchantments.FIRE_ASPECT) > 0;
 	}
 
+	public boolean slowCook() {
+		return baseItem.getEnchantmentLevel(Enchantments.FIRE_ASPECT) == 1 &&
+				this.level != null && !this.isHeated(this.level, this.getBlockPos());
+	}
+
 	public float getStirPercent(float pTick) {
 		return Math.max(0, stirTimer - pTick) / SpatulaItem.ANIM_TIME;
 	}
 
-	public void stir(long gameTime) {
-		cookingData.stir(gameTime);
+	public void stir(long gameTime, int reduce) {
+		cookingData.stir(gameTime, reduce);
 		stirTimer = SpatulaItem.ANIM_TIME;
 		sync();
 	}

@@ -1,0 +1,33 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "ends_delight:dragon_leg": {
+      "next": "ends_delight:smoked_dragon_leg",
+      "stage": "COOKED"
+    },
+    "ends_delight:liquid_dragon_egg": {
+      "next": "ends_delight:fried_dragon_egg",
+      "stage": "COOKED"
+    },
+    "ends_delight:raw_dragon_meat": {
+      "next": "ends_delight:roasted_dragon_meat",
+      "stage": "COOKED"
+    },
+    "ends_delight:raw_dragon_meat_cuts": {
+      "next": "ends_delight:roasted_dragon_meat_cuts",
+      "stage": "COOKED"
+    },
+    "ends_delight:raw_ender_mite_meat": {
+      "next": "ends_delight:dried_endermite_meat",
+      "stage": "COOKED"
+    },
+    "ends_delight:shulker_meat": {
+      "next": "ends_delight:roasted_shulker_meat",
+      "stage": "COOKED"
+    },
+    "ends_delight:shulker_meat_slice": {
+      "next": "ends_delight:roasted_shulker_meat_slice",
+      "stage": "COOKED"
+    }
+  }
+}

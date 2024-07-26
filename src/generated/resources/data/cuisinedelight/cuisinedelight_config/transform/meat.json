@@ -1,0 +1,33 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "minecraft:beef": {
+      "next": "minecraft:cooked_beef",
+      "stage": "COOKED"
+    },
+    "minecraft:chicken": {
+      "next": "minecraft:cooked_chicken",
+      "stage": "COOKED"
+    },
+    "minecraft:cod": {
+      "next": "minecraft:cooked_cod",
+      "stage": "COOKED"
+    },
+    "minecraft:mutton": {
+      "next": "minecraft:cooked_mutton",
+      "stage": "COOKED"
+    },
+    "minecraft:porkchop": {
+      "next": "minecraft:cooked_porkchop",
+      "stage": "COOKED"
+    },
+    "minecraft:rabbit": {
+      "next": "minecraft:cooked_rabbit",
+      "stage": "COOKED"
+    },
+    "minecraft:salmon": {
+      "next": "minecraft:cooked_salmon",
+      "stage": "COOKED"
+    }
+  }
+}
