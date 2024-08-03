@@ -1,7 +1,8 @@
 1.2.1
-- Make cooking overlay rendered to ratio of the screen by default
+- Loosen Registrate version requirement
 
 1.2.0
+- Make cooking overlay rendered to ratio of the screen by default
 - port to 1.21
 
 1.1.14

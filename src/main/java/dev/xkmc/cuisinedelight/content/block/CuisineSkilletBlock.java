@@ -1,12 +1,12 @@
 package dev.xkmc.cuisinedelight.content.block;
 
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
-import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.cuisinedelight.init.registrate.CDBlocks;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
+import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +18,6 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -56,7 +55,7 @@ public class CuisineSkilletBlock extends SkilletBlock {
 					return ItemInteractionResult.FAIL;
 				}
 				if (!level.isClientSide) {
-					int count = 1 + EnchHelper.getEnchLevel(be.baseItem, Enchantments.EFFICIENCY);
+					int count = 1 + EnchHelper.getLv(be.baseItem, Enchantments.EFFICIENCY);
 					if (be.slowCook()) {
 						be.cookingData.setSpeed(0.5f);
 					}

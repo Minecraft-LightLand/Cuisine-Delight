@@ -2,9 +2,9 @@ package dev.xkmc.cuisinedelight.content.item;
 
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
-import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
+import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -15,10 +15,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 
 import java.util.List;
@@ -55,7 +53,7 @@ public class SpatulaItem extends Item {
 	}
 
 	private static int getReduction(ItemStack stack) {
-		return EnchHelper.getEnchLevel(stack,Enchantments.SILK_TOUCH) > 0 ? 20 : 0;
+		return EnchHelper.getLv(stack, Enchantments.SILK_TOUCH) > 0 ? 20 : 0;
 	}
 
 	@Override

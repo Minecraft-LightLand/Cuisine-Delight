@@ -2,11 +2,11 @@ package dev.xkmc.cuisinedelight.content.item;
 
 import dev.xkmc.cuisinedelight.content.block.CuisineSkilletBlockEntity;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
-import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
+import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -50,7 +50,7 @@ public class CuisineSkilletItem extends SkilletItem {
 
 	public static boolean canUse(ItemStack stack, Player player, Level level) {
 		if (getData(stack) != null) return true;
-		if (EnchHelper.getEnchLevel(stack, Enchantments.FIRE_ASPECT) > 0) return true;
+		if (EnchHelper.getLv(stack, Enchantments.FIRE_ASPECT) > 0) return true;
 		return isPlayerNearHeatSource(player, level);
 	}
 
@@ -94,8 +94,8 @@ public class CuisineSkilletItem extends SkilletItem {
 					if (data == null) {
 						data = new CookingData();
 					}
-					int amount = 1 + EnchHelper.getEnchLevel(skilletStack, Enchantments.EFFICIENCY);
-					int speed = EnchHelper.getEnchLevel(skilletStack, Enchantments.FIRE_ASPECT);
+					int amount = 1 + EnchHelper.getLv(skilletStack, Enchantments.EFFICIENCY);
+					int speed = EnchHelper.getLv(skilletStack, Enchantments.FIRE_ASPECT);
 					if (speed == 1) {
 						data.setSpeed(0.5f);
 					}

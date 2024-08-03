@@ -3,9 +3,9 @@ package dev.xkmc.cuisinedelight.content.block;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.item.SpatulaItem;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
-import dev.xkmc.cuisinedelight.content.logic.EnchHelper;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2core.base.tile.BaseBlockEntity;
+import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.core.BlockPos;
@@ -70,11 +70,11 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 
 	public boolean canCook() {
 		return this.level != null && this.isHeated(this.level, this.getBlockPos()) ||
-				EnchHelper.getEnchLevel(baseItem, Enchantments.FIRE_ASPECT) > 0;
+				EnchHelper.getLv(baseItem, Enchantments.FIRE_ASPECT) > 0;
 	}
 
 	public boolean slowCook() {
-		return EnchHelper.getEnchLevel(baseItem, Enchantments.FIRE_ASPECT) == 1 &&
+		return EnchHelper.getLv(baseItem, Enchantments.FIRE_ASPECT) == 1 &&
 				this.level != null && !this.isHeated(this.level, this.getBlockPos());
 	}
 

@@ -106,19 +106,12 @@ jar {
     }
 }
 
-dependencies {
-    //annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    //compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-}
-
-// project specific
-
 repositories {
     flatDir {
         dirs 'libs'
     }
     maven { // Registrate
-        url "https://maven.tterrag.com/"
+        url "https://maven.ithundxr.dev/snapshots"
     }
     maven {
         url = "https://maven.theillusivec4.top/"
@@ -172,7 +165,7 @@ dependencies {
 
 tasks.register('publishCurseForge', TaskPublishCurseForge) {
     apiToken = secrets.get("curseforge_token")
-    def mainFile = upload(project.curseforge_project, new File("./build/libs/${mod_id}-${mod_version}.jar"))
+    def mainFile = upload(curseforge_project, new File("./build/libs/${mod_id}-${mod_version}.jar"))
     mainFile.changelog = new File('./changelog.txt')
     mainFile.addEnvironment("Client", "Server")
     mainFile.addGameVersion("1.21")
