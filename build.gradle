@@ -159,7 +159,7 @@ dependencies {
     implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[${l2core_ver},)")
 
     implementation jarJar(group: 'dev.xkmc', name: 'fruitsdelight', version: "[1.2.0,)")
-    implementation jarJar(group: 'dev.xkmc', name: 'youkaishomecoming', version: "[3.0.0+2,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'youkaishomecoming', version: "[3.0.0+3,)")
 
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
 
