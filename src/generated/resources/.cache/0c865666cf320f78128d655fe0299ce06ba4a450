@@ -1,4 +1,4 @@
-// 1.21	2024-07-26T16:06:51.943489	Registrate Provider for cuisinedelight [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment)]
+// 1.21.1	2024-08-11T22:30:05.688909	Registrate Provider for cuisinedelight [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment)]
 d577e4e89ca3fa6d80afc261c1f855be66c53fc4 assets/cuisinedelight/blockstates/cuisine_skillet.json
 b63de2961be2e0817a45bc2a19298c6c5d9bc5e3 assets/cuisinedelight/lang/en_ud.json
 de5d7ff911a51e4608f668c402f935fa67f7dd05 assets/cuisinedelight/lang/en_us.json
@@ -27,6 +27,7 @@ eafee55c9505e14415cebe406c7f88b9577c3609 assets/cuisinedelight/models/item/seafo
 eb44b1979d5804e35df99d1027b5d1d72a59f46c assets/cuisinedelight/models/item/vegetable_fried_rice.json
 4f3a929333ce14673c400a80e80178cb7e2ae91a assets/cuisinedelight/models/item/vegetable_pasta.json
 b7ed01c4fa886730b37f6745fe1089d78f3794e2 assets/cuisinedelight/models/item/vegetable_platter.json
+2bee0de6c2ff9ea2a4bbad18fe78c11bab7fb8cd data/c/tags/item/enchantables.json
 cbca1ddc45049c4c705a8090c1b78f87250e767a data/cuisinedelight/advancement/recipes/misc/cuisine_skillet.json
 ac8cdbf485ae297914bc3d63ad8d26c47e179496 data/cuisinedelight/advancement/recipes/misc/plate_from_planks_stonecutting.json
 0d7082d7c1ef1ef814c1ea5069001cb673272ec2 data/cuisinedelight/advancement/recipes/misc/spatula_from_iron_ingot_stonecutting.json
@@ -77,6 +78,3 @@ e5396949c70cb29feb48655595cd4d90a4ba1573 data/cuisinedelight/recipe/recipes/plat
 6c4bb599061ef942279bf0de887a7eb4d70f20e4 data/cuisinedelight/recipe/recipes/plate_cuisine/vegetable_platter.json
 ba780978999f4e1f4236742092625ec01e6110ac data/cuisinedelight/recipe/spatula_from_iron_ingot_stonecutting.json
 51e90a5b0dd670ad94aec1bccc5047353a6778de data/cuisinedelight/tags/item/utensils.json
-52565ec52567070bd076d0626088c24ba69a19ce data/minecraft/tags/item/enchantable/fire_aspect.json
-52565ec52567070bd076d0626088c24ba69a19ce data/minecraft/tags/item/enchantable/mining.json
-bb555f6ea5c1927549638ee82a2b8e9f3153b607 data/minecraft/tags/item/enchantable/mining_loot.json
