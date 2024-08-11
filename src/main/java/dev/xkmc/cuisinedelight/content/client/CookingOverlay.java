@@ -64,7 +64,7 @@ public class CookingOverlay implements LayeredDraw.Layer {
 		g.pose().pushPose();
 		g.pose().scale(scale, scale, scale);
 		int screenHeight = (int) (g.guiHeight() / scale);
-		float partialTick = delta.getGameTimeDeltaTicks();
+		float partialTick = delta.getGameTimeDeltaTicks();//TODO partial
 		data.update(Minecraft.getInstance().level.getGameTime());
 		int y = screenHeight / 2 - data.contents.size() * 10;
 		int x = 8;
