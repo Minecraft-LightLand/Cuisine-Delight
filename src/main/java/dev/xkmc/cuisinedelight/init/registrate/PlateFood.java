@@ -1,8 +1,7 @@
 package dev.xkmc.cuisinedelight.init.registrate;
 
-import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
-import dev.xkmc.cuisinedelight.init.CuisineDelight;
+import dev.xkmc.l2core.init.reg.varitem.VarHolder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -20,12 +19,10 @@ public enum PlateFood {
 	VEGETABLE_FRIED_RICE, VEGETABLE_PASTA, VEGETABLE_PLATTER,
 	FRIED_MUSHROOM, FRIED_MEAT_AND_MELON, SCRAMBLED_EGG_AND_TOMATO;
 
-	public final ItemEntry<BaseFoodItem> item;
+	public final VarHolder<BaseFoodItem> item;
 
 	PlateFood() {
-		item = CuisineDelight.REGISTRATE.item(name().toLowerCase(Locale.ROOT),
-						p -> new BaseFoodItem(p.stacksTo(1).craftRemainder(CDItems.PLATE.get())))
-				.defaultModel().lang(toEnglishName(name())).register();
+		item = CDItems.FOOD.add(new VarHolder<>(name().toLowerCase(Locale.ROOT), (rl, b) -> b));
 	}
 
 	public static String toEnglishName(String internalName) {

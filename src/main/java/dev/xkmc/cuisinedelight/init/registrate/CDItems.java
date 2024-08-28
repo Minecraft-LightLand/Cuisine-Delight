@@ -4,6 +4,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import dev.xkmc.cuisinedelight.content.client.SkilletBEWLR;
+import dev.xkmc.cuisinedelight.content.item.BaseFoodItem;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.item.PlateItem;
 import dev.xkmc.cuisinedelight.content.item.SpatulaItem;
@@ -15,8 +16,8 @@ import dev.xkmc.cuisinedelight.init.data.TagGen;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2core.init.reg.simple.DCReg;
 import dev.xkmc.l2core.init.reg.simple.DCVal;
+import dev.xkmc.l2core.init.reg.varitem.VarItemInit;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Unit;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -40,11 +41,17 @@ public class CDItems {
 	public static final DCVal<JEIDisplayInfo> DISPLAY = DC.reg("display", JEIDisplayInfo.class, true);
 	public static final DCVal<Unit> INGREDIENT = DC.unit("ingredient");
 
+	public static final VarItemInit<BaseFoodItem> FOOD;
+
 	static {
 		FRIED_EGG = CuisineDelight.REGISTRATE.item("fried_egg", Item::new).register();
 
 		TAB = CuisineDelight.REGISTRATE.buildModCreativeTab("cuisine", "Cuisine Delight",
 				e -> e.icon(CDItems.SKILLET::asStack));
+
+		FOOD = VarItemInit.setup(CuisineDelight.REGISTRATE, CuisineDelight.loc("food"),
+				rl -> new BaseFoodItem(new Item.Properties().stacksTo(1).craftRemainder(CDItems.PLATE.get())),
+				(rl, b) -> b.defaultModel().lang(PlateFood.toEnglishName(rl.getPath())));
 
 		SKILLET = CuisineDelight.REGISTRATE.item("cuisine_skillet", p -> new CuisineSkilletItem(CDBlocks.SKILLET.get(), p.stacksTo(1)))
 				.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")))
@@ -58,6 +65,7 @@ public class CDItems {
 
 		PLATE = CuisineDelight.REGISTRATE.item("plate", PlateItem::new)
 				.tag(TagGen.UTENSILS).defaultModel().defaultLang().register();
+
 		PlateFood.register();
 	}
 
