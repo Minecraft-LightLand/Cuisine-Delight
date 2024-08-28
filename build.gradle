@@ -158,8 +158,10 @@ dependencies {
     implementation jarJar(group: 'dev.xkmc', name: 'l2modularblocks', version: "[${l2modularblocks_ver},)")
     implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[${l2core_ver},)")
 
+    implementation "dev.xkmc:fast_projectile_api:${fast_projectile_api_ver}"
+    implementation "dev.xkmc:l2damagetracker:${l2damagetracker_ver}"
+    implementation "dev.xkmc:l2library:${l2library_ver}"
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
-
     implementation "curse.maven:farmers-delight-398521:5566383"
 }
 
