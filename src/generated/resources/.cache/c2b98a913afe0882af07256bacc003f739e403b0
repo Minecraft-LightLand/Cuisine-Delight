@@ -1,4 +1,6 @@
-// 1.21.1	2024-08-11T22:30:05.692465	Cuisine Delight Config
+// 1.21.1	2024-09-21T16:36:11.869339	Cuisine Delight Config
+a1805c24cf3b6c3807b97e235124beebcb6297cd data/croptopia/cuisinedelight_config/ingredient/all.json
+ec22ef661c0638b5296e6be4b74d098e16661696 data/croptopia/cuisinedelight_config/transform/cook.json
 ed209c522457c2665193aaae389b4bb1d7ac4ec4 data/cuisinedelight/cuisinedelight_config/ingredient/meat.json
 922c4ec82d7968c3d80c533aeabb413c746e8094 data/cuisinedelight/cuisinedelight_config/ingredient/misc.json
 7fedec9f5212080b9e3b1aca6694b801b5c4d866 data/cuisinedelight/cuisinedelight_config/ingredient/vege.json
@@ -9,3 +11,5 @@ a8df31fdb7715f7f2db5b298e3119461f47bd1e1 data/cuisinedelight/cuisinedelight_conf
 7a5237a107d3d77c0ea0c6f7b1798a3468c7e22a data/farmersdelight/cuisinedelight_config/ingredient/vege.json
 7ef2b1901571544391f2f229ddd6186e591beeb4 data/farmersdelight/cuisinedelight_config/transform/fluids.json
 043bc9e79e0b5d9d01fa43bc8eac613531692ae2 data/farmersdelight/cuisinedelight_config/transform/meat.json
+01c23fff834c00689b2c4c3d87c9f886843259e6 data/oceansdelight/cuisinedelight_config/ingredient/all.json
+3402afdac7b66e8cb045c155da691ce10eb3326a data/oceansdelight/cuisinedelight_config/transform/meat.json

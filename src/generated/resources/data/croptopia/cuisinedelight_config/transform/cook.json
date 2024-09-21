@@ -1,0 +1,29 @@
+{
+  "fluidTransform": {},
+  "itemTransform": {
+    "croptopia:anchovy": {
+      "next": "croptopia:cooked_anchovy",
+      "stage": "COOKED"
+    },
+    "croptopia:bacon": {
+      "next": "croptopia:cooked_bacon",
+      "stage": "COOKED"
+    },
+    "croptopia:clam": {
+      "next": "croptopia:steamed_clams",
+      "stage": "COOKED"
+    },
+    "croptopia:frog_legs": {
+      "next": "croptopia:fried_frog_legs",
+      "stage": "COOKED"
+    },
+    "croptopia:shrimp": {
+      "next": "croptopia:cooked_shrimp",
+      "stage": "COOKED"
+    },
+    "croptopia:tuna": {
+      "next": "croptopia:cooked_tuna",
+      "stage": "COOKED"
+    }
+  }
+}
