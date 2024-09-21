@@ -1,8 +1,7 @@
-1.2.3
-- Add Ocean's Delight and Croptopia compat
-
 1.2.2
 - Switch to NeoForge 21.1.4 enchantability system
+- Add Ocean's Delight and Croptopia compat
+- Allow users to add more plates at will
 
 1.2.1
 - Loosen Registrate version requirement
