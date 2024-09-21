@@ -163,6 +163,10 @@ dependencies {
     implementation "dev.xkmc:l2library:${l2library_ver}"
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
     implementation "curse.maven:farmers-delight-398521:5566383"
+
+    implementation "curse.maven:epherolib-885449:5549595"
+    implementation "curse.maven:oceans-delight-841262:5618115"
+    implementation "curse.maven:croptopia-415438:5571647"
 }
 
 tasks.register('publishCurseForge', TaskPublishCurseForge) {

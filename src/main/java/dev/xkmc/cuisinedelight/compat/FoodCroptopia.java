@@ -1,17 +1,16 @@
 package dev.xkmc.cuisinedelight.compat;
 
-/*
+
 import com.epherical.croptopia.register.Content;
 import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.content.logic.transform.Stage;
 import dev.xkmc.cuisinedelight.init.CuisineDelight;
-import dev.xkmc.l2library.serial.config.ConfigDataProvider;
+import dev.xkmc.l2core.serial.config.ConfigDataProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fml.ModList;
-import vectorwing.farmersdelight.FarmersDelight;
+import net.neoforged.fml.ModList;
 
 public class FoodCroptopia {
 
@@ -19,7 +18,7 @@ public class FoodCroptopia {
 
 		// croptopia
 		if (ModList.get().isLoaded("croptopia")) {
-			map.add(CuisineDelight.INGREDIENT, new ResourceLocation("croptopia", "all"), IngredientConfig.build(
+			map.add(CuisineDelight.INGREDIENT, ResourceLocation.fromNamespaceAndPath("croptopia", "all"), IngredientConfig.build(
 					IngredientConfig.get(Ingredient.of(
 									Content.CELERY, Content.CHILE_PEPPER, Content.GREENONION,
 									Content.GINGER, Content.GARLIC, Content.ONION
@@ -48,7 +47,7 @@ public class FoodCroptopia {
 					IngredientConfig.get(Ingredient.of(Content.RAW_BACON, Content.FROG_LEGS), FoodType.MEAT,
 							120, 240, 80, 1f, 0.5f, 2, 10)
 			));
-			map.add(CuisineDelight.TRANSFORM, new ResourceLocation("croptopia", "cook"), new CookTransformConfig()
+			map.add(CuisineDelight.TRANSFORM, ResourceLocation.fromNamespaceAndPath("croptopia", "cook"), new CookTransformConfig()
 					.item(Content.FROG_LEGS, Content.FRIED_FROG_LEGS, Stage.COOKED)
 					.item(Content.CLAM.asItem(), Content.STEAMED_CLAMS, Stage.COOKED)
 					.item(Content.SHRIMP.asItem(), Content.COOKED_SHRIMP.asItem(), Stage.COOKED)
@@ -60,4 +59,3 @@ public class FoodCroptopia {
 
 	}
 }
-*/

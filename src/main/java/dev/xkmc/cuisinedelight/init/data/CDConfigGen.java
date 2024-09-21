@@ -1,5 +1,7 @@
 package dev.xkmc.cuisinedelight.init.data;
 
+import dev.xkmc.cuisinedelight.compat.FoodCroptopia;
+import dev.xkmc.cuisinedelight.compat.FoodDelight;
 import dev.xkmc.cuisinedelight.content.logic.CookTransformConfig;
 import dev.xkmc.cuisinedelight.content.logic.FoodType;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
@@ -146,11 +148,10 @@ public class CDConfigGen extends ConfigDataProvider {
 			);
 
 		}
-
-		//TODO FoodTwilight.add(map);
+		;
 		//TODO FoodAlex.add(map);
-		//TODO FoodDelight.add(map);
-		//TODO FoodCroptopia.add(map);
+		FoodDelight.add(map);
+		FoodCroptopia.add(map);
 	}
 
 }
