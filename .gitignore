@@ -29,3 +29,5 @@ run
 .DS_Store
 
 .cache
+
+secrets.properties
