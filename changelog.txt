@@ -1,3 +1,7 @@
+1.2.3
+- Fix compat with newest JEI
+- Fix compat with Enchantment Description
+
 1.2.2
 - Switch to NeoForge 21.1.4 enchantability system
 - Add Ocean's Delight and Croptopia compat
