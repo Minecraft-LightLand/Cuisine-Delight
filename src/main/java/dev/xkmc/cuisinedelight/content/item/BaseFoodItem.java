@@ -175,7 +175,7 @@ public class BaseFoodItem extends Item {
 		}
 		CookedFoodData data = getData(stack);
 		if (data == null) {
-			list.add(LangData.BAD_FOOD.get());
+			list.add(LangData.DISPLAY_FOOD.get());
 			return;
 		}
 		FoodProperties prop = data.toFoodData();

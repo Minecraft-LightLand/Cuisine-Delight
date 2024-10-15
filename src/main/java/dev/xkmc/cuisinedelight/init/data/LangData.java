@@ -13,12 +13,15 @@ import java.util.Locale;
 public enum LangData {
 	SERVE_SIZE("tooltip.size", "Serve size: %s", 1, ChatFormatting.GRAY),
 	SCORE("tooltip.score", "Quality: %s%%", 1, ChatFormatting.AQUA),
+	DISPLAY_FOOD("tooltip.display", "No ingredient data. For Display only", 0, ChatFormatting.GRAY),
 	BAD_FOOD("tooltip.bad", "Inedible", 0, ChatFormatting.RED),
 	SHIFT("tooltip.shift", "Press Shift for culinary details", 0, ChatFormatting.GRAY),
 	BAD_BURNT("tooltip.burnt", "Ingredient %s is burnt", 1, ChatFormatting.DARK_RED),
 	BAD_RAW("tooltip.raw", "Ingredient %s is a bit raw", 1, ChatFormatting.DARK_RED),
 	BAD_OVERCOOKED("tooltip.overcooked", "Ingredient %s is overcooked", 1, ChatFormatting.DARK_RED),
 	GOOD("tooltip.good", "Ingredient %s is cooked well", 1, ChatFormatting.DARK_GREEN),
+	USE_SPATULA("tooltip.spatula", "Use [%s] to stir ingredients to prevent over-burning one side", 1, ChatFormatting.GRAY),
+	USE_PLATE("tooltip.plate", "Use [%s] to collect food.", 1, ChatFormatting.GRAY),
 	INFO_MIN_TIME("info.min_time", "Minimum cooking time: %s sec", 1, ChatFormatting.AQUA),
 	INFO_MAX_TIME("info.max_time", "Maximum cooking time: %s sec", 1, ChatFormatting.AQUA),
 	INFO_STIR_TIME("info.stir_time", "Maximum stir interval: %s sec", 1, ChatFormatting.AQUA),
@@ -39,7 +42,8 @@ public enum LangData {
 
 	JEI_TITLE("jei.title", "Cuisine Recipe", 0, null),
 	JEI_FOOD_TYPE("jei.food_type", "Accepts any food of type %s", 1, ChatFormatting.GREEN),
-	JEI_INGREDIENT_AMOUNT("jei.ingredient_amount", "Amount: %s", 1, ChatFormatting.GRAY),;
+	JEI_INGREDIENT_AMOUNT("jei.ingredient_amount", "Amount: %s", 1, ChatFormatting.GRAY),
+	;
 
 	private final String key, def;
 	private final int arg;

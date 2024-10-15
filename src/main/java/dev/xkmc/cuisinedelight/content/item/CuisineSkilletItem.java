@@ -6,7 +6,9 @@ import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -208,6 +210,8 @@ public class CuisineSkilletItem extends SkilletItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		list.add(LangData.USE_SPATULA.get(CDItems.SPATULA.asStack().getHoverName().copy().withStyle(ChatFormatting.YELLOW)));
+		list.add(LangData.USE_PLATE.get(CDItems.PLATE.asStack().getHoverName().copy().withStyle(ChatFormatting.YELLOW)));
 		if (Screen.hasShiftDown()) {
 			list.add(LangData.ENCH_FIRE.get());
 			list.add(LangData.ENCH_EFFICIENCY.get());

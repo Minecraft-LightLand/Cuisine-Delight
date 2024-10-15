@@ -1,5 +1,6 @@
-1.1.16 / 1.0.11
+1.1.16
 - Add config toggle for SoL and Diet compat
+- Improve item tooltip
 
 1.1.15
     - Fix compat with newest JEI
