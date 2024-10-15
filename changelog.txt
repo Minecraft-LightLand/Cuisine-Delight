@@ -1,3 +1,6 @@
+1.0.11
+- Add config toggle for SoL and Diet compat
+
 1.1.13 / 1.0.9
     - Tweak food bonus. now perfectly cooked food has nutrition bonus as well
 
