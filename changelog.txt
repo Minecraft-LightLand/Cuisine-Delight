@@ -1,5 +1,8 @@
+1.1.16 / 1.0.11
+- Add config toggle for SoL and Diet compat
+
 1.1.15
-    - Fix compat wit newest JEI
+    - Fix compat with newest JEI
 
 1.1.14
     - Add miner's delight, croptopia, Alex's Mobs, Alex's Delight compat

@@ -24,8 +24,9 @@ public class CDConfig {
 		public final ForgeConfigSpec.DoubleValue varietyBonus;
 		public final ForgeConfigSpec.DoubleValue perfectionBonus;
 		public final ForgeConfigSpec.IntValue nourishmentDuration;
-
-		public ForgeConfigSpec.IntValue maxIngredient;
+		public final ForgeConfigSpec.IntValue maxIngredient;
+		public final ForgeConfigSpec.BooleanValue enableSoLCompat;
+		public final ForgeConfigSpec.BooleanValue enableDietCompat;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			baseServe = builder.comment("base size per serve")
@@ -40,6 +41,10 @@ public class CDConfig {
 					.defineInRange("maxIngredient", 9, 1, 20);
 			nourishmentDuration = builder.comment("nourishment duration per food type")
 					.defineInRange("nourishmentDuration", 100, 1, 10000);
+			enableSoLCompat = builder.comment("Enable SoL compat so that eating a dish is equivalent to eating all components")
+					.define("enableSoLCompat",true);
+			enableDietCompat = builder.comment("Enable Diet compat so that eating a dish is equivalent to eating all components")
+					.define("enableDietCompat",true);
 		}
 
 	}
