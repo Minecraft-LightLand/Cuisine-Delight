@@ -108,6 +108,7 @@ public class PlateItem extends Item {
 				}
 				be.cookingData = new CookingData();
 				be.sync();
+				be.setChanged();
 			}
 			return InteractionResult.SUCCESS;
 		}

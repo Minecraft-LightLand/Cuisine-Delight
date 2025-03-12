@@ -65,6 +65,7 @@ public class CuisineSkilletBlock extends SkilletBlock {
 					remain.setCount(add.getCount());
 					player.getInventory().placeItemBackInInventory(remain);
 					be.sync();
+					be.setChanged();
 				} else {
 					CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_ADD_FOOD.get());
 				}

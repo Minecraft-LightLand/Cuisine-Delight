@@ -1,3 +1,9 @@
+1.2.5
+- Remove wrongly embedded mods
+
+1.2.4
+- Notify Chunk Save
+
 1.2.3
 - Fix compat with newest JEI
 - Fix compat with Enchantment Description
