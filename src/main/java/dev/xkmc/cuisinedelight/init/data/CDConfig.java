@@ -9,10 +9,18 @@ public class CDConfig {
 	public static class Client {
 
 		public final ForgeConfigSpec.DoubleValue uiScale;
+		public final ForgeConfigSpec.IntValue uiXAnchor;
+		public final ForgeConfigSpec.IntValue uiXOffset;
+		public final ForgeConfigSpec.IntValue uiYAnchor;
+		public final ForgeConfigSpec.IntValue uiYOffset;
 
 		Client(ForgeConfigSpec.Builder builder) {
 			uiScale = builder.comment("Cooking UI Scale")
 					.defineInRange("uiScale", 1, 0, 16d);
+			uiXAnchor = builder.defineInRange("uiXAnchor", -1, -1, 1);
+			uiXOffset = builder.defineInRange("uiXOffset", 8, -1000, 1000);
+			uiYAnchor = builder.defineInRange("uiYAnchor", 0, -1, 1);
+			uiYOffset = builder.defineInRange("uiYOffset", 0, -1000, 1000);
 		}
 
 	}

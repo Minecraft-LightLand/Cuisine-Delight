@@ -56,33 +56,44 @@ public class CookingOverlay implements IGuiOverlay {
 	}
 
 	@Override
-	public void render(ForgeGui gui, GuiGraphics g, float partialTick, int screenWidth, int screenHeight) {
+	public void render(ForgeGui gui, GuiGraphics g, float partialTick, int w, int h) {
 		if (Minecraft.getInstance().level == null) return;
 		CookingData data = getData();
 		if (data == null || data.contents.isEmpty()) return;
 		float scale = (float) (double) CDConfig.CLIENT.uiScale.get();
-		screenHeight = Math.round(screenHeight / scale);
+		w = Math.round(w / scale);
+		h = Math.round(h / scale);
 		g.pose().pushPose();
 		g.pose().scale(scale, scale, scale);
 		data.update(Minecraft.getInstance().level.getGameTime());
-		int y = screenHeight / 2 - data.contents.size() * 10;
-		int x = 8;
+		int xa = CDConfig.CLIENT.uiXAnchor.get();
+		int xo = CDConfig.CLIENT.uiXOffset.get();
+		int ya = CDConfig.CLIENT.uiYAnchor.get();
+		int yo = CDConfig.CLIENT.uiYOffset.get();
+		int tw = 68;
+		int th = data.contents.size() * 20;
+
+		final int x = xo + (xa + 1) * (w - tw) / 2;
+		final int y = yo + (ya + 1) * (h - th) / 2;
+
+		int ix = x;
+		int iy = y;
 		Font font = Minecraft.getInstance().font;
 		for (var entry : data.contents) {
 			ItemStack food = entry.getItem();
 			var handle = CookTransformConfig.get(food);
 			ItemStack render = handle.renderStack(entry.getStage(data), food);
-			g.renderItem(render, x, y + 2);
-			g.renderItemDecorations(font, render, x, y + 2);
-			y += 20;
+			g.renderItem(render, ix, iy + 2);
+			g.renderItemDecorations(font, render, ix, iy + 2);
+			iy += 20;
 		}
-		x += 20;
-		y = screenHeight / 2 - data.contents.size() * 10;
+		ix += 20;
+		iy = y;
 		for (var entry : data.contents) {
 			ItemStack food = entry.getItem();
 			var config = IngredientConfig.get().getEntry(food);
 			if (config != null) {
-				PieRenderer cook = new PieRenderer(g, x + 8, y + 12);
+				PieRenderer cook = new PieRenderer(g, ix + 8, iy + 12);
 				float min = config.min_time / MAX_TIME;
 				float max = config.max_time / MAX_TIME;
 				cook.fillPie(0, min, PieRenderer.Texture.PIE_GREEN);
@@ -93,7 +104,7 @@ public class CookingOverlay implements IGuiOverlay {
 				cook.drawNeedle(PieRenderer.Texture.NEEDLE_BLACK, cook_needle);
 				cook.drawIcon(PieRenderer.Texture.COOK);
 
-				PieRenderer flip = new PieRenderer(g, x + 28, y + 12);
+				PieRenderer flip = new PieRenderer(g, ix + 28, iy + 12);
 				float thr = config.stir_time / STIR_TIME;
 				flip.fillPie(0, thr, PieRenderer.Texture.PIE_GREEN);
 				flip.fillPie(thr, 1, PieRenderer.Texture.PIE_RED);
@@ -104,7 +115,7 @@ public class CookingOverlay implements IGuiOverlay {
 				flip.drawNeedle(PieRenderer.Texture.NEEDLE_RED, stir_max + 0.5f);
 				flip.drawIcon(PieRenderer.Texture.FLIP);
 			}
-			y += 20;
+			iy += 20;
 		}
 		g.pose().popPose();
 		;
