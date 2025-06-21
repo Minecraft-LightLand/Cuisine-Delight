@@ -1,3 +1,6 @@
+1.2.6
+- More flexible UI positioning config
+
 1.2.5
 - Remove wrongly embedded mods
 

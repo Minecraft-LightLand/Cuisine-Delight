@@ -10,10 +10,20 @@ public class CDConfig {
 
 		public final ModConfigSpec.DoubleValue uiScale;
 
+		public final ModConfigSpec.IntValue uiXAnchor;
+		public final ModConfigSpec.IntValue uiXOffset;
+		public final ModConfigSpec.IntValue uiYAnchor;
+		public final ModConfigSpec.IntValue uiYOffset;
+
 		Client(Builder builder) {
 			markPlain();
 			uiScale = builder.text("Cooking UI Scale")
 					.defineInRange("uiScale", 1, 0, 16d);
+			uiXAnchor = builder.defineInRange("uiXAnchor", -1, -1, 1);
+			uiXOffset = builder.defineInRange("uiXOffset", 8, -1000, 1000);
+			uiYAnchor = builder.defineInRange("uiYAnchor", 0, -1, 1);
+			uiYOffset = builder.defineInRange("uiYOffset", 0, -1000, 1000);
+
 		}
 
 
