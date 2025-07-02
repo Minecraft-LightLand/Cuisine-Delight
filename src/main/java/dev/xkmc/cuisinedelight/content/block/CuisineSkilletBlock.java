@@ -19,16 +19,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import vectorwing.farmersdelight.common.block.SkilletBlock;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 
 public class CuisineSkilletBlock extends SkilletBlock {
+
+	protected static final VoxelShape SHAPE_WITH_ABOVE = Block.box(1.0, 0.0, 1.0, 15.0, 8, 15.0);
 
 	public CuisineSkilletBlock(Properties properties) {
 		super(properties);
