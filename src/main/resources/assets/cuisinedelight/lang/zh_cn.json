@@ -58,5 +58,6 @@
   "cuisinedelight.food_type.none": "调料",
   "cuisinedelight.jei.ingredient_amount": "比例: %s",
   "cuisinedelight.jei.food_type": "接受任何%s",
-  "cuisinedelight.jei.title": "料理配方"
+  "cuisinedelight.jei.title": "料理配方",
+  "cuisinedelight.tooltip.slow": "在营火上以%s%%速度烹饪"
 }

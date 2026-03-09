@@ -212,6 +212,7 @@ public class CuisineSkilletItem extends SkilletItem {
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		list.add(LangData.USE_SPATULA.get(CDItems.SPATULA.asStack().getHoverName().copy().withStyle(ChatFormatting.YELLOW)));
 		list.add(LangData.USE_PLATE.get(CDItems.PLATE.asStack().getHoverName().copy().withStyle(ChatFormatting.YELLOW)));
+		list.add(LangData.SLOW.get((int) (CDConfig.COMMON.slowSpeed.get() * 100)));
 		if (Screen.hasShiftDown()) {
 			list.add(LangData.ENCH_FIRE.get());
 			list.add(LangData.ENCH_EFFICIENCY.get());

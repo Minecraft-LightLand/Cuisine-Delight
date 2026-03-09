@@ -19,7 +19,7 @@ public class TagGen {
 	public static final TagKey<Block> LOW_HEAT = createBlockTag("low_heat");
 
 	public static void onBlockTagGen(RegistrateTagsProvider.IntrinsicImpl<Block> pvd) {
-		pvd.addTag(LOW_HEAT).add(Blocks.FIRE, Blocks.CAMPFIRE);
+		pvd.addTag(LOW_HEAT).add(Blocks.FIRE, Blocks.CAMPFIRE, Blocks.SOUL_FIRE, Blocks.SOUL_CAMPFIRE);
 	}
 
 	public static void onItemTagGen(RegistrateItemTagsProvider pvd) {

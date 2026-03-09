@@ -22,6 +22,7 @@ public enum LangData {
 	GOOD("tooltip.good", "Ingredient %s is cooked well", 1, ChatFormatting.DARK_GREEN),
 	USE_SPATULA("tooltip.spatula", "Use [%s] to stir ingredients to prevent over-burning one side", 1, ChatFormatting.GRAY),
 	USE_PLATE("tooltip.plate", "Use [%s] to collect food.", 1, ChatFormatting.GRAY),
+	SLOW("tooltip.slow", "Cooks at %s%% speed on campfire", 1, ChatFormatting.GRAY),
 	INFO_MIN_TIME("info.min_time", "Minimum cooking time: %s sec", 1, ChatFormatting.AQUA),
 	INFO_MAX_TIME("info.max_time", "Maximum cooking time: %s sec", 1, ChatFormatting.AQUA),
 	INFO_STIR_TIME("info.stir_time", "Maximum stir interval: %s sec", 1, ChatFormatting.AQUA),

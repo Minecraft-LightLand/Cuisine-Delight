@@ -35,6 +35,7 @@ public class CDConfig {
 		public final ForgeConfigSpec.IntValue maxIngredient;
 		public final ForgeConfigSpec.BooleanValue enableSoLCompat;
 		public final ForgeConfigSpec.BooleanValue enableDietCompat;
+		public final ForgeConfigSpec.DoubleValue slowSpeed;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			baseServe = builder.comment("base size per serve")
@@ -50,9 +51,11 @@ public class CDConfig {
 			nourishmentDuration = builder.comment("nourishment duration per food type")
 					.defineInRange("nourishmentDuration", 100, 1, 10000);
 			enableSoLCompat = builder.comment("Enable SoL compat so that eating a dish is equivalent to eating all components")
-					.define("enableSoLCompat",true);
+					.define("enableSoLCompat", true);
 			enableDietCompat = builder.comment("Enable Diet compat so that eating a dish is equivalent to eating all components")
-					.define("enableDietCompat",true);
+					.define("enableDietCompat", true);
+			slowSpeed = builder.comment("Speed factor for slow-cooking")
+					.defineInRange("slowSpeed", 0.5d, 0.01d, 1);
 		}
 
 	}

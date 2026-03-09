@@ -56,7 +56,7 @@ public class CuisineSkilletBlock extends SkilletBlock {
 				if (!level.isClientSide) {
 					int count = 1 + be.baseItem.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY);
 					if (be.slowCook()) {
-						be.cookingData.setSpeed(0.5f);
+						be.cookingData.setSpeed(CDConfig.COMMON.slowSpeed.get().floatValue());
 					}
 					ItemStack add = heldStack.split(count);
 					be.cookingData.addItem(add, level.getGameTime());

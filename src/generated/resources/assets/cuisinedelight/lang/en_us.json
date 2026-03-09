@@ -34,6 +34,7 @@
   "cuisinedelight.tooltip.score": "Quality: %s%%",
   "cuisinedelight.tooltip.shift": "Press Shift for culinary details",
   "cuisinedelight.tooltip.size": "Serve size: %s",
+  "cuisinedelight.tooltip.slow": "Cooks at %s%% speed on campfire",
   "cuisinedelight.tooltip.spatula": "Use [%s] to stir ingredients to prevent over-burning one side",
   "item.cuisinedelight.fried_egg": "Fried Egg",
   "item.cuisinedelight.fried_meat_and_melon": "Fried Meat and Melon",
