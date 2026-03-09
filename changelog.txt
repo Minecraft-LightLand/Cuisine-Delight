@@ -1,3 +1,7 @@
+1.2.7
+- Cook slower on fire and campfire
+- Swing Spatula when stirring
+
 1.2.6
 - More flexible UI positioning config
 

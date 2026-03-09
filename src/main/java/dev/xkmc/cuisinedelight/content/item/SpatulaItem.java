@@ -72,6 +72,7 @@ public class SpatulaItem extends Item {
 				} else if (player != null) {
 					CuisineSkilletItem.playSound(player, level, ModSounds.BLOCK_SKILLET_SIZZLE.get());
 				}
+				return InteractionResult.SUCCESS;
 			}
 		}
 		return InteractionResult.PASS;
