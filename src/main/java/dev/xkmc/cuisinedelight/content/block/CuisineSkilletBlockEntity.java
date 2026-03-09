@@ -3,6 +3,7 @@ package dev.xkmc.cuisinedelight.content.block;
 import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.item.SpatulaItem;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
+import dev.xkmc.cuisinedelight.init.data.TagGen;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2core.base.tile.BaseBlockEntity;
 import dev.xkmc.l2core.init.reg.ench.EnchHelper;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import vectorwing.farmersdelight.common.block.entity.HeatableBlockEntity;
+import vectorwing.farmersdelight.common.tag.ModTags;
 
 import javax.annotation.Nonnull;
 
@@ -74,8 +76,14 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 	}
 
 	public boolean slowCook() {
-		return EnchHelper.getLv(baseItem, Enchantments.FIRE_ASPECT) == 1 &&
-				this.level != null && !this.isHeated(this.level, this.getBlockPos());
+		if (level == null) return false;
+		if (isHeated(this.level, this.getBlockPos())) {
+			BlockState below = level.getBlockState(getBlockPos().below());
+			if (!below.is(ModTags.HEAT_SOURCES) || below.is(TagGen.LOW_HEAT)) {
+				return true;
+			}
+		}
+		return EnchHelper.getLv(baseItem, Enchantments.FIRE_ASPECT) == 1;
 	}
 
 	public float getStirPercent(float pTick) {
