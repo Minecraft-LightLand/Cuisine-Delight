@@ -4,6 +4,7 @@ import dev.xkmc.cuisinedelight.content.item.CuisineSkilletItem;
 import dev.xkmc.cuisinedelight.content.item.SpatulaItem;
 import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.init.data.TagGen;
+import dev.xkmc.cuisinedelight.init.data.TagRef;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2core.base.tile.BaseBlockEntity;
 import dev.xkmc.l2core.init.reg.ench.EnchHelper;
@@ -79,7 +80,7 @@ public class CuisineSkilletBlockEntity extends BaseBlockEntity implements Heatab
 		if (level == null) return false;
 		if (isHeated(this.level, this.getBlockPos())) {
 			BlockState below = level.getBlockState(getBlockPos().below());
-			if (!below.is(ModTags.HEAT_SOURCES) || below.is(TagGen.LOW_HEAT)) {
+			if (!below.is(TagRef.HEAT_SOURCES) || below.is(TagGen.LOW_HEAT)) {
 				return true;
 			}
 		}
