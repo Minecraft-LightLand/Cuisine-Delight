@@ -14,7 +14,7 @@ buildscript {
 
 plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'net.darkhax.curseforgegradle' version '[1.1.24,)'
+    id 'net.darkhax.curseforgegradle' version '[1.1.24,1.2)'
     id "at.stnwtr.gradle-secrets-plugin" version "1.0.1"
     id "com.modrinth.minotaur" version "2.+"
 }
@@ -198,9 +198,9 @@ dependencies {
 
 
     implementation fg.deobf("curse.maven:the-twilight-forest-227639:4635921")
-    implementation fg.deobf("dev.xkmc.twilightdelight:twilightdelight:2.0.1-slim")
+    implementation fg.deobf("dev.xkmc.twilightdelight:twilightdelight:2.2.0-slim")
 
-    implementation fg.deobf("curse.maven:farmers-delight-398521:4638874")
+    implementation fg.deobf("curse.maven:farmers-delight-398521:8000996")
 
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
