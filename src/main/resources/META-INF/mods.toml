@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[46,)"
-license="All rights reserved"
+license="LGPL-2.1"
 [[mods]]
 modId="cuisinedelight"
 version="${file.jarVersion}" #mandatory

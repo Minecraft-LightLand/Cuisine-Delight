@@ -6,6 +6,7 @@ import dev.xkmc.cuisinedelight.content.logic.CookingData;
 import dev.xkmc.cuisinedelight.content.logic.IngredientConfig;
 import dev.xkmc.cuisinedelight.init.data.CDConfig;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import dev.xkmc.cuisinedelight.init.data.TagRef;
 import dev.xkmc.cuisinedelight.init.registrate.CDItems;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.ChatFormatting;
@@ -193,7 +194,7 @@ public class CuisineSkilletItem extends SkilletItem {
 		} else {
 			BlockPos pos = player.blockPosition();
 			for (BlockPos nearbyPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
-				if (level.getBlockState(nearbyPos).is(ModTags.HEAT_SOURCES)) {
+				if (level.getBlockState(nearbyPos).is(TagRef.HEAT_SOURCES)) {
 					return true;
 				}
 			}

@@ -5,6 +5,7 @@ import dev.xkmc.cuisinedelight.content.recipe.BaseCuisineRecipe;
 import dev.xkmc.cuisinedelight.content.recipe.CuisineRecipeContainer;
 import dev.xkmc.cuisinedelight.events.FoodEatenEvent;
 import dev.xkmc.cuisinedelight.init.data.LangData;
+import dev.xkmc.cuisinedelight.util.FDConfig;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -211,7 +212,7 @@ public class BaseFoodItem extends Item {
 			}
 		}
 
-		if (Configuration.FOOD_EFFECT_TOOLTIP.get()) {
+		if (FDConfig.addTooltip()) {
 			for (var e : prop.getEffects()) {
 				MobEffectInstance mobeffectinstance = e.getFirst();
 				MutableComponent mutablecomponent = Component.translatable(mobeffectinstance.getDescriptionId());
