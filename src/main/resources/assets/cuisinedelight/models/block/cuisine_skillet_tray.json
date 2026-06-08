@@ -6,8 +6,8 @@
 	"particle": "farmersdelight:block/skillet_top",
 	"top": "farmersdelight:block/skillet_top",
 	"bottom": "farmersdelight:block/skillet_bottom",
-	"tray_top": "farmersdelight:block/cooking_pot_tray_top",
-	"tray_side": "farmersdelight:block/cooking_pot_tray_side"
+	"tray_top": "cuisinedelight:block/heating_tray_top",
+	"tray_side": "cuisinedelight:block/heating_tray_side"
   },
   "elements": [
 	{
