@@ -167,7 +167,7 @@ dependencies {
 
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
 
-    implementation "curse.maven:farmers-delight-398521:8001010"
+    implementation "curse.maven:farmers-delight-398521:8083481"
 
     implementation "curse.maven:epherolib-885449:5549595"
     implementation "curse.maven:oceans-delight-841262:5618115"
